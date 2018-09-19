@@ -7,5 +7,39 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
+    <style name="DiyRatingBar" parent="Base.Widget.AppCompat.RatingBar">
+        <item name="android:progressDrawable">
+            @drawable/ic_dackstar
+        </item>
+        <item name="android:maxHeight">
+            10dp
+        </item>
+        <item name="android:maxWidth">
+            10dp
+        </item>
+    </style>
+    <style name="radiobutton_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:padding">3dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="viewpager_navigation_bar_tab_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="roomRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/ratingbar</item>
+        <item name="android:minHeight">36px</item>
+        <item name="android:maxHeight">36px</item>
+        <item name="android:minWidth">36px</item>
+        <item name="android:maxWidth">36px</item>
+    </style>
 </resources>

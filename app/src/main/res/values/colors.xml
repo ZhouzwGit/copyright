@@ -8,5 +8,11 @@
     <color name="lightblue">#177fc7</color>
     <color name="black">#000000</color>
     <color name="mainbackcolor">#faf5fa</color>
+    <color name="blueshadow">#363945</color>
     <color name="gray">#666666</color>
+    <color name="gray2">#1e2229</color>
+    <color name="yellow">#fba213</color>
+    <color name="pink">#fbefd3</color>
+    <color name="orange">#fec87b</color>
+    <color name="gray3">#636467</color>
 </resources>

@@ -5,11 +5,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
-    <include layout="@layout/title_activity"></include>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <include layout="@layout/title_activity"></include></LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="10"
+            android:layout_weight="9"
             android:orientation="vertical"
             android:paddingBottom="@dimen/activity_vertical_margin"
             android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -202,5 +207,11 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-            <include layout="@layout/buttom_activity"></include>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <include layout="@layout/buttom_activity"></include>
+    </LinearLayout>
+
 </LinearLayout>

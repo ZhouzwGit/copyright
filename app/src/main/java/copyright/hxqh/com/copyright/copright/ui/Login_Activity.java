@@ -35,6 +35,7 @@ import java.util.List;
 
 import copyright.hxqh.com.copyright.R;
 import copyright.hxqh.com.copyright.copright.HttpManager.HttpConnect;
+import copyright.hxqh.com.copyright.copright.util.AcountUtil;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -337,6 +338,7 @@ public class Login_Activity extends AppCompatActivity implements LoaderCallbacks
             showProgress(false);
 
             if (success) {
+                AcountUtil.setUserNameAndPassWord(Login_Activity.this,mEmail, mPassword);
                 intentToMain();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
