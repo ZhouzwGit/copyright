@@ -312,10 +312,13 @@ public class Login_Activity extends AppCompatActivity implements LoaderCallbacks
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
-
+            boolean flag = false;
             try {
                 // Simulate network access.
-                HttpConnect.login(mEmail,mPassword);
+               String login =  HttpConnect.login(mEmail,mPassword);
+               if (login.contains("succ")){
+                   flag = true;
+               }
             } catch (Exception e) {
                 return false;
             }
@@ -329,7 +332,7 @@ public class Login_Activity extends AppCompatActivity implements LoaderCallbacks
             }
 
             // TODO: register the new account here.
-            return true;
+            return flag;
         }
 
         @Override

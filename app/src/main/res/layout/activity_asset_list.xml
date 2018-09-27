@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="copyright.hxqh.com.copyright.copright.ui.IRM.ProductListActivity">
+    tools:context="copyright.hxqh.com.copyright.copright.ui.IRM.AssetListActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,6 +21,7 @@
             android:layout_height="50dp"
             android:background="@color/blueshadow">
             <RelativeLayout
+                android:id="@+id/sortbycost_id"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
@@ -48,6 +50,7 @@
                                 android:layout_height="0dp"
                                 android:layout_weight="1">
                                 <ImageView
+                                    android:id="@+id/costsort_asc_id"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@mipmap/ic_sort5"
@@ -59,6 +62,7 @@
                                 android:layout_height="0dp"
                                 android:layout_weight="1">
                                 <ImageView
+                                    android:id="@+id/costsort_desc_id"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@mipmap/ic_sort2"/>
@@ -72,6 +76,7 @@
 
             </RelativeLayout>
             <RelativeLayout
+                android:id="@+id/sortbydate_id"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
@@ -99,6 +104,7 @@
                             android:layout_height="0dp"
                             android:layout_weight="1">
                             <ImageView
+                                android:id="@+id/createdate_asc_id"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@mipmap/ic_sort5"
@@ -110,6 +116,7 @@
                             android:layout_height="0dp"
                             android:layout_weight="1">
                             <ImageView
+                                android:id="@+id/createdate_desc_id"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@mipmap/ic_sort2"/>
@@ -122,6 +129,7 @@
                 </RelativeLayout>
             </RelativeLayout>
             <RelativeLayout
+                android:id="@+id/sort_id"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
@@ -148,5 +156,11 @@
             <include layout="@layout/list"></include>
         </LinearLayout>
     </LinearLayout>
-
-</android.support.constraint.ConstraintLayout>
+    <FrameLayout
+        android:id="@+id/drawer_content"
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:clickable="true"
+        />
+</android.support.v4.widget.DrawerLayout>

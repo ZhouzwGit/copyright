@@ -12,7 +12,10 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import copyright.hxqh.com.copyright.R;
-import copyright.hxqh.com.copyright.copright.ui.IRM.ProductListActivity;
+import copyright.hxqh.com.copyright.copright.ui.IRM.AssetListActivity;
+import copyright.hxqh.com.copyright.copright.ui.product.ProductListActivity;
+import copyright.hxqh.com.copyright.copright.ui.product.ProductListActivity2;
+import copyright.hxqh.com.copyright.copright.ui.product.entity.Product;
 
 public class TheMainActivity extends AppCompatActivity implements View.OnClickListener{
     private LinearLayout irm,product,author,contract;
@@ -69,10 +72,12 @@ public class TheMainActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.irm_id:
-                Intent intent = new Intent(this, ProductListActivity.class);
-                startActivity(intent);
+               /* Intent intent1 = new Intent(this, AssetListActivity.class);
+                startActivity(intent1);*/
                 break;
             case R.id.productsandoper_id:
+                Intent intent2 = new Intent(this, ProductListActivity2.class);
+                startActivity(intent2);
                 break;
             case R.id.authorandroyalty_id:
                 break;

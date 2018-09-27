@@ -50,8 +50,12 @@
         <activity
             android:name=".copright.ui.Login_Activity"
             android:label="@string/title_activity_login" />
-        <activity android:name=".copright.ui.IRM.ProductListActivity" />
-        <activity android:name=".copright.ui.IRM.ProductDetailActivity"></activity>
+        <activity android:name=".copright.ui.IRM.AssetListActivity" />
+        <activity android:name=".copright.ui.IRM.AssetDetailActivity"></activity>
+        <activity android:name=".copright.ui.product.ProductListActivity" />
+        <activity android:name=".copright.ui.product.ProductListActivity2" />
+        <activity android:name=".copright.ui.product.ProductDetail" />
+        <activity android:name=".copright.ui.product.ChannelDetailActivity" />
     </application>
 
 </manifest>
