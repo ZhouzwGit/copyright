@@ -18,8 +18,12 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import copyright.hxqh.com.copyright.copright.entity.UserInfo;
 import copyright.hxqh.com.copyright.copright.ui.IRM.enity.Asset;
 import copyright.hxqh.com.copyright.copright.ui.IRM.enity.Resourcekind;
+import copyright.hxqh.com.copyright.copright.ui.author.entity.Author;
+import copyright.hxqh.com.copyright.copright.ui.author.entity.Royalty;
+import copyright.hxqh.com.copyright.copright.ui.contract.entity.Contract;
 import copyright.hxqh.com.copyright.copright.ui.product.entity.Channel;
 import copyright.hxqh.com.copyright.copright.ui.product.entity.Product;
 import copyright.hxqh.com.copyright.copright.util.AcountUtil;
@@ -136,6 +140,87 @@ public class HttpConnect {
         }
         return productList;
     }
+    public static  List<Royalty>  getRoyaltyList(JSONObject json, int page){
+        String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/authorpaylist";
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpPost post = new HttpPost(url);
+        StringEntity jsonEntity = null;
+        String result = null;
+        List<Royalty> royaltyList = new ArrayList<>();
+        try{
+            json.put("pageNo",page+"");
+            jsonEntity = new StringEntity(json.toString(),"UTF-8");
+            jsonEntity.setContentEncoding("UTF-8");
+            jsonEntity.setContentType("application/json");
+            post.setEntity(jsonEntity);
+            HttpResponse response = null;
+            response = httpClient.execute(post);
+            if (response.getStatusLine().getStatusCode() == 200){
+                HttpEntity httpEntity = response.getEntity();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(httpEntity.getContent()));
+                result = reader.readLine();
+                royaltyList = (List<Royalty>) JsonUtil.getObject(result,new TypeToken<List<Royalty>>(){});
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return royaltyList;
+    }
+    public static  List<Author>  getAuthorList(JSONObject json, int page){
+        String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/authorlist";
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpPost post = new HttpPost(url);
+        StringEntity jsonEntity = null;
+        String result = null;
+        List<Author> authorList = new ArrayList<>();
+        try{
+            json.put("pageNo",page+"");
+            jsonEntity = new StringEntity(json.toString(),"UTF-8");
+            jsonEntity.setContentEncoding("UTF-8");
+            jsonEntity.setContentType("application/json");
+            post.setEntity(jsonEntity);
+            HttpResponse response = null;
+            response = httpClient.execute(post);
+            if (response.getStatusLine().getStatusCode() == 200){
+                HttpEntity httpEntity = response.getEntity();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(httpEntity.getContent()));
+                result = reader.readLine();
+                authorList = (List<Author>) JsonUtil.getObject(result,new TypeToken<List<Author>>(){});
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return authorList;
+    }
+    public static  List<Contract>  getContractList(JSONObject json, int page){
+        String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/contractlist";
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpPost post = new HttpPost(url);
+        StringEntity jsonEntity = null;
+        String result = null;
+        List<Contract> contractList = new ArrayList<>();
+        try{
+            json.put("pageNo",page+"");
+            jsonEntity = new StringEntity(json.toString(),"UTF-8");
+            jsonEntity.setContentEncoding("UTF-8");
+            jsonEntity.setContentType("application/json");
+            post.setEntity(jsonEntity);
+            HttpResponse response = null;
+            response = httpClient.execute(post);
+            if (response.getStatusLine().getStatusCode() == 200){
+                HttpEntity httpEntity = response.getEntity();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(httpEntity.getContent()));
+                result = reader.readLine();
+                contractList = (List<Contract>) JsonUtil.getObject(result,new TypeToken<List<Contract>>(){});
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return contractList;
+    }
     public static  List<Channel>  getChannelList(JSONObject json, int page){
         String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/channelinfolist";
         HttpClient httpClient = new DefaultHttpClient();
@@ -162,6 +247,34 @@ public class HttpConnect {
             return null;
         }
         return channelList;
+    }
+    public static UserInfo getUserinfoList(String username){
+        String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/userInfo";
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpPost post = new HttpPost(url);
+        JSONObject json = new JSONObject();
+        StringEntity jsonEntity = null;
+        String result = null;
+        UserInfo userInfo = new UserInfo();
+        try{
+            json.put("username",username);
+            jsonEntity = new StringEntity(json.toString(),"UTF-8");
+            jsonEntity.setContentEncoding("UTF-8");
+            jsonEntity.setContentType("application/json");
+            post.setEntity(jsonEntity);
+            HttpResponse response = null;
+            response = httpClient.execute(post);
+            if (response.getStatusLine().getStatusCode() == 200){
+                HttpEntity httpEntity = response.getEntity();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(httpEntity.getContent()));
+                result = reader.readLine();
+                userInfo = (UserInfo) JsonUtil.getObject(result,new TypeToken<UserInfo>(){});
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return userInfo;
     }
     public static JSONObject getBasicJson(Context ctx){
         JSONObject jsonObject = new JSONObject();

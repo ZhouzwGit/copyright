@@ -20,6 +20,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,6 +30,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -66,11 +69,13 @@ public class Login_Activity extends AppCompatActivity implements LoaderCallbacks
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private ImageView showPwd;
+    private boolean isshowpwd = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.login_layout);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -86,6 +91,14 @@ public class Login_Activity extends AppCompatActivity implements LoaderCallbacks
                 return false;
             }
         });
+        showPwd = (ImageView) findViewById(R.id.showpassword);
+        showPwd.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPassword();
+            }
+        });
+
 
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
@@ -103,7 +116,6 @@ public class Login_Activity extends AppCompatActivity implements LoaderCallbacks
         if (!mayRequestContacts()) {
             return;
         }
-
         getLoaderManager().initLoader(0, null, this);
     }
 
@@ -142,7 +154,17 @@ public class Login_Activity extends AppCompatActivity implements LoaderCallbacks
         }
     }
 
-
+    public void  showPassword(){
+        if (!isshowpwd){
+            mPasswordView.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            showPwd.setImageResource(R.mipmap.discoverypw);
+            isshowpwd = true;
+        }else {
+            mPasswordView.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            showPwd.setImageResource(R.mipmap.showpw);
+            isshowpwd = false;
+        }
+    }
     /**
      * Attempts to sign in or register the account specified by the login form.
      * If there are form errors (invalid email, missing fields, etc.), the
@@ -165,7 +187,11 @@ public class Login_Activity extends AppCompatActivity implements LoaderCallbacks
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        if (TextUtils.isEmpty(password)){
+            mPasswordView.setError(getString(R.string.error_password_required));
+            focusView = mPasswordView;
+            cancel = true;
+        }else if (!isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
@@ -316,21 +342,12 @@ public class Login_Activity extends AppCompatActivity implements LoaderCallbacks
             try {
                 // Simulate network access.
                String login =  HttpConnect.login(mEmail,mPassword);
-               if (login.contains("succ")){
+               if (login.contains("true")){
                    flag = true;
                }
             } catch (Exception e) {
                 return false;
             }
-
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }
-
             // TODO: register the new account here.
             return flag;
         }

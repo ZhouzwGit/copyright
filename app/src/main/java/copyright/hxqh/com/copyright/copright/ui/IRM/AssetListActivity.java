@@ -220,9 +220,13 @@ public class AssetListActivity extends AppCompatActivity implements View.OnClick
                     return;
                 }
                 if (assets.isEmpty()){
-                    nodatalayout.setVisibility(View.VISIBLE);
-                    assetAdapter.replaceData(new ArrayList<Asset>());
-                    assetAdapter.loadMoreEnd();
+                    if (assetAdapter.getData().isEmpty()){
+                        nodatalayout.setVisibility(View.VISIBLE);
+                        assetAdapter.replaceData(new ArrayList<Asset>());
+                    }else {
+                        assetAdapter.loadMoreEnd();
+                    }
+
                 }else {
                     nodatalayout.setVisibility(View.GONE);
                     if (assetAdapter.getData().isEmpty()){

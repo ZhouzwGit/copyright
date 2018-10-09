@@ -38,7 +38,6 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -46,16 +45,22 @@
             android:name=".copright.ui.TheMainActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".copright.ui.PermissionsActivity" />
-        <activity android:name=".copright.ui.SelfManagerActivity" />
         <activity
             android:name=".copright.ui.Login_Activity"
             android:label="@string/title_activity_login" />
         <activity android:name=".copright.ui.IRM.AssetListActivity" />
-        <activity android:name=".copright.ui.IRM.AssetDetailActivity"></activity>
+        <activity android:name=".copright.ui.IRM.AssetDetailActivity" />
         <activity android:name=".copright.ui.product.ProductListActivity" />
         <activity android:name=".copright.ui.product.ProductListActivity2" />
         <activity android:name=".copright.ui.product.ProductDetail" />
         <activity android:name=".copright.ui.product.ChannelDetailActivity" />
+        <activity android:name=".copright.ui.author.RoyaltyListActivity" />
+        <activity android:name=".copright.ui.author.AuthorandRoyalty" />
+        <activity android:name=".copright.ui.author.AuthorListActivity" />
+        <activity android:name=".copright.ui.UserinfoActivity" />
+        <activity android:name=".copright.ui.author.AuthordetailActivity" />
+        <activity android:name=".copright.ui.author.RoyaltydetailActivity" />
+        <activity android:name=".copright.ui.contract.ContractListActivity" />
+        <activity android:name=".copright.ui.publicService.PublicServiceActivity" />
     </application>
-
 </manifest>

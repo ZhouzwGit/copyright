@@ -11,6 +11,7 @@
         android:gravity="center|center_horizontal|center_vertical"
         >
         <TextView
+            android:id="@+id/title_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="版权资产管理系统"
@@ -28,7 +29,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10">
-        <include layout="@layout/mainlayout"></include>
+        <include
+            android:id="@+id/main_layout"
+            layout="@layout/mainlayout"></include>
         <FrameLayout
             android:id="@+id/container"
             android:layout_width="match_parent"
