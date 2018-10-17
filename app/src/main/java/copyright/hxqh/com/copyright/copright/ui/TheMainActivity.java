@@ -137,11 +137,16 @@ public class TheMainActivity extends AppCompatActivity implements View.OnClickLi
                 mainView.setVisibility(View.VISIBLE);
                 mainImage.setImageResource(R.mipmap.main_12);
                 myinfoImage.setImageResource(R.mipmap.main_2);
+                informImage.setImageResource(R.mipmap.main_13);
                 break;
             case R.id.inform_id:
-                if (fragment!=null){
-                    fragmentTransaction.remove(fragment);
-                }
+                mainView.setVisibility(View.GONE);
+                fragment = new InformtListActivity();
+                titletext.setText("个人中心");
+                informImage.setImageResource(R.mipmap.main_1);
+                myinfoImage.setImageResource(R.mipmap.main_2);
+                mainImage.setImageResource(R.mipmap.main_11);
+                fragmentTransaction.replace(R.id.container,fragment).commit();
                 break;
             case R.id.myinfo_id:
                 mainView.setVisibility(View.GONE);
