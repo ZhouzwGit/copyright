@@ -27,6 +27,7 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
     <application
+        android:name=".copright.application.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/app_image"
         android:label="@string/app_name"
@@ -38,6 +39,7 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -62,5 +64,9 @@
         <activity android:name=".copright.ui.author.RoyaltydetailActivity" />
         <activity android:name=".copright.ui.contract.ContractListActivity" />
         <activity android:name=".copright.ui.publicService.PublicServiceActivity" />
+        <activity android:name=".copright.ui.IRM.AssetListActivity2" />
+        <activity android:name=".copright.ui.CopyRightDetailsActivity" />
+        <activity android:name=".copright.ui.IRM.AssetDetailActivity2"></activity>
     </application>
+
 </manifest>

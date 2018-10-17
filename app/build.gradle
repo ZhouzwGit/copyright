@@ -42,4 +42,5 @@ dependencies {
     implementation 'com.flyco.dialog:FlycoDialog_Lib:1.2.2@aar'
     implementation 'com.flyco.animation:FlycoAnimation_Lib:1.0.0@aar'
     implementation 'com.nineoldandroids:library:2.4.0'
+    implementation files('libs/universal-image-loader-1.9.5.jar')
 }

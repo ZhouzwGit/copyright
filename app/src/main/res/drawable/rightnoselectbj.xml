@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--自定义ratingbar的背景图-->
+    <!--不亮-->
+    <item> <!--设置只有底部有边框-->
+        <shape>
+            <solid android:color="@color/blueshadow" />
+        </shape>
+    </item>
+</layer-list>

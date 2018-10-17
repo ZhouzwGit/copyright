@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +20,13 @@ import com.flyco.dialog.widget.NormalDialog;
 import copyright.hxqh.com.copyright.R;
 import copyright.hxqh.com.copyright.copright.entity.UserInfo;
 import copyright.hxqh.com.copyright.copright.util.AcountUtil;
+import copyright.hxqh.com.copyright.copright.view.MyImageView;
 
 public class SelfManagerActivity extends Fragment implements View.OnClickListener{
     private UserInfo userInfo;
     private TextView username,rolename,loadout;
     private RelativeLayout userinfolayout;
+    private MyImageView myImageView;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +44,14 @@ public class SelfManagerActivity extends Fragment implements View.OnClickListene
     private void initView() {
         username.setText(userInfo.getName());
         rolename.setText(userInfo.getRolenames());
+        rolename.setMovementMethod(ScrollingMovementMethod.getInstance());
+        rolename.setHorizontallyScrolling(true);
+        rolename.setFocusable(true);
         userinfolayout.setOnClickListener(this);
         loadout.setOnClickListener(this);
+        String url = userInfo.getPhoto();
+        AcountUtil.imageShow(myImageView,url,120);
+
     }
 
     private void findViewById(View view) {
@@ -50,6 +59,7 @@ public class SelfManagerActivity extends Fragment implements View.OnClickListene
         rolename = view.findViewById(R.id.rolenames_id);
         userinfolayout = view.findViewById(R.id.userinfo_layout);
         loadout = view.findViewById(R.id.loadout_id);
+        myImageView = view.findViewById(R.id.headportrait_id);
     }
 
     @Override

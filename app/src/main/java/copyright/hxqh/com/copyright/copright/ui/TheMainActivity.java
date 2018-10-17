@@ -23,6 +23,7 @@ import copyright.hxqh.com.copyright.R;
 import copyright.hxqh.com.copyright.copright.HttpManager.HttpConnect;
 import copyright.hxqh.com.copyright.copright.entity.UserInfo;
 import copyright.hxqh.com.copyright.copright.ui.IRM.AssetListActivity;
+import copyright.hxqh.com.copyright.copright.ui.IRM.AssetListActivity2;
 import copyright.hxqh.com.copyright.copright.ui.author.AuthorandRoyalty;
 import copyright.hxqh.com.copyright.copright.ui.contract.ContractListActivity;
 import copyright.hxqh.com.copyright.copright.ui.product.ProductListActivity;
@@ -109,8 +110,8 @@ public class TheMainActivity extends AppCompatActivity implements View.OnClickLi
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         switch (view.getId()) {
             case R.id.irm_id:
-               /* Intent intent1 = new Intent(this, AssetListActivity.class);
-                startActivity(intent1);*/
+                Intent intent1 = new Intent(this, AssetListActivity2.class);
+                startActivity(intent1);
                 break;
             case R.id.productsandoper_id:
                 Intent intent2 = new Intent(this, ProductListActivity2.class);
@@ -138,6 +139,9 @@ public class TheMainActivity extends AppCompatActivity implements View.OnClickLi
                 myinfoImage.setImageResource(R.mipmap.main_2);
                 break;
             case R.id.inform_id:
+                if (fragment!=null){
+                    fragmentTransaction.remove(fragment);
+                }
                 break;
             case R.id.myinfo_id:
                 mainView.setVisibility(View.GONE);
