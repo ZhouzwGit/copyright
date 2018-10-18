@@ -26,7 +26,6 @@ import copyright.hxqh.com.copyright.copright.ui.IRM.enity.Asset;
 import copyright.hxqh.com.copyright.copright.ui.IRM.enity.Resourcekind;
 import copyright.hxqh.com.copyright.copright.ui.author.entity.Author;
 import copyright.hxqh.com.copyright.copright.ui.author.entity.Royalty;
-import copyright.hxqh.com.copyright.copright.ui.contract.entity.AuthContract;
 import copyright.hxqh.com.copyright.copright.ui.contract.entity.Contract;
 import copyright.hxqh.com.copyright.copright.ui.product.entity.Channel;
 import copyright.hxqh.com.copyright.copright.ui.product.entity.Product;
@@ -218,33 +217,6 @@ public class HttpConnect {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(httpEntity.getContent()));
                 result = reader.readLine();
                 contractList = (List<Contract>) JsonUtil.getObject(result,new TypeToken<List<Contract>>(){});
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-            return null;
-        }
-        return contractList;
-    }
-    public static  List<AuthContract>  getAuthContractList(JSONObject json, int page){
-        String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/authcontractlist";
-        HttpClient httpClient = new DefaultHttpClient();
-        HttpPost post = new HttpPost(url);
-        StringEntity jsonEntity = null;
-        String result = null;
-        List<AuthContract> contractList = new ArrayList<>();
-        try{
-            json.put("pageNo",page+"");
-            jsonEntity = new StringEntity(json.toString(),"UTF-8");
-            jsonEntity.setContentEncoding("UTF-8");
-            jsonEntity.setContentType("application/json");
-            post.setEntity(jsonEntity);
-            HttpResponse response = null;
-            response = httpClient.execute(post);
-            if (response.getStatusLine().getStatusCode() == 200){
-                HttpEntity httpEntity = response.getEntity();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(httpEntity.getContent()));
-                result = reader.readLine();
-                contractList = (List<AuthContract>) JsonUtil.getObject(result,new TypeToken<List<AuthContract>>(){});
             }
         }catch (Exception e){
             e.printStackTrace();

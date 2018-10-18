@@ -69,7 +69,6 @@
         <activity android:name=".copright.ui.IRM.AssetDetailActivity2" />
         <activity android:name=".copright.ui.product.ChannelActivity" />
         <activity android:name=".copright.ui.ModifyPwdActivity"></activity>
-        <activity android:name=".copright.ui.contract.ContractdetailActivity"></activity>
     </application>
 
 </manifest>
