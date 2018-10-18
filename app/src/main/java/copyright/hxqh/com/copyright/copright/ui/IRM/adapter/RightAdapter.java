@@ -8,20 +8,15 @@ import android.support.v7.widget.CardView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
-import android.widget.RatingBar;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import copyright.hxqh.com.copyright.R;
-import copyright.hxqh.com.copyright.copright.ui.IRM.enity.Asset;
-import copyright.hxqh.com.copyright.copright.ui.IRM.enity.RightInfo;
-import copyright.hxqh.com.copyright.copright.view.MyImageView;
+import copyright.hxqh.com.copyright.copright.entity.RightInfo;
 
 /**
  * Created by zzw on 2018/9/18.

@@ -38,6 +38,7 @@ public class TheMainActivity extends AppCompatActivity implements View.OnClickLi
     private ImageView mainImage, informImage, myinfoImage;
     private View mainView;
     private Fragment fragment;
+    LinearLayout title;
     private TextView titletext;
     private static boolean isExit = false;
     Handler handler = new Handler() {
@@ -93,6 +94,7 @@ public class TheMainActivity extends AppCompatActivity implements View.OnClickLi
         informImage = findViewById(R.id.inform);
         myinfoImage = findViewById(R.id.selfmanager);
         titletext = findViewById(R.id.title_id);
+        title = findViewById(R.id.title);
         main.setOnClickListener(this);
         inform.setOnClickListener(this);
         myinfo.setOnClickListener(this);
@@ -106,6 +108,7 @@ public class TheMainActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
+        title.setVisibility(View.VISIBLE);
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         switch (view.getId()) {
@@ -140,6 +143,7 @@ public class TheMainActivity extends AppCompatActivity implements View.OnClickLi
                 informImage.setImageResource(R.mipmap.main_13);
                 break;
             case R.id.inform_id:
+                title.setVisibility(View.GONE);
                 mainView.setVisibility(View.GONE);
                 fragment = new InformtListActivity();
                 titletext.setText("个人中心");

@@ -25,6 +25,8 @@ import java.util.List;
 
 import copyright.hxqh.com.copyright.R;
 import copyright.hxqh.com.copyright.copright.HttpManager.HttpConnect;
+import copyright.hxqh.com.copyright.copright.adpter.PayInformAdapter;
+import copyright.hxqh.com.copyright.copright.entity.Payinform;
 import copyright.hxqh.com.copyright.copright.ui.product.ChannelDetailActivity;
 import copyright.hxqh.com.copyright.copright.ui.product.adapter.ChannelAdapter;
 import copyright.hxqh.com.copyright.copright.ui.product.entity.Channel;
@@ -35,7 +37,7 @@ import copyright.hxqh.com.copyright.copright.util.AcountUtil;
  */
 
 public class PayinformListFragment extends Fragment implements View.OnClickListener,SwipeRefreshLayout.OnRefreshListener {
-    private ChannelAdapter channelAdapter;
+    private PayInformAdapter payInformAdapter;
     private JSONObject json;
     private int page = 1;
     private int pageNum;
@@ -85,42 +87,32 @@ public class PayinformListFragment extends Fragment implements View.OnClickListe
         getData();
     }
     private  void initAdpter(){
-        channelAdapter = new ChannelAdapter(R.layout.channel_list_item);
-        recyclerView.setAdapter(channelAdapter);
-        channelAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+        payInformAdapter = new PayInformAdapter(R.layout.list_payinform_card);
+        recyclerView.setAdapter(payInformAdapter);
+        payInformAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
                 page++;
                 getData();
             }
         },recyclerView);
-        channelAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Intent intent = new Intent(getActivity(), ChannelDetailActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("channel", (Serializable) channelAdapter.getItem(position));
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-        });
     }
     public void getData(){
-        new AsyncTask<String,String,List<Channel>>(){
+        new AsyncTask<String,String,List<Payinform>>(){
 
             @Override
-            protected List<Channel> doInBackground(String... strings) {
-                List<Channel> products = (List<Channel>) HttpConnect.getChannelList(json,page);
+            protected List<Payinform> doInBackground(String... strings) {
+                List<Payinform> products = (List<Payinform>) HttpConnect.getPayinformList(json,page);
 
                 return products;
             }
 
             @Override
-            protected void onPostExecute(List<Channel> preoducts) {
+            protected void onPostExecute(List<Payinform> preoducts) {
                 super.onPostExecute(preoducts);
                 if (preoducts == null){
-                    channelAdapter.loadMoreFail();
-                    if (channelAdapter.getData().isEmpty()){
+                    payInformAdapter.loadMoreFail();
+                    if (payInformAdapter.getData().isEmpty()){
                         nodatalayout.setVisibility(View.VISIBLE);
                         TextView textView = (TextView) nodatalayout.getChildAt(0);
                         textView.setText("加载失败请检查网络");
@@ -128,31 +120,31 @@ public class PayinformListFragment extends Fragment implements View.OnClickListe
                     return;
                 }
                 if (preoducts.isEmpty()){
-                    if (channelAdapter.getData().isEmpty()){
+                    if (payInformAdapter.getData().isEmpty()){
                         AcountUtil.closeProgressDialog();
                         nodatalayout.setVisibility(View.VISIBLE);
-                        channelAdapter.replaceData(new ArrayList<Channel>());
+                        payInformAdapter.replaceData(new ArrayList<Payinform>());
                     }else {
-                        channelAdapter.loadMoreEnd();
+                        payInformAdapter.loadMoreEnd();
                     }
                 }else {
                     pageNum = preoducts.get(0).getPagenum();
                     nodatalayout.setVisibility(View.GONE);
-                    if (channelAdapter.getData().isEmpty()){
-                        channelAdapter.addData(preoducts);
+                    if (payInformAdapter.getData().isEmpty()){
+                        payInformAdapter.addData(preoducts);
                     }else {
                         if (page==1){
-                            channelAdapter.setNewData(preoducts);
+                            payInformAdapter.setNewData(preoducts);
                             swipeRefreshLayout.setRefreshing(false);
                         }else if(page <= pageNum){
-                            channelAdapter.addData(preoducts);
-                            channelAdapter.loadMoreComplete();
+                            payInformAdapter.addData(preoducts);
+                            payInformAdapter.loadMoreComplete();
                         }else {
-                            channelAdapter.loadMoreEnd(true);
+                            payInformAdapter.loadMoreEnd(true);
                         }
                     }
                 }
-                channelAdapter.setEnableLoadMore(true);
+                payInformAdapter.setEnableLoadMore(true);
                 AcountUtil.closeProgressDialog();
             }
 

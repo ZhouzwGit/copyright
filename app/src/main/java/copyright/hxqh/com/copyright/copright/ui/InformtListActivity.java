@@ -3,6 +3,7 @@ package copyright.hxqh.com.copyright.copright.ui;
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -53,6 +54,7 @@ public class InformtListActivity extends Fragment implements View.OnClickListene
         tab1.setOnClickListener(this);
         tab2.setOnClickListener(this);
         tab3.setOnClickListener(this);
+        tab1.performClick();
     }
 
 
@@ -63,27 +65,27 @@ public class InformtListActivity extends Fragment implements View.OnClickListene
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         switch (view.getId()) {
             case R.id.id_tab_expiretip:
-                if (collocationinformListFragment == null) {
-                    tab1.setBackgroundColor(R.color.blue);
-                    tab2.setBackgroundColor(R.color.white);
-                    tab3.setBackgroundColor(R.color.white);
-                    collocationinformListFragment = new CollocationinformListFragment();
+                tab1.setBackgroundResource(R.color.blue);
+                tab2.setBackgroundResource(R.color.white);
+                tab3.setBackgroundResource(R.color.white);
+                if (expiretipinformListFragment == null) {
+                    expiretipinformListFragment = new ExpiretipinformListFragment();
                 }
-                fragmentTransaction.replace(R.id.list_frame, collocationinformListFragment).commit();
+                fragmentTransaction.replace(R.id.list_frame, expiretipinformListFragment).commit();
                 break;
             case R.id.id_tab_payinform:
-                tab1.setBackgroundColor(R.color.white);
-                tab2.setBackgroundColor(R.color.white);
-                tab3.setBackgroundColor(R.color.blue);
+                tab1.setBackgroundResource(R.color.white);
+                tab2.setBackgroundResource(R.color.white);
+                tab3.setBackgroundResource(R.color.blue);
                 if (payinformListFragment == null) {
                     payinformListFragment = new PayinformListFragment();
                 }
                 fragmentTransaction.replace(R.id.list_frame, payinformListFragment).commit();
                 break;
             case R.id.id_tab_collectinform:
-                tab1.setBackgroundColor(R.color.white);
-                tab2.setBackgroundColor(R.color.blue);
-                tab3.setBackgroundColor(R.color.blue);
+                tab1.setBackgroundResource(R.color.white);
+                tab2.setBackgroundResource(R.color.blue);
+                tab3.setBackgroundResource(R.color.white);
                 if (collocationinformListFragment == null) {
                     collocationinformListFragment = new CollocationinformListFragment();
                 }

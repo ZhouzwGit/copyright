@@ -49,8 +49,8 @@ public class ContractAdapter extends BaseQuickAdapter<Contract,BaseViewHolder> {
         name.setHorizontallyScrolling(true);
         name.setFocusable(true);
         helper.setText(R.id.authorizedparty_id,item.getAuthorizedparty());
-        helper.setText(R.id.authorizedtoparty_id,item.getAuthorizedtoparty());
-        helper.setText(R.id.createdate_id,item.getCreatedate());
+        helper.setText(R.id.authorizedtoparty_id,item.getAuthorizedpartys());
+        helper.setText(R.id.createdate_id,item.getSigndate());
         helper.setText(R.id.status_id,item.getStatus());
 
     }

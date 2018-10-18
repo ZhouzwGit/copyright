@@ -42,6 +42,10 @@ public class AcountUtil {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(cxt);
         return sharedPreferences.getString("username","");
     }
+    public static String getPassword(Context cxt){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(cxt);
+        return sharedPreferences.getString("password","");
+    }
     public static void saveUser(Context context, String preferenceName,String key,UserInfo user) throws Exception {
         if(user instanceof Serializable) {
             SharedPreferences sharedPreferences = context.getSharedPreferences(preferenceName, context.MODE_PRIVATE);
@@ -104,7 +108,12 @@ public class AcountUtil {
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(true);
         progressDialog.setCanceledOnTouchOutside(false);
-        progressDialog.setMessage(message);
+        if (message.equals("")){
+            progressDialog.setMessage("数据加载中...");
+        }else {
+            progressDialog.setMessage(message);
+        }
+
         progressDialog.show();
     }
     /**关闭进度条**/

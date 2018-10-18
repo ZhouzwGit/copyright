@@ -360,6 +360,38 @@ public class HttpConnect {
         }
         return assets;
     }
+    public static  boolean modifyPwd(String username,String pwd){
+        String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/modifyPwd";
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpPost post = new HttpPost(url);
+        JSONObject json = new JSONObject();
+        StringEntity jsonEntity = null;
+        String result = null;
+        List<Resourcekind> resourcekind = new ArrayList<>();
+        boolean successful = false;
+        try{
+            json.put("username",username);
+            json.put("password",pwd);
+            jsonEntity = new StringEntity(json.toString(),"UTF-8");
+            jsonEntity.setContentEncoding("UTF-8");
+            jsonEntity.setContentType("application/json");
+            post.setEntity(jsonEntity);
+            HttpResponse response = null;
+            response = httpClient.execute(post);
+            if (response.getStatusLine().getStatusCode() == 200){
+                HttpEntity httpEntity = response.getEntity();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(httpEntity.getContent()));
+                result = reader.readLine();
+                if (result.contains("成功")){
+                    successful = true;
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return successful;
+    }
     public static JSONObject getBasicJson(Context ctx){
         JSONObject jsonObject = new JSONObject();
         try {

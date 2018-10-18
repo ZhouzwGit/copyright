@@ -37,9 +37,8 @@ public class CollocationInformAdapter extends BaseQuickAdapter<Collectinform,Bas
     }
     @Override
     protected void convert(BaseViewHolder helper, Collectinform item) {
-        CardView cardView = helper.getView(R.id.card_container);
         helper.setText(R.id.resourcename_id,item.getResourcename());
-        helper.setText(R.id.collectioncount_id,item.getCollectioncount());
+        helper.setText(R.id.collectioncount_id,item.getCollectioncount()+"");
         helper.setText(R.id.channelname_id,item.getChannelname());
         helper.setText(R.id.collectiondate_id,item.getCollectiondate());
     }

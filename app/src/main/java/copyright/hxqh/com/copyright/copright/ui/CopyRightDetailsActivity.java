@@ -7,6 +7,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import copyright.hxqh.com.copyright.R;
+import copyright.hxqh.com.copyright.copright.entity.RightInfo;
+import copyright.hxqh.com.copyright.copright.ui.author.entity.Right;
 import copyright.hxqh.com.copyright.copright.ui.product.entity.Prrel;
 
 public class CopyRightDetailsActivity extends AppCompatActivity implements View.OnClickListener {
@@ -33,6 +35,7 @@ public class CopyRightDetailsActivity extends AppCompatActivity implements View.
             titletext;
     private ImageView backimage, searchimage;
     private Prrel prrel;
+    private RightInfo rightInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,20 +72,37 @@ public class CopyRightDetailsActivity extends AppCompatActivity implements View.
         searchimage.setVisibility(View.GONE);
         history.setOnClickListener(this);
         earnings2.setOnClickListener(this);
-        rightrestrict.setText(prrel.getRightrestrict());
-        earnings.setText(prrel.getEarnings());
-        costprice.setText(prrel.getCostprice());
-        personalproduct.setText(prrel.getPersonalproduct());
-        copyright.setText(prrel.getCopyright());
-        gainway.setText(prrel.getGainway());
-        deptnum.setText(prrel.getDeptnum());
-        rightattribute.setText(prrel.getRightattribute());
-        startdate.setText(prrel.getStartdate());
-        rightno.setText(prrel.getRightno());
-        usestatus.setText(prrel.getUsestatus());
-        finishplacearea.setText(prrel.getFinishplacearea());
-        finishdate.setText(prrel.getFinishdate());
-        titletext.setText(prrel.getResourcename());
+        if (prrel!=null) {
+            rightrestrict.setText(prrel.getRightrestrict());
+            earnings.setText(prrel.getEarnings());
+            costprice.setText(prrel.getCostprice());
+            personalproduct.setText(prrel.getPersonalproduct());
+            copyright.setText(prrel.getCopyright());
+            gainway.setText(prrel.getGainway());
+            deptnum.setText(prrel.getDeptnum());
+            rightattribute.setText(prrel.getRightattribute());
+            startdate.setText(prrel.getStartdate());
+            rightno.setText(prrel.getRightno());
+            usestatus.setText(prrel.getUsestatus());
+            finishplacearea.setText(prrel.getFinishplacearea());
+            finishdate.setText(prrel.getFinishdate());
+            titletext.setText(prrel.getResourcename());
+        }else {
+            rightrestrict.setText(rightInfo.getRightrestrict());
+            earnings.setText(rightInfo.getEarnings());
+            costprice.setText(rightInfo.getCostprice());
+            personalproduct.setText(rightInfo.getPersonalproduct());
+            copyright.setText(rightInfo.getCopyright());
+            gainway.setText(rightInfo.getGainway());
+            deptnum.setText(rightInfo.getDeptnum());
+            rightattribute.setText(rightInfo.getRightattribute());
+            startdate.setText(rightInfo.getStartdate());
+            rightno.setText(rightInfo.getRightno());
+            usestatus.setText(rightInfo.getUsestatus());
+            finishplacearea.setText(rightInfo.getFinishplacearea());
+            finishdate.setText(rightInfo.getFinishdate());
+            titletext.setText(rightInfo.getResourcename());
+        }
 
     }
 
@@ -102,6 +122,11 @@ public class CopyRightDetailsActivity extends AppCompatActivity implements View.
     }
 
     private void getIntentData() {
-        prrel = (Prrel) getIntent().getSerializableExtra("copyright");
+
+        if (getIntent().getIntExtra("type",0) == 1){
+            prrel = (Prrel) getIntent().getSerializableExtra("copyright");
+        }else {
+            rightInfo = (RightInfo) getIntent().getSerializableExtra("copyright");
+        }
     }
 }

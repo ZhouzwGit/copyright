@@ -1,0 +1,78 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="1dp"
+    android:layout_marginTop="1dp"
+    android:foreground="?android:selectableItemBackground"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="产品名称:"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/seq_id"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:background="@color/black"></View>
+
+        <include
+            android:id="@+id/table1"
+            layout="@layout/table_title_layout2"></include>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:background="@color/black"></View>
+
+        <copyright.hxqh.com.copyright.copright.view.MyListView
+            android:id="@+id/rightlList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@color/black"
+            android:dividerHeight="1.0dip"
+            android:fadingEdge="none"
+            android:scrollbars="none"></copyright.hxqh.com.copyright.copright.view.MyListView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:background="@color/black"></View>
+        <copyright.hxqh.com.copyright.copright.view.MyListView
+            android:id="@+id/rightlList2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@color/black"
+            android:dividerHeight="1.0dip"
+            android:fadingEdge="none"
+            android:scrollbars="none"></copyright.hxqh.com.copyright.copright.view.MyListView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:background="@color/black"></View>
+
+    </LinearLayout>
+</LinearLayout>

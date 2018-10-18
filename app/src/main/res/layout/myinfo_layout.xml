@@ -57,7 +57,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1sp"
-            android:background="@color/black"></View>
+            android:background="@color/gray4"></View>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
@@ -67,8 +67,9 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1sp"
-                android:background="@color/black"></View>
+                android:background="@color/gray4"></View>
             <RelativeLayout
+                android:id="@+id/modifypwd_id"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1">
@@ -132,7 +133,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1sp"
-                android:background="@color/black"></View>
+                android:background="@color/gray4"></View>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -167,7 +168,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1sp"
-            android:background="@color/black"></View>
+            android:background="@color/gray4"></View>
     </LinearLayout>
     <RelativeLayout
         android:layout_alignParentBottom="true"
@@ -175,6 +176,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:background="@color/white">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:background="@color/gray4"></View>
+
+        <View
+            android:layout_below="@+id/loadout_id"
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:background="@color/gray4"></View>
+
         <TextView
             android:id="@+id/loadout_id"
             android:layout_width="match_parent"

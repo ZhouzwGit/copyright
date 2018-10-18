@@ -2,64 +2,39 @@ package copyright.hxqh.com.copyright.copright.ui.contract.entity;
 
 import java.io.Serializable;
 import java.util.List;
-
 /**
  * Created by zzw on 2018/9/29.
  */
 
 public class Contract implements Serializable {
         private String contractnum;
+        private String authorizedpartys;
         private String memo;
-        private String paymentcount;
-        private int countnum;
-        private String paymenttype;
-        private List<Cprel> cprelList;
-        private int pagenum;
-        private String note;
-        private String authorizedtoparty;
-        private String authorizedparty;
-        private String createdate;
         private String status;
+        private int pagenum;
+        private String attachment;
+        private String signdate;
+        private String contractname;
+        private String authorizedparty;
+        private String sealattachment;
+        private List<Payres> payresList;
         private String contracttype;
-
-    public String getContracttype() {
-        return contracttype;
-    }
-
-    public void setContracttype(String contracttype) {
-        this.contracttype = contracttype;
-    }
-
-    public String getCreatedate() {
-        return createdate;
-    }
-
-    public void setCreatedate(String createdate) {
-        this.createdate = createdate;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getAuthorizedparty() {
-        return authorizedparty;
-    }
-
-    public void setAuthorizedparty(String authorizedparty) {
-        this.authorizedparty = authorizedparty;
-    }
-
-    private String contractname;
+        private int countnum;
+        private String typeofpartyb;
+        private String typeofpartya;
+        private String authorizedtopartys;
         public void setContractnum(String contractnum) {
             this.contractnum = contractnum;
         }
         public String getContractnum() {
             return contractnum;
+        }
+
+        public void setAuthorizedpartys(String authorizedpartys) {
+            this.authorizedpartys = authorizedpartys;
+        }
+        public String getAuthorizedpartys() {
+            return authorizedpartys;
         }
 
         public void setMemo(String memo) {
@@ -69,32 +44,11 @@ public class Contract implements Serializable {
             return memo;
         }
 
-        public void setPaymentcount(String paymentcount) {
-            this.paymentcount = paymentcount;
+        public void setStatus(String status) {
+            this.status = status;
         }
-        public String getPaymentcount() {
-            return paymentcount;
-        }
-
-        public void setCountnum(int countnum) {
-            this.countnum = countnum;
-        }
-        public int getCountnum() {
-            return countnum;
-        }
-
-        public void setPaymenttype(String paymenttype) {
-            this.paymenttype = paymenttype;
-        }
-        public String getPaymenttype() {
-            return paymenttype;
-        }
-
-        public void setCprelList(List<Cprel> cprelList) {
-            this.cprelList = cprelList;
-        }
-        public List<Cprel> getCprelList() {
-            return cprelList;
+        public String getStatus() {
+            return status;
         }
 
         public void setPagenum(int pagenum) {
@@ -104,18 +58,18 @@ public class Contract implements Serializable {
             return pagenum;
         }
 
-        public void setNote(String note) {
-            this.note = note;
+        public void setAttachment(String attachment) {
+            this.attachment = attachment;
         }
-        public String getNote() {
-            return note;
+        public String getAttachment() {
+            return attachment;
         }
 
-        public void setAuthorizedtoparty(String authorizedtoparty) {
-            this.authorizedtoparty = authorizedtoparty;
+        public void setSigndate(String signdate) {
+            this.signdate = signdate;
         }
-        public String getAuthorizedtoparty() {
-            return authorizedtoparty;
+        public String getSigndate() {
+            return signdate;
         }
 
         public void setContractname(String contractname) {
@@ -124,4 +78,61 @@ public class Contract implements Serializable {
         public String getContractname() {
             return contractname;
         }
+
+        public void setAuthorizedparty(String authorizedparty) {
+            this.authorizedparty = authorizedparty;
+        }
+        public String getAuthorizedparty() {
+            return authorizedparty;
+        }
+
+        public void setSealattachment(String sealattachment) {
+            this.sealattachment = sealattachment;
+        }
+        public String getSealattachment() {
+            return sealattachment;
+        }
+
+        public void setPayresList(List<Payres> payresList) {
+            this.payresList = payresList;
+        }
+        public List<Payres> getPayresList() {
+            return payresList;
+        }
+
+        public void setContracttype(String contracttype) {
+            this.contracttype = contracttype;
+        }
+        public String getContracttype() {
+            return contracttype;
+        }
+
+        public void setCountnum(int countnum) {
+            this.countnum = countnum;
+        }
+        public int getCountnum() {
+            return countnum;
+        }
+
+        public void setTypeofpartyb(String typeofpartyb) {
+            this.typeofpartyb = typeofpartyb;
+        }
+        public String getTypeofpartyb() {
+            return typeofpartyb;
+        }
+
+        public void setTypeofpartya(String typeofpartya) {
+            this.typeofpartya = typeofpartya;
+        }
+        public String getTypeofpartya() {
+            return typeofpartya;
+        }
+
+        public void setAuthorizedtopartys(String authorizedtopartys) {
+            this.authorizedtopartys = authorizedtopartys;
+        }
+        public String getAuthorizedtopartys() {
+            return authorizedtopartys;
+        }
+
 }

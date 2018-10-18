@@ -15,9 +15,9 @@ import java.io.Serializable;
 import java.util.List;
 
 import copyright.hxqh.com.copyright.R;
+import copyright.hxqh.com.copyright.copright.entity.RightInfo;
 import copyright.hxqh.com.copyright.copright.ui.IRM.adapter.RightAdapter;
 import copyright.hxqh.com.copyright.copright.ui.IRM.enity.Asset;
-import copyright.hxqh.com.copyright.copright.ui.IRM.enity.RightInfo;
 
 public class AssetDetailActivity extends AppCompatActivity implements View.OnClickListener {
     private LinearLayout basicInfo;

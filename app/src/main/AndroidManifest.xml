@@ -66,7 +66,9 @@
         <activity android:name=".copright.ui.publicService.PublicServiceActivity" />
         <activity android:name=".copright.ui.IRM.AssetListActivity2" />
         <activity android:name=".copright.ui.CopyRightDetailsActivity" />
-        <activity android:name=".copright.ui.IRM.AssetDetailActivity2"></activity>
+        <activity android:name=".copright.ui.IRM.AssetDetailActivity2" />
+        <activity android:name=".copright.ui.product.ChannelActivity" />
+        <activity android:name=".copright.ui.ModifyPwdActivity"></activity>
     </application>
 
 </manifest>

@@ -38,6 +38,10 @@ public class DueDateAdapter extends BaseQuickAdapter<Expiretip,BaseViewHolder> {
     }
     @Override
     protected void convert(BaseViewHolder helper, Expiretip item) {
-        CardView cardView = helper.getView(R.id.card_container);
+        helper.setText(R.id.resourcename_id,item.getResourcename());
+        helper.setText(R.id.copyright_id,item.getCopyright());
+        helper.setText(R.id.rightno_id,item.getRightno());
+        helper.setText(R.id.finishdate_id,item.getFinishdate());
+        helper.setText(R.id.gainway_id,item.getGainway());
     }
 }

@@ -1,16 +1,11 @@
 package copyright.hxqh.com.copyright.copright.ui.IRM;
 
-import android.content.Context;
 import android.graphics.Color;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -18,28 +13,19 @@ import android.widget.RatingBar;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
-import com.nostra13.universalimageloader.utils.L;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import copyright.hxqh.com.copyright.R;
+import copyright.hxqh.com.copyright.copright.entity.RightInfo;
 import copyright.hxqh.com.copyright.copright.ui.IRM.adapter.AssetrelaAdapter;
 import copyright.hxqh.com.copyright.copright.ui.IRM.adapter.ImageAdapter;
-import copyright.hxqh.com.copyright.copright.ui.IRM.adapter.RightAdapter;
 import copyright.hxqh.com.copyright.copright.ui.IRM.adapter.RightAdapter2;
 import copyright.hxqh.com.copyright.copright.ui.IRM.enity.Asset;
 import copyright.hxqh.com.copyright.copright.ui.IRM.enity.Rchrrel;
-import copyright.hxqh.com.copyright.copright.ui.IRM.enity.Resourcekind;
-import copyright.hxqh.com.copyright.copright.ui.IRM.enity.RightInfo;
-import copyright.hxqh.com.copyright.copright.ui.author.entity.Right;
-import copyright.hxqh.com.copyright.copright.ui.product.entity.Channel;
 import copyright.hxqh.com.copyright.copright.util.AcountUtil;
 
 public class AssetDetailActivity2 extends AppCompatActivity {
@@ -91,7 +77,7 @@ public class AssetDetailActivity2 extends AppCompatActivity {
             createdate,
             remark,
             havenodate1,
-            havenodata2, copyrightcount, relatcount;
+            havenodata2, copyrightcount, relatcount,title;
     private Asset asset;
     private ImageView previewimg, backimage, searchimage;
     private RatingBar ratingBar;
@@ -149,9 +135,11 @@ public class AssetDetailActivity2 extends AppCompatActivity {
         fstrlsadd = findViewById(R.id.fstrlsadd_id);
         fstrlsdate = findViewById(R.id.fstrlsdate_id);
         purpose = findViewById(R.id.purpose_id);
+        title = findViewById(R.id.menu_title);
     }
 
     private void initView() {
+        title.setText(asset.getResourcename());
         purpose.setText(asset.getPurpose());
         fstrlsdate.setText(asset.getFstrlsdate());
         fstrlsadd.setText(asset.getFstrlsadd());
@@ -189,8 +177,8 @@ public class AssetDetailActivity2 extends AppCompatActivity {
         resourcekind.setText(asset.getResourcekind());
         resmedium.setText(asset.getResmedium());
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = new Date(Long.parseLong(asset.getResfinishdate()));
-        finishdate.setText(simpleDateFormat.format(date));
+        //Date date = new Date(Long.parseLong(asset.getResfinishdate()));
+        finishdate.setText(asset.getResfinishdate());
         finishplace.setText(asset.getCreateNation() + " " + asset.getCreateCity());
         isrelease.setText(asset.getIsrelease());
         resgainway.setText(asset.getResgainway());

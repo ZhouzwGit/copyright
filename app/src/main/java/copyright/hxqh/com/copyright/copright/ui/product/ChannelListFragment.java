@@ -55,6 +55,7 @@ public class ChannelListFragment extends Fragment implements View.OnClickListene
             }
         }
         page = 1;
+        AcountUtil.showProgressDialog(getActivity(),"正在搜索");
         getData();
     }
     public void onCreate(Bundle savedInstanceState) {

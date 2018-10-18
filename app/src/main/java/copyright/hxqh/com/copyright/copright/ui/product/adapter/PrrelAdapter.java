@@ -46,6 +46,10 @@ public class PrrelAdapter extends ArrayAdapter {
         viewHolder.finishplacearea =view.findViewById(R.id.district_id);
         viewHolder.finishplacearea.setText(item.getFinishplacearea());
         viewHolder.languages =view.findViewById(R.id.languages_id);
+        viewHolder.resourcekind = view.findViewById(R.id.type_id);
+        viewHolder.gainway = view.findViewById(R.id.getType_id);
+        viewHolder.resourcekind.setText(item.getResourcekind());
+        viewHolder.gainway.setText(item.getGainway());
         //viewHolder.languages.setText(item.get);
         viewHolder.copyright.setText(item.getCopyright());
         viewHolder.resourcename.setText(item.getResourcename());
@@ -57,6 +61,7 @@ public class PrrelAdapter extends ArrayAdapter {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), CopyRightDetailsActivity.class);
                 intent.putExtra("copyright",item);
+                intent.putExtra("type",1);
                 getContext().startActivity(intent);
             }
         });
@@ -73,6 +78,8 @@ public class PrrelAdapter extends ArrayAdapter {
         public TextView finishdate;
         public TextView finishplacearea;
         public TextView todetail;
+        public TextView resourcekind;
+        public TextView gainway;
 
 
     }

@@ -3,6 +3,9 @@ package copyright.hxqh.com.copyright.copright.ui.IRM.enity;
 
 import java.io.Serializable;
 import java.util.List;
+
+import copyright.hxqh.com.copyright.copright.entity.RightInfo;
+
 public class Asset implements Serializable {
 
     private String cutoffdate;

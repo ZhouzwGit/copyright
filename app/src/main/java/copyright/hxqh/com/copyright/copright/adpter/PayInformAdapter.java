@@ -37,9 +37,8 @@ public class PayInformAdapter extends BaseQuickAdapter<Payinform,BaseViewHolder>
     }
     @Override
     protected void convert(BaseViewHolder helper, Payinform item) {
-        CardView cardView = helper.getView(R.id.card_container);
         helper.setText(R.id.resourcename_id,item.getResourcename());
-        helper.setText(R.id.payamount_id,item.getPayamount());
+        helper.setText(R.id.payamount_id,item.getPayamount()+"");
         helper.setText(R.id.name_id,item.getName());
         helper.setText(R.id.paydate_id,item.getPaydate());
 

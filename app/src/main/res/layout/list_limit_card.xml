@@ -67,19 +67,70 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:textSize="12sp"
-                        android:text="提示以下权限即将到期:"/>
+                        android:text="权利项编号:"/>
+                    <TextView
+                        android:id="@+id/rightno_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="12sp"
+                        android:text=""/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textSize="12sp"
+                        android:text="权利项:"/>
+                    <TextView
+                        android:id="@+id/copyright_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="12sp"
+                        android:text=""/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
                     android:layout_marginTop="5dp">
-                    <copyright.hxqh.com.copyright.copright.view.MyListView
-                        android:id="@+id/list"
-                        android:divider="@null"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"></copyright.hxqh.com.copyright.copright.view.MyListView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textSize="12sp"
+                        android:text="取得方式:"/>
+                    <TextView
+                        android:id="@+id/gainway_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="12sp"
+                        android:text=""/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textSize="12sp"
+                        android:text="到期时间:"/>
+                    <TextView
+                        android:id="@+id/finishdate_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="12sp"
+                        android:text=""/>
                 </LinearLayout>
 
             </LinearLayout>

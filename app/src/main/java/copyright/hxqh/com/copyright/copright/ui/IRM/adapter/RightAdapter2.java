@@ -1,30 +1,20 @@
 package copyright.hxqh.com.copyright.copright.ui.IRM.adapter;
 
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.database.DataSetObserver;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
-
-import java.io.Serializable;
 import java.util.List;
 
 import copyright.hxqh.com.copyright.R;
+import copyright.hxqh.com.copyright.copright.entity.RightInfo;
 import copyright.hxqh.com.copyright.copright.ui.CopyRightDetailsActivity;
-import copyright.hxqh.com.copyright.copright.ui.IRM.enity.RightInfo;
 
 /**
  * Created by zzw on 2018/9/18.
@@ -57,7 +47,7 @@ public class RightAdapter2 extends ArrayAdapter<RightInfo>{
     }
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        RightInfo rightInfo = (RightInfo) getItem(i);
+        final RightInfo rightInfo = (RightInfo) getItem(i);
         view = inflater.inflate(resource, null);
         ViewHolder viewHolder = new ViewHolder();
         viewHolder.textView1 = view.findViewById(R.id.name_id);
@@ -81,6 +71,8 @@ public class RightAdapter2 extends ArrayAdapter<RightInfo>{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), CopyRightDetailsActivity.class);
+                intent.putExtra("copyright",rightInfo);
+                getContext().startActivity(intent);
 
             }
         });

@@ -3,6 +3,7 @@ package copyright.hxqh.com.copyright.copright.ui.product.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
@@ -19,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import copyright.hxqh.com.copyright.R;
+import copyright.hxqh.com.copyright.copright.ui.product.ChannelActivity;
 import copyright.hxqh.com.copyright.copright.ui.product.entity.Acrel;
 import copyright.hxqh.com.copyright.copright.ui.product.entity.Product;
 import copyright.hxqh.com.copyright.copright.view.MyImageView;
@@ -37,7 +39,7 @@ public class AcrelAdapter extends ArrayAdapter {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        Acrel acrel = (Acrel) getItem(position);
+        final Acrel acrel = (Acrel) getItem(position);
         View view = (View) LayoutInflater.from(getContext()).inflate(resourceId, null);
         TextView cost = view.findViewById(R.id.cost_id);
         cost.setText(acrel.getCost()+"");
@@ -47,6 +49,15 @@ public class AcrelAdapter extends ArrayAdapter {
         channelname.setText(acrel.getChannelname());
         TextView rightlimit = view.findViewById(R.id.rightlimit_id);
         rightlimit.setText(acrel.getStartdate()+"至"+acrel.getEnddate());
+        TextView textView = view.findViewById(R.id.detais_id);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), ChannelActivity.class);
+                intent.putExtra("acrel",acrel);
+                getContext().startActivity(intent);
+            }
+        });
        /* TextView territoryrestrict = view.findViewById(R.id.territoryrestrict_id);
         territoryrestrict.setText(acrel.getTerritoryrestrict());
         TextView languagerestrict = view.findViewById(R.id.languagerestrict_id);

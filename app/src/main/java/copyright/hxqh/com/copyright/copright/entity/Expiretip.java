@@ -13,6 +13,15 @@ public class Expiretip implements Serializable {
     private String rightno;
     private String countnum;
     private int pagenum;
+    private String copyright;
+
+    public String getCopyright() {
+        return copyright;
+    }
+
+    public void setCopyright(String copyright) {
+        this.copyright = copyright;
+    }
 
     public String getResourcename() {
         return resourcename;

@@ -25,7 +25,7 @@ import copyright.hxqh.com.copyright.copright.view.MyImageView;
 public class SelfManagerActivity extends Fragment implements View.OnClickListener{
     private UserInfo userInfo;
     private TextView username,rolename,loadout;
-    private RelativeLayout userinfolayout;
+    private RelativeLayout userinfolayout,modifypwd;
     private MyImageView myImageView;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,6 +49,7 @@ public class SelfManagerActivity extends Fragment implements View.OnClickListene
         rolename.setFocusable(true);
         userinfolayout.setOnClickListener(this);
         loadout.setOnClickListener(this);
+        modifypwd.setOnClickListener(this);
         String url = userInfo.getPhoto();
         AcountUtil.imageShow(myImageView,url,120);
 
@@ -60,6 +61,7 @@ public class SelfManagerActivity extends Fragment implements View.OnClickListene
         userinfolayout = view.findViewById(R.id.userinfo_layout);
         loadout = view.findViewById(R.id.loadout_id);
         myImageView = view.findViewById(R.id.headportrait_id);
+        modifypwd = view.findViewById(R.id.modifypwd_id);
     }
 
     @Override
@@ -86,6 +88,10 @@ public class SelfManagerActivity extends Fragment implements View.OnClickListene
                         startActivity(intent1);
                     }
                 });
+                break;
+            case R.id.modifypwd_id:
+                Intent intent1 = new Intent(getActivity(),ModifyPwdActivity.class);
+                getActivity().startActivity(intent1);
                 break;
         }
 

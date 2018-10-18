@@ -52,13 +52,14 @@ public class AssetAdapter extends BaseQuickAdapter<Asset,BaseViewHolder> {
         helper.setText(R.id.type_id,item.getResourcekind());
         helper.setText(R.id.status_id,item.getStatus());
         SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日");
-        if (item.getResfinishdate()!=null && !item.getResfinishdate().equals("")){
+        /*if (item.getResfinishdate()!=null && !item.getResfinishdate().equals("")){
             long i = Long.valueOf(item.getResfinishdate());
             Date date = new Date(i);
             helper.setText(R.id.createdate_value_id,format.format(date));
         }else {
             helper.setText(R.id.createdate_value_id,"");
-        }
+        }*/
+        helper.setText(R.id.createdate_value_id,item.getResfinishdate());
 
     }
 }

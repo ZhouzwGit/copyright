@@ -102,14 +102,19 @@ public class AssetListActivity2 extends Activity implements View.OnClickListener
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
+                nodatalayout.setVisibility(View.GONE);
                 authorAdapter.setEnableLoadMore(false);
                 try {
                     json.put("resourceName", s);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                assets.clear();
-                assets1.clear();
+                if (isAsset){
+                    assets.clear();
+                }else {
+                    assets1.clear();
+                }
+                authorAdapter.notifyDataSetChanged();
                 searchView.setVisibility(View.GONE);
                 searchimage.setVisibility(View.VISIBLE);
                 titletext.setVisibility(View.VISIBLE);
