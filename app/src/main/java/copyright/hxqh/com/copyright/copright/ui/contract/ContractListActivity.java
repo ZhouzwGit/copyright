@@ -28,8 +28,11 @@ import copyright.hxqh.com.copyright.R;
 import copyright.hxqh.com.copyright.copright.HttpManager.HttpConnect;
 import copyright.hxqh.com.copyright.copright.ui.author.AuthordetailActivity;
 import copyright.hxqh.com.copyright.copright.ui.author.entity.Author;
+import copyright.hxqh.com.copyright.copright.ui.contract.adpter.AuthContractAdapter;
 import copyright.hxqh.com.copyright.copright.ui.contract.adpter.ContractAdapter;
+import copyright.hxqh.com.copyright.copright.ui.contract.entity.AuthContract;
 import copyright.hxqh.com.copyright.copright.ui.contract.entity.Contract;
+import copyright.hxqh.com.copyright.copright.ui.product.entity.Product;
 import copyright.hxqh.com.copyright.copright.util.AcountUtil;
 
 /**
@@ -39,7 +42,7 @@ import copyright.hxqh.com.copyright.copright.util.AcountUtil;
 public class ContractListActivity extends Activity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
     private TextView titletext, producttext, channeltext;
     private ImageView backimage, searchimage;
-    private ContractAdapter contractAdapter;
+    private BaseQuickAdapter contractAdapter;
     private View tagview, listView;
     private JSONObject json;
     private int page;
@@ -52,7 +55,7 @@ public class ContractListActivity extends Activity implements View.OnClickListen
     //授权合同list
     List<Contract> contracttype2 = new ArrayList<>();
     //true 为获权； false 为授权
-    private boolean contracttype = true;
+    private boolean contracttype = false;
     private SearchView searchView;
     private int pageNum;
 
@@ -94,60 +97,69 @@ public class ContractListActivity extends Activity implements View.OnClickListen
         json = HttpConnect.getBasicJson(this);
         searchimage.setOnClickListener(this);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String s) {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
 
-                    try {
-                        json.put("contractName", s);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    contracttype1.clear();
-                    contracttype2.clear();
-                    searchView.setVisibility(View.GONE);
-                    searchimage.setVisibility(View.VISIBLE);
-                    titletext.setVisibility(View.VISIBLE);
-                    page = 1;
-                    AcountUtil.showProgressDialog(ContractListActivity.this, "正在搜索");
-                    getData();
-                    return true;
+                try {
+
+                    json.put("contractName", s);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
+                searchView.setVisibility(View.GONE);
+                searchimage.setVisibility(View.VISIBLE);
+                titletext.setVisibility(View.VISIBLE);
+                page = 1;
+                recyclerView.scrollToPosition(0);
+                AcountUtil.showProgressDialog(ContractListActivity.this, "正在搜索");
+                getContractData();
+                return true;
+            }
 
             @Override
             public boolean onQueryTextChange(String s) {
                 return false;
             }
         });
-        initAdpter();
-        AcountUtil.showProgressDialog(this, "");
-        getData();
+        producttext.performClick();
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back_id:
-                if (searchView.getVisibility() == View.VISIBLE){
+                if (searchView.getVisibility() == View.VISIBLE) {
                     searchView.setVisibility(View.GONE);
                     searchimage.setVisibility(View.VISIBLE);
                     titletext.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     finish();
                 }
                 break;
             case R.id.basictag_1:
-                producttext.setBackgroundColor(getResources().getColor(R.color.blue));
-                channeltext.setBackgroundColor(getResources().getColor(R.color.white));
-                recyclerView.scrollToPosition(0);
-                contractAdapter.setNewData(contracttype1);
-                contracttype = true;
+                if (!contracttype){
+                    producttext.setBackgroundColor(getResources().getColor(R.color.blue));
+                    channeltext.setBackgroundColor(getResources().getColor(R.color.white));
+                    recyclerView.scrollToPosition(0);
+                    contractAdapter = new ContractAdapter(R.layout.list_contract_card, new ArrayList<Contract>());
+                    initAdpter();
+                    AcountUtil.showProgressDialog(this,"");
+                    getContractData();
+                    contracttype = true;
+                }
                 break;
             case R.id.basictag_2:
-                channeltext.setBackgroundColor(getResources().getColor(R.color.blue));
-                producttext.setBackgroundColor(getResources().getColor(R.color.white));
-                recyclerView.scrollToPosition(0);
-                contractAdapter.setNewData(contracttype2);
-                contracttype = false;
+               if (contracttype){
+                   channeltext.setBackgroundColor(getResources().getColor(R.color.blue));
+                   producttext.setBackgroundColor(getResources().getColor(R.color.white));
+                   recyclerView.scrollToPosition(0);
+                   contractAdapter = new AuthContractAdapter(R.layout.list_contract_card, new ArrayList<AuthContract>());
+                   initAdpter();
+                   AcountUtil.showProgressDialog(this,"");
+                   getContractData();
+                   contracttype = false;
+               }
                 break;
             case R.id.title_search:
                 searchView.setVisibility(View.VISIBLE);
@@ -158,65 +170,62 @@ public class ContractListActivity extends Activity implements View.OnClickListen
     }
 
     private void initAdpter() {
-        contractAdapter = new ContractAdapter(R.layout.list_contract_card, new ArrayList<Contract>());
         contractAdapter.setEnableLoadMore(true);
         recyclerView.setAdapter(contractAdapter);
         contractAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
                 page++;
-                getData();
+                if (page < pageNum) {
+                    getContractData();
+                } else {
+                    contractAdapter.loadMoreEnd();
+                }
+
             }
         }, recyclerView);
         contractAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-               /* Intent intent = new Intent(ContractListActivity.this, AuthordetailActivity.class);
+                Intent intent;
+                if (contracttype){
+                    intent =  new Intent(ContractListActivity.this, ContractdetailActivity.class);
+                }else {
+                    intent = new Intent(ContractListActivity.this,ContractdetailActivity.class);
+                }
+
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("author", (Serializable) contractAdapter.getItem(position));
+                bundle.putSerializable("contract", (Serializable) contractAdapter.getItem(position));
                 intent.putExtras(bundle);
-                startActivity(intent);*/
+                startActivity(intent);
             }
         });
     }
 
-    public void getData() {
-        new AsyncTask<String, String, List<Contract>>() {
-
+    public void getContractData() {
+        new AsyncTask<String, String, List>() {
             @Override
-            protected List<Contract> doInBackground(String... strings) {
-                List<Contract> products = (List<Contract>) HttpConnect.getContractList(json, page);
-                if (products == null) {
-                    return null;
-                }
-                pageNum = products.get(0).getPagenum();
-                List<Contract> contractList1 = new ArrayList<>();
-                List<Contract> contractList2 = new ArrayList<>();
-                contractList1.clear();
-                contractList2.clear();
-                for (Contract contract :
-                        products) {
-                    if (contract.getContracttype().contains("获权合同")) {
-                        contractList1.add(contract);
-                    }
-                    if (contract.getContracttype().contains("授权合同")) {
-                        contractList2.add(contract);
-                    }
-                }
-                if (page <= pageNum){
-                    contracttype1.addAll(contractList1);
-                    contracttype2.addAll(contractList2);
-                }
+            protected List doInBackground(String... strings) {
+                List products;
                 if (contracttype) {
-                    return contractList1;
+                    products = HttpConnect.getContractList(json, page);
+                    if (products == null) {
+                        return null;
+                    }
+                    pageNum = ((List<Contract>) products).get(0).getPagenum();
                 } else {
-
-                    return contractList2;
+                    products = HttpConnect.getAuthContractList(json, page);
+                    if (products == null) {
+                        return null;
+                    }
+                    pageNum = ((List<AuthContract>) products).get(0).getPagenum();
                 }
+
+                return products;
             }
 
             @Override
-            protected void onPostExecute(List<Contract> preoducts) {
+            protected void onPostExecute(List preoducts) {
                 super.onPostExecute(preoducts);
                 if (preoducts == null) {
                     contractAdapter.loadMoreFail();
@@ -244,10 +253,10 @@ public class ContractListActivity extends Activity implements View.OnClickListen
                         if (page == 1) {
                             contractAdapter.setNewData(preoducts);
                             swipeRefreshLayout.setRefreshing(false);
-                        } else if (page <= pageNum){
+                        } else if (page <= pageNum) {
                             contractAdapter.addData(preoducts);
                             contractAdapter.loadMoreComplete();
-                        }else {
+                        } else {
                             contractAdapter.loadMoreEnd();
                         }
                     }
@@ -271,8 +280,6 @@ public class ContractListActivity extends Activity implements View.OnClickListen
         swipeRefreshLayout.setRefreshing(true);
         json = HttpConnect.getBasicJson(this);
         page = 1;
-        contracttype1.clear();
-        contracttype2.clear();
-        getData();
+        getContractData();
     }
 }

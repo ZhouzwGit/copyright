@@ -1,18 +1,16 @@
-package copyright.hxqh.com.copyright.copright.ui.author;
+package copyright.hxqh.com.copyright.copright.ui.contract;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import copyright.hxqh.com.copyright.R;
-import copyright.hxqh.com.copyright.copright.ui.author.entity.Right;
+import copyright.hxqh.com.copyright.copright.ui.contract.entity.Right;
 
 public class RightDialogActivity extends Dialog {
     private Context context;
@@ -33,7 +31,7 @@ public class RightDialogActivity extends Dialog {
         super(context);
         this.context = context;
     }
-    public RightDialogActivity(@NonNull Context context,Right right) {
+    public RightDialogActivity(@NonNull Context context, Right right) {
         super(context);
         this.context = context;
         this.right = right;
@@ -66,10 +64,10 @@ public class RightDialogActivity extends Dialog {
         rightattribute.setText(right.getRightattribute());
         languages.setText(right.getLanguages());
         startdate.setText(right.getStartdate());
-        resname.setText("《"+right.getResname()+"》");
+        resname.setText("《"+right.getResourcename()+"》");
         finishplacearea.setText(right.getFinishplacearea());
-        rightname.setText(right.getRightname());
-        finishdate.setText(right.getFinishdate());
+        rightname.setText(right.getCopyright());
+        finishdate.setText(right.getEnddate());
         gainway.setText(right.getGainway());
         closeimage.setOnClickListener(new View.OnClickListener() {
             @Override

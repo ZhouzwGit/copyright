@@ -10,11 +10,11 @@
         android:background="@color/white"
         >
         <LinearLayout
-            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
             <RelativeLayout
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
@@ -51,7 +51,6 @@
                         android:layout_height="wrap_content"
                         android:text="1235"
                         />
-
                 </LinearLayout>
             </RelativeLayout>
             <LinearLayout
@@ -68,7 +67,7 @@
                     android:layout_marginRight="5dp"
                     />
                 <TextView
-                    android:id="@+id/name_id"
+                    android:id="@+id/contractname_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
@@ -106,7 +105,7 @@
                     android:layout_marginRight="5dp"
                     />
                 <TextView
-                    android:id="@+id/authorizedtoparty_id"
+                    android:id="@+id/authorizedpartys_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1235"
@@ -125,7 +124,7 @@
                     android:layout_marginRight="5dp"
                     />
                 <TextView
-                    android:id="@+id/contracttype_id"
+                    android:id="@+id/memo_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1235"
@@ -143,35 +142,45 @@
                     android:layout_marginRight="5dp"
                     />
                 <TextView
-                    android:id="@+id/createdate_id"
+                    android:id="@+id/signdate_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1235"
                     />
             </LinearLayout>
-            <View
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="1sp"
-                android:background="@color/gray4"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"></View>
-            <copyright.hxqh.com.copyright.copright.view.MyListView
-                android:id="@+id/list"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="40dp"
-                android:scrollbars="none"
-                android:cacheColorHint="@android:color/transparent"
-                android:fadingEdge="none"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </copyright.hxqh.com.copyright.copright.view.MyListView>
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:background="@color/gray4"
+                    android:layout_marginLeft="10dp"
+                    ></View>
+                <copyright.hxqh.com.copyright.copright.view.MyListView
+                    android:id="@+id/list"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:scrollbars="none"
+                    android:cacheColorHint="@android:color/transparent"
+                    android:fadingEdge="none"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </copyright.hxqh.com.copyright.copright.view.MyListView>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:background="@color/gray4"
+                    android:layout_marginHorizontal="10dp"
+                    ></View>
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp">
+                android:layout_marginHorizontal="10dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -189,7 +198,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp">
+                android:layout_marginHorizontal="10dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -197,7 +206,7 @@
                     android:layout_marginRight="5dp"
                     />
                 <TextView
-                    android:id="@+id/contractaccessory_id"
+                    android:id="@+id/attachment_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1235"
@@ -207,7 +216,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp">
+                android:layout_marginBottom="10dp"
+                android:layout_marginHorizontal="10dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -215,6 +225,7 @@
                     android:layout_marginRight="5dp"
                     />
                 <TextView
+                    android:id="@+id/sealattachment_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1235"

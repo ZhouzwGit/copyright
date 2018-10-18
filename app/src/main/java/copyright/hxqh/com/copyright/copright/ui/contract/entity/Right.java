@@ -11,11 +11,11 @@ public class Right implements Serializable {
         private String rightrestrict;
         private String languages;
         private String rightattribute;
-        private String startString;
+        private String startdate;
         private String finishplacearea;
         private String resourcename;
         private String copyright;
-        private String endString;
+        private String enddate;
         private String gainway;
         private String rightcost;
         public void setRightrestrict(String rightrestrict) {
@@ -39,11 +39,11 @@ public class Right implements Serializable {
             return rightattribute;
         }
 
-        public void setStartString(String startString) {
-            this.startString = startString;
+        public void setStartdate(String startDate) {
+            this.startdate = startdate;
         }
-        public String getStartString() {
-            return startString;
+        public String getStartdate() {
+            return startdate;
         }
 
         public void setFinishplacearea(String finishplacearea) {
@@ -67,11 +67,11 @@ public class Right implements Serializable {
             return copyright;
         }
 
-        public void setEndString(String endString) {
-            this.endString = endString;
+        public void setEnddate(String enddate) {
+            this.enddate = enddate;
         }
-        public String getEndString() {
-            return endString;
+        public String getEnddate() {
+            return enddate;
         }
 
         public void setGainway(String gainway) {
