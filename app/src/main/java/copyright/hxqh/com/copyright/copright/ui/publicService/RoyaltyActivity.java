@@ -61,6 +61,7 @@ public class RoyaltyActivity  extends AppCompatActivity implements View.OnClickL
     SwipeRefreshLayout refresh_layout;//界面刷新
 
     private int page = 1;
+    private int pageNum;
 
     private JSONObject json;
 
@@ -155,14 +156,14 @@ public class RoyaltyActivity  extends AppCompatActivity implements View.OnClickL
                         lawvindicateAdapter.loadMoreEnd();
                     }
                 } else {
-                    page = preoducts.get(0).getPagenum();
+                    pageNum = preoducts.get(0).getPagenum();
                     nodatalayout.setVisibility(View.GONE);
                     if (lawvindicateAdapter.getData().isEmpty()) {
                         lawvindicateAdapter.addData(preoducts);
                     } else {
                         if (page == 1) {
                             lawvindicateAdapter.setNewData(preoducts);
-                        } else if (page <= page){
+                        } else if (page <= pageNum){
                             lawvindicateAdapter.addData(preoducts);
                             lawvindicateAdapter.loadMoreComplete();
                         }else {
