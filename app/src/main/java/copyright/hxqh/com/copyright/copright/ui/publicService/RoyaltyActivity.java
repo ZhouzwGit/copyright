@@ -183,6 +183,7 @@ public class RoyaltyActivity  extends AppCompatActivity implements View.OnClickL
         }.execute();
     }
 
+
     private void initAdpter() {
         lawvindicateAdapter = new LawvindicateAdapter(R.layout.lawvindicate_list_item);
         recyclerView.setAdapter(lawvindicateAdapter);
