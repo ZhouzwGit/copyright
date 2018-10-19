@@ -27,11 +27,11 @@ public class LawvindicateAdapter extends BaseQuickAdapter<RoyaltyEnity,BaseViewH
 
     @Override
     protected void convert(BaseViewHolder helper, RoyaltyEnity item) {
-//        helper.setText(R.id.lawvindicate_name,"");
-        helper.setText(R.id.lawvindicate_num,item.getStatus());
-//        helper.setText(R.id.lawvindicate_author,"");
+        helper.setText(R.id.lawvindicate_name,item.getResourcesname());
+        helper.setText(R.id.lawvindicate_num,item.getLawvindicateno());
+        helper.setText(R.id.lawvindicate_author,item.getLinkman());
         helper.setText(R.id.lawvindicate_phone,item.getPhone());
-//        helper.setText(R.id.lawvindicate_date,"");
+        helper.setText(R.id.lawvindicate_date,item.getCreateDate());
         helper.setText(R.id.lawvindicate_status,item.getStatus());
     }
 

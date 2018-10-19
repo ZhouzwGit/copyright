@@ -11,8 +11,10 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import copyright.hxqh.com.copyright.R;
 import copyright.hxqh.com.copyright.copright.ui.publicService.adapter.ObligeeInfoAdapter;
+import copyright.hxqh.com.copyright.copright.ui.publicService.adapter.TortinfoAdapter;
 import copyright.hxqh.com.copyright.copright.ui.publicService.entity.Obligeeinfo;
 import copyright.hxqh.com.copyright.copright.ui.publicService.entity.RoyaltyEnity;
+import copyright.hxqh.com.copyright.copright.ui.publicService.entity.Tortinfo;
 import copyright.hxqh.com.copyright.copright.view.MyListView;
 
 /**
@@ -38,6 +40,10 @@ public class LawVinDicateDetailActivity extends AppCompatActivity {
     TextView lawvindicateConfidenceFile;
     @Bind(R.id.lawvindicate_demo) //作品样本
     TextView lawvindicateDemo;
+    @Bind(R.id.lawvindicate_signaturefiles) //签章扫描件
+     TextView lawvindicatesignaturefiles;
+    @Bind(R.id.lawvindicate_printscreen)
+    TextView lawvindicateprintscreen;
 
     @Bind(R.id.lawvindicate_telepeople) //联系人
     TextView lawvindicateTelepeople;
@@ -48,26 +54,19 @@ public class LawVinDicateDetailActivity extends AppCompatActivity {
     @Bind(R.id.lawvindicate_advice) //处理意见
      TextView lawvindicateAdvice;
 
-    @Bind(R.id.lawvindicate_tortpeople) //侵权方
-    TextView lawvindicateTortpeople;
-    @Bind(R.id.lawvindicate_torttype) //侵权方式
-    TextView lawvindicateTorttype;
-    @Bind(R.id.lawvindicate_tortURL) //URL
-    TextView lawvindicateTortURL;
-    @Bind(R.id.lawvindicate_remarks) //情况说明
-    TextView lawvindicateRemarks;
-
     @Bind(R.id.list)
     MyListView myListView;//权利人列表
 
-//    @Bind(R.id.list2)
-//    MyListView mListView;//侵权方列表
+    @Bind(R.id.list2)
+    MyListView mListView;//侵权方列表
 
     private RoyaltyEnity royaltyEnity;
 
     private List<Obligeeinfo> obligeeinfoList;
+    private List<Tortinfo> tortinfoList;
 
     private ObligeeInfoAdapter obligeeInfoAdapter;
+    private TortinfoAdapter tortinfoAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +79,7 @@ public class LawVinDicateDetailActivity extends AppCompatActivity {
     private void getIntentData() {
         royaltyEnity = (RoyaltyEnity) getIntent().getExtras().get("royalty");
         obligeeinfoList = royaltyEnity.getObligeeinfoList();
+        tortinfoList = royaltyEnity.getTortinfoList();
     }
     private void initView() {
         titleTextView.setText(R.string.title_law_service);
@@ -91,20 +91,36 @@ public class LawVinDicateDetailActivity extends AppCompatActivity {
         });
         searchButton.setVisibility(View.GONE);
         if (royaltyEnity != null){
-//            lawvindicateNum.setText("");
+            lawvindicateNum.setText(royaltyEnity.getLawvindicateno());
             lawvindicateStatus.setText(royaltyEnity.getStatus());
-//            lawvindicateBook.setText("");
-//            lawvindicateConfidenceFile.setText("");
-//            lawvindicateDemo.setText("");
-//            lawvindicateTelepeople.setText("联系人");
+            if (royaltyEnity.getIscredential().equals("true")){
+                String str = royaltyEnity.getCredential();
+                String[] splitstr=str.split("/");
+                lawvindicateBook.setText(splitstr[splitstr.length - 1]);
+            }
+            if (royaltyEnity.getIscertifyfile().equals("true")){
+                String str = royaltyEnity.getCertifyfile();
+                String[] splitstr=str.split("/");
+                lawvindicateConfidenceFile.setText(splitstr[splitstr.length - 1]);
+            }
+            if (royaltyEnity.getIsprintscreen().equals("true")){
+                String str = royaltyEnity.getIsprintscreen();
+                String[] splitstr=str.split("/");
+                lawvindicateprintscreen.setText(splitstr[splitstr.length - 1]);
+            }
+            String str0 = royaltyEnity.getSignaturefiles();
+            String[] splitstr0=str0.split("/");
+            lawvindicatesignaturefiles.setText(splitstr0[splitstr0.length - 1]);
+
+            String str1 = royaltyEnity.getSample();
+            String[] splitstr1=str1.split("/");
+            lawvindicateDemo.setText(splitstr1[splitstr1.length - 1]);
+
+            lawvindicateTelepeople.setText(royaltyEnity.getLinkman());
             lawvindicatePhone.setText(royaltyEnity.getPhone());
             lawvindicateEmail.setText(royaltyEnity.getEmail());
-//            lawvindicateAdvice.setText("意见");
+            lawvindicateAdvice.setText(royaltyEnity.getDealidea());
 
-            lawvindicateTortpeople.setText(royaltyEnity.getInfringer());
-            lawvindicateTorttype.setText(royaltyEnity.getTorttype());
-            lawvindicateTortURL.setText(royaltyEnity.getTorturl());
-            lawvindicateRemarks.setText(royaltyEnity.getRemarks());
         }
         initAdapter();
     }
@@ -112,5 +128,8 @@ public class LawVinDicateDetailActivity extends AppCompatActivity {
     private void initAdapter() {
         obligeeInfoAdapter = new ObligeeInfoAdapter(this, R.layout.obligeeinfo_card,obligeeinfoList);
         myListView.setAdapter(obligeeInfoAdapter);
+
+        tortinfoAdapter = new TortinfoAdapter(this, R.layout.tortinfo_card,tortinfoList);
+        mListView.setAdapter(tortinfoAdapter);
     }
 }
