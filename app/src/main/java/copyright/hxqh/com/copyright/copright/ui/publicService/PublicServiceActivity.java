@@ -24,8 +24,6 @@ public class PublicServiceActivity extends Activity implements View.OnClickListe
     private ImageView backimage,searchimage;
     private TextView titletext;
 
-    Intent intent;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +35,7 @@ public class PublicServiceActivity extends Activity implements View.OnClickListe
     public void findViewById() {
       authorlayout = findViewById(R.id.resousceman_id);
       royaltylayout = findViewById(R.id.royaltyman_id);
+      counsellayout = findViewById(R.id.counsel_id);
       backimage = findViewById(R.id.back_id);
       searchimage = findViewById(R.id.title_search);
       titletext = findViewById(R.id.menu_title);
@@ -45,6 +44,7 @@ public class PublicServiceActivity extends Activity implements View.OnClickListe
     public void initView(){
         authorlayout.setOnClickListener(this);
         royaltylayout.setOnClickListener(this);
+        counsellayout.setOnClickListener(this);
         backimage.setOnClickListener(this);
         searchimage.setVisibility(View.GONE);
         titletext.setText("公共服务");
@@ -56,12 +56,12 @@ public class PublicServiceActivity extends Activity implements View.OnClickListe
                 Toast.makeText(PublicServiceActivity.this, "此功能暂未开放", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.royaltyman_id:
-                intent = new Intent(this, RoyaltyActivity.class);
+                Intent intent = new Intent(this, RoyaltyActivity.class);
                 startActivity(intent);
                 break;
             case R.id.counsel_id:
-                intent = new Intent(this, RoyaltyActivity.class);
-                startActivity(intent);
+                Intent intent1 = new Intent(this, ConsultActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.back_id:
                 finish();

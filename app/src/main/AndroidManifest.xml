@@ -71,6 +71,8 @@
         <activity android:name=".copright.ui.ModifyPwdActivity"></activity>
         <activity android:name=".copright.ui.publicService.RoyaltyActivity"></activity>
         <activity android:name=".copright.ui.publicService.LawVinDicateDetailActivity"></activity>
+        <activity android:name=".copright.ui.publicService.ConsultActivity"></activity>
+        <activity android:name=".copright.ui.publicService.ConsultDetailActivity"></activity>
     </application>
 
 </manifest>

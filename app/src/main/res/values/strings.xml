@@ -97,6 +97,7 @@
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="title_activity_login2">Sign in</string>
     <string name="title_law_apply">法律维权服务申请</string>
+    <string name="title_service_apply">咨询服务申请</string>
     <string name="title_law_service">法律维权服务</string>
     <string name="vin_law_num">维权编号：</string>
     <string name="vin_law_status">状态：</string>
