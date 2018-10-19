@@ -82,6 +82,13 @@
         <item>3</item>
     </string-array>
 
+    <string-array name="spingarr">
+        <item>全部流程</item>
+        <item>待审批</item>
+        <item>待受理</item>
+        <item>已结束</item>
+    </string-array>
+
     <string-array name="multi_select_list_preference_default_value" />
 
     <string name="pref_title_system_sync_settings">System sync settings</string>
