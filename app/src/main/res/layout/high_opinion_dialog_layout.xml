@@ -71,6 +71,7 @@
             android:background="@drawable/shape_help_category_tv_bg"
             android:layout_marginLeft="10dp">
             <TextView
+                android:id="@+id/startdate_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/icon_date"
@@ -93,6 +94,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/shape_help_category_tv_bg">
             <TextView
+                android:id="@+id/enddate_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/icon_date"

@@ -112,6 +112,8 @@ public class DaibanFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
                 Button btn_cancel_high_opion = view.findViewById(R.id.btn_cancel_high_opion);
                 Button btn_agree_high_opion = view.findViewById(R.id.btn_agree_high_opion);
+                TextView startdate = view.findViewById(R.id.startdate_id);
+                TextView enddate = view.findViewById(R.id.enddate_id);
 
                 btn_cancel_high_opion.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -127,10 +129,20 @@ public class DaibanFragment extends Fragment implements SwipeRefreshLayout.OnRef
                         dialog.dismiss();
                     }
                 });
+                startdate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+                enddate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
 
                 dialog.show();
-                //此处设置位置窗体大小，我这里设置为了手机屏幕宽度的3/4
-//                dialog.getWindow().setLayout((ScreenUtils.getScreenWidth(this)/4*3),LinearLayout.LayoutParams.WRAP_CONTENT);
 
             }
         });
