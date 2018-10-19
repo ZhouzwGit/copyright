@@ -22,6 +22,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="error_internet">服务器连接失败</string>
     <string name="title_activity_settings">Settings</string>
 
     <!-- Strings related to Settings -->

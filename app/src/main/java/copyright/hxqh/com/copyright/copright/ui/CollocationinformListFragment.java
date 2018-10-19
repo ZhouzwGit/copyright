@@ -89,7 +89,8 @@ public class CollocationinformListFragment extends Fragment implements View.OnCl
             @Override
             protected List<Collectinform> doInBackground(String... strings) {
                 List<Collectinform> products = (List<Collectinform>) HttpConnect.getCollectinformList(json,page);
-                if (products != null && !products.isEmpty()){
+                if (products == null){
+                    return null;
                 }
                 return products;
             }
@@ -104,6 +105,7 @@ public class CollocationinformListFragment extends Fragment implements View.OnCl
                         TextView textView = (TextView) nodatalayout.getChildAt(0);
                         textView.setText("加载失败请检查网络");
                     }
+                    AcountUtil.closeProgressDialog();
                     return;
                 }
                 if (preoducts.isEmpty()){

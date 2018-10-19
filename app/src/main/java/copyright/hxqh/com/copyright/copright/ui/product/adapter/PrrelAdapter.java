@@ -50,7 +50,7 @@ public class PrrelAdapter extends ArrayAdapter {
         viewHolder.gainway = view.findViewById(R.id.getType_id);
         viewHolder.resourcekind.setText(item.getResourcekind());
         viewHolder.gainway.setText(item.getGainway());
-        //viewHolder.languages.setText(item.get);
+        viewHolder.languages.setText(item.getLanguages());
         viewHolder.copyright.setText(item.getCopyright());
         viewHolder.resourcename.setText(item.getResourcename());
         viewHolder.rightno.setText(item.getRightno());

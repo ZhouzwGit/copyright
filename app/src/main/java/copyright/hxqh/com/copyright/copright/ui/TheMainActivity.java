@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import copyright.hxqh.com.copyright.R;
@@ -38,6 +39,7 @@ public class TheMainActivity extends AppCompatActivity implements View.OnClickLi
     private ImageView mainImage, informImage, myinfoImage;
     private View mainView;
     private Fragment fragment;
+    private TextView hello;
     LinearLayout title;
     private TextView titletext;
     private static boolean isExit = false;
@@ -94,7 +96,10 @@ public class TheMainActivity extends AppCompatActivity implements View.OnClickLi
         informImage = findViewById(R.id.inform);
         myinfoImage = findViewById(R.id.selfmanager);
         titletext = findViewById(R.id.title_id);
+        hello = findViewById(R.id.hello_id);
+        hello.setText(getdate()+AcountUtil.getUsername(this));
         title = findViewById(R.id.title);
+        title.setVisibility(View.GONE);
         main.setOnClickListener(this);
         inform.setOnClickListener(this);
         myinfo.setOnClickListener(this);
@@ -108,7 +113,6 @@ public class TheMainActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        title.setVisibility(View.VISIBLE);
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         switch (view.getId()) {
@@ -133,11 +137,9 @@ public class TheMainActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(intent5);
                 break;
             case R.id.main_layout_id:
-                titletext.setText("版权资产管理系统");
                 if (fragment!=null){
                     fragmentTransaction.remove(fragment);
                 }
-                mainView.setVisibility(View.VISIBLE);
                 mainImage.setImageResource(R.mipmap.main_12);
                 myinfoImage.setImageResource(R.mipmap.main_2);
                 informImage.setImageResource(R.mipmap.main_13);
@@ -156,6 +158,7 @@ public class TheMainActivity extends AppCompatActivity implements View.OnClickLi
                 mainView.setVisibility(View.GONE);
                 fragment = new SelfManagerActivity();
                 titletext.setText("个人中心");
+                title.setVisibility(View.VISIBLE);
                 mainImage.setImageResource(R.mipmap.main_11);
                 myinfoImage.setImageResource(R.mipmap.main_3);
                 fragmentTransaction.replace(R.id.container,fragment).commit();
@@ -181,5 +184,17 @@ public class TheMainActivity extends AppCompatActivity implements View.OnClickLi
                 }
             }
         }.execute();
+    }
+    public String getdate(){
+        Date date = new Date();
+       if (date.getHours()<11){
+           return "早上好,";
+       }else if (date.getHours()<13 && date.getHours()>11){
+           return "中午好,";
+       }else if (date.getHours()>13 && date.getHours()<18){
+           return "下午好,";
+       }else{
+           return "晚上好,";
+       }
     }
 }

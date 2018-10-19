@@ -130,11 +130,11 @@ public class ModifyPwdActivity extends AppCompatActivity implements View.OnClick
             return false;
         }
         if (!isPasswordValid(newpwd.getText().toString())){
-            message(2);
+            message(3);
             return false;
         }
         if (!newpwdright(newpwd.getText().toString(),confirmpwd.getText().toString())){
-            message(3);
+            message(2);
             return false;
         }
         return true;
@@ -148,7 +148,7 @@ public class ModifyPwdActivity extends AppCompatActivity implements View.OnClick
                 Toast.makeText(this,"您输入的新秘密和确认密码不一致",Toast.LENGTH_SHORT).show();
                 break;
             case 3:
-                Toast.makeText(this,"密码的长度有限制。输入框失去焦点的时候提示：密码长度至少为6",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"密码长度至少为6",Toast.LENGTH_SHORT).show();
                 break;
         }
     }
@@ -167,13 +167,19 @@ public class ModifyPwdActivity extends AppCompatActivity implements View.OnClick
             @Override
             protected Boolean doInBackground(Void... voids) {
                 boolean flag = HttpConnect.modifyPwd(AcountUtil.getUsername(ModifyPwdActivity.this),newpwd.getText().toString());
-                if (flag){
+                return flag;
+            }
+
+            @Override
+            protected void onPostExecute(Boolean aBoolean) {
+                super.onPostExecute(aBoolean);
+                if (aBoolean){
                     AcountUtil.closeProgressDialog();
                     Toast.makeText(ModifyPwdActivity.this,"修改成功",Toast.LENGTH_SHORT).show();
+                    finish();
                 }else {
                     Toast.makeText(ModifyPwdActivity.this,"修改失败",Toast.LENGTH_SHORT).show();
                 }
-                return flag;
             }
         }.execute();
     }

@@ -142,6 +142,7 @@ public class ContractListActivity extends Activity implements View.OnClickListen
                     producttext.setBackgroundColor(getResources().getColor(R.color.blue));
                     channeltext.setBackgroundColor(getResources().getColor(R.color.white));
                     recyclerView.scrollToPosition(0);
+                    contractAdapter = null;
                     contractAdapter = new ContractAdapter(R.layout.list_contract_card, new ArrayList<Contract>());
                     initAdpter();
                     AcountUtil.showProgressDialog(this,"");
@@ -154,6 +155,7 @@ public class ContractListActivity extends Activity implements View.OnClickListen
                    channeltext.setBackgroundColor(getResources().getColor(R.color.blue));
                    producttext.setBackgroundColor(getResources().getColor(R.color.white));
                    recyclerView.scrollToPosition(0);
+                   contractAdapter = null;
                    contractAdapter = new AuthContractAdapter(R.layout.list_contract_card, new ArrayList<AuthContract>());
                    initAdpter();
                    AcountUtil.showProgressDialog(this,"");
@@ -176,11 +178,7 @@ public class ContractListActivity extends Activity implements View.OnClickListen
             @Override
             public void onLoadMoreRequested() {
                 page++;
-                if (page < pageNum) {
                     getContractData();
-                } else {
-                    contractAdapter.loadMoreEnd();
-                }
 
             }
         }, recyclerView);
@@ -191,7 +189,7 @@ public class ContractListActivity extends Activity implements View.OnClickListen
                 if (contracttype){
                     intent =  new Intent(ContractListActivity.this, ContractdetailActivity.class);
                 }else {
-                    intent = new Intent(ContractListActivity.this,ContractdetailActivity.class);
+                    intent = new Intent(ContractListActivity.this,AuthContractdetailActivity.class);
                 }
 
                 Bundle bundle = new Bundle();
@@ -209,16 +207,8 @@ public class ContractListActivity extends Activity implements View.OnClickListen
                 List products;
                 if (contracttype) {
                     products = HttpConnect.getContractList(json, page);
-                    if (products == null) {
-                        return null;
-                    }
-                    pageNum = ((List<Contract>) products).get(0).getPagenum();
                 } else {
                     products = HttpConnect.getAuthContractList(json, page);
-                    if (products == null) {
-                        return null;
-                    }
-                    pageNum = ((List<AuthContract>) products).get(0).getPagenum();
                 }
 
                 return products;
@@ -234,6 +224,7 @@ public class ContractListActivity extends Activity implements View.OnClickListen
                         TextView textView = (TextView) nodatalayout.getChildAt(0);
                         textView.setText("加载失败请检查网络");
                     }
+                    AcountUtil.closeProgressDialog();
                     return;
                 }
                 if (preoducts.isEmpty()) {
@@ -252,6 +243,11 @@ public class ContractListActivity extends Activity implements View.OnClickListen
                     } else {
                         if (page == 1) {
                             contractAdapter.setNewData(preoducts);
+                            if (contracttype){
+                               pageNum = ((Contract)preoducts.get(0)).getPagenum();
+                            }else {
+                                pageNum = ((AuthContract)preoducts.get(0)).getPagenum();
+                            }
                             swipeRefreshLayout.setRefreshing(false);
                         } else if (page <= pageNum) {
                             contractAdapter.addData(preoducts);

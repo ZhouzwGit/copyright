@@ -14,6 +14,8 @@ import copyright.hxqh.com.copyright.copright.ui.product.entity.Prrel;
 public class CopyRightDetailsActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView
             rightrestrict,
+            contractnum,
+            languages,
             earnings,
             resourceno,
             costprice,
@@ -65,6 +67,8 @@ public class CopyRightDetailsActivity extends AppCompatActivity implements View.
         searchimage = findViewById(R.id.title_search);
         earnings2 = findViewById(R.id.earnings2_id);
         titletext = findViewById(R.id.menu_title);
+        contractnum = findViewById(R.id.contractnum_id);
+        languages = findViewById(R.id.languages_id);
     }
 
     public void initView() {
@@ -87,6 +91,8 @@ public class CopyRightDetailsActivity extends AppCompatActivity implements View.
             finishplacearea.setText(prrel.getFinishplacearea());
             finishdate.setText(prrel.getFinishdate());
             titletext.setText(prrel.getResourcename());
+            contractnum.setText(prrel.getContractnum());
+            languages.setText(prrel.getLanguages());
         }else {
             rightrestrict.setText(rightInfo.getRightrestrict());
             earnings.setText(rightInfo.getEarnings());
@@ -102,6 +108,8 @@ public class CopyRightDetailsActivity extends AppCompatActivity implements View.
             finishplacearea.setText(rightInfo.getFinishplacearea());
             finishdate.setText(rightInfo.getFinishdate());
             titletext.setText(rightInfo.getResourcename());
+            contractnum.setText(rightInfo.getContractnum());
+            languages.setText(rightInfo.getLanguages());
         }
 
     }

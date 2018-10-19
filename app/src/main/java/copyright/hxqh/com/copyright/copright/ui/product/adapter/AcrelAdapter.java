@@ -66,14 +66,4 @@ public class AcrelAdapter extends ArrayAdapter {
         otherrestrict.setText(acrel.getOtherrestrict());*/
         return view;
     }
-    /*protected void convert(BaseViewHolder helper, Acrel item) {
-        CardView cardView = helper.getView(R.id.card_container);
-        helper.setText(R.id.productcost_id,item.getCost()+"");
-        helper.setText(R.id.payment_id,item.getPayment());
-        helper.setText(R.id.channelname_id,item.getChannelname());
-        helper.setText(R.id.rightlimit_id,item.getStartdate() + "至" + item.getEnddate());
-        helper.setText(R.id.territoryrestrict_id,item.getTerritoryrestrict());
-        helper.setText(R.id.languagerestrict_id,item.getLanguagerestrict());
-        helper.setText(R.id.otherrestrict_id,item.getOtherrestrict());
-    }*/
 }

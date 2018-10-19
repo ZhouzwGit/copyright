@@ -51,7 +51,7 @@
                     android:inputType="textPassword"
                     android:layout_weight="3"
                     android:paddingLeft="10dp"
-                    android:background="@drawable/ic_imagebj"
+                    android:background="@drawable/ic_item_bg"
                     android:hint="请输入旧密码" />
             </LinearLayout>
 
@@ -80,7 +80,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="3"
                     android:inputType="textPassword"
-                    android:background="@drawable/ic_imagebj"
+                    android:background="@drawable/ic_item_bg"
                     android:paddingLeft="10dp"
                     android:hint="请输入新密码" />
             </LinearLayout>
@@ -111,7 +111,7 @@
                     android:layout_weight="3"
                     android:paddingLeft="10dp"
                     android:inputType="textPassword"
-                    android:background="@drawable/ic_imagebj"
+                    android:background="@drawable/ic_item_bg"
                     android:hint="请再次输入新密码" />
             </LinearLayout>
 

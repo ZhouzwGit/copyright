@@ -25,6 +25,7 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -38,6 +39,7 @@ import java.util.List;
 
 import copyright.hxqh.com.copyright.R;
 import copyright.hxqh.com.copyright.copright.HttpManager.HttpConnect;
+import copyright.hxqh.com.copyright.copright.dialog.FlippingLoadingDialog;
 import copyright.hxqh.com.copyright.copright.util.AcountUtil;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -51,6 +53,7 @@ public class Login_Activity extends AppCompatActivity implements LoaderCallbacks
      * Id to identity READ_CONTACTS permission request.
      */
     private static final int REQUEST_READ_CONTACTS = 0;
+    protected FlippingLoadingDialog mLoadingDialog;
 
     /**
      * A dummy authentication store containing known user names and passwords.
@@ -76,6 +79,7 @@ public class Login_Activity extends AppCompatActivity implements LoaderCallbacks
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_layout);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -110,6 +114,7 @@ public class Login_Activity extends AppCompatActivity implements LoaderCallbacks
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+        mPasswordView.setText("正在登录...");
     }
 
     private void populateAutoComplete() {
@@ -239,31 +244,32 @@ public class Login_Activity extends AppCompatActivity implements LoaderCallbacks
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
         // for very easy animations. If available, use these APIs to fade-in
         // the progress spinner.
+        getLoadingDialog("正在登录");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
             int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-            mLoginFormView.animate().setDuration(shortAnimTime).alpha(
+           // mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+            /*mLoginFormView.animate().setDuration(shortAnimTime).alpha(
                     show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
-                    mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+                    //mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
                 }
-            });
+            });*/
 
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+            /*mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
             mProgressView.animate().setDuration(shortAnimTime).alpha(
                     show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
                 }
-            });
+            });*/
         } else {
             // The ViewPropertyAnimator APIs are not available, so simply show
             // and hide the relevant UI components.
             mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+           // mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
     }
 
@@ -342,6 +348,9 @@ public class Login_Activity extends AppCompatActivity implements LoaderCallbacks
             try {
                 // Simulate network access.
                String login =  HttpConnect.login(mEmail,mPassword);
+               if (login == null){
+                   return null;
+               }
                if (login.contains("true")){
                    flag = true;
                }
@@ -349,21 +358,27 @@ public class Login_Activity extends AppCompatActivity implements LoaderCallbacks
                 return false;
             }
             // TODO: register the new account here.
-            return true;
+            return flag;
         }
 
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
             showProgress(false);
-
-            if (success) {
-                AcountUtil.setUserNameAndPassWord(Login_Activity.this,mEmail, mPassword);
-                intentToMain();
-            } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
+            if (success == null){
+                mPasswordView.setError(getString(R.string.error_internet));
                 mPasswordView.requestFocus();
+            }else {
+                if (success) {
+                    mLoadingDialog.dismiss();
+                    AcountUtil.setUserNameAndPassWord(Login_Activity.this,mEmail, mPassword);
+                    intentToMain();
+                } else {
+                    mPasswordView.setError(getString(R.string.error_incorrect_password));
+                    mPasswordView.requestFocus();
+                }
             }
+
         }
 
         @Override
@@ -377,5 +392,11 @@ public class Login_Activity extends AppCompatActivity implements LoaderCallbacks
         startActivity(intent);
         finish();
     }
+    private FlippingLoadingDialog getLoadingDialog(String msg) {
+        if (mLoadingDialog == null)
+            mLoadingDialog = new FlippingLoadingDialog(this, msg);
+        return mLoadingDialog;
+    }
+
 }
 

@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -74,6 +75,7 @@ public class LawVinDicateDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_law_detail);
         ButterKnife.bind(this);
+        myListView = findViewById(R.id.list);
         getIntentData();
         initView();
     }
@@ -110,7 +112,7 @@ public class LawVinDicateDetailActivity extends AppCompatActivity {
     }
 
     private void initAdapter() {
-        obligeeInfoAdapter = new ObligeeInfoAdapter(this, R.layout.obligeeinfo_card,obligeeinfoList);
+        obligeeInfoAdapter = new ObligeeInfoAdapter(this, R.layout.obligeeinfo_card,obligeeinfoList==null?new ArrayList<Obligeeinfo>():obligeeinfoList );
         myListView.setAdapter(obligeeInfoAdapter);
     }
 }

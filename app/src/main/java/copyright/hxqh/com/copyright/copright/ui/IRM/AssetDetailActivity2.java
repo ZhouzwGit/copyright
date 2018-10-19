@@ -77,7 +77,7 @@ public class AssetDetailActivity2 extends AppCompatActivity {
             createdate,
             remark,
             havenodate1,
-            havenodata2, copyrightcount, relatcount,title;
+            havenodata2, copyrightcount, relatcount, title,isrcno;
     private Asset asset;
     private ImageView previewimg, backimage, searchimage;
     private RatingBar ratingBar;
@@ -136,9 +136,11 @@ public class AssetDetailActivity2 extends AppCompatActivity {
         fstrlsdate = findViewById(R.id.fstrlsdate_id);
         purpose = findViewById(R.id.purpose_id);
         title = findViewById(R.id.menu_title);
+        isrcno = findViewById(R.id.ISRC_id);
     }
 
     private void initView() {
+        isrcno.setText(asset.getIsrcnum());
         title.setText(asset.getResourcename());
         purpose.setText(asset.getPurpose());
         fstrlsdate.setText(asset.getFstrlsdate());
@@ -146,11 +148,11 @@ public class AssetDetailActivity2 extends AppCompatActivity {
         if (rightList.isEmpty()) {
             havenodate1.setVisibility(View.VISIBLE);
         }
-        if (rchrrelList.isEmpty()){
+        if (rchrrelList.isEmpty()) {
             havenodata2.setVisibility(View.VISIBLE);
         }
-        relatcount.setText("关联资产("+rchrrelList.size()+"项)");
-        copyrightcount.setText("权利项（"+ rightList.size()+"项）");
+        relatcount.setText("关联资产(" + rchrrelList.size() + "项)");
+        copyrightcount.setText("权利项（" + rightList.size() + "项）");
         searchimage.setVisibility(View.GONE);
         createdate.setText(asset.getCreatedate());
         createby.setText(asset.getCreatenature());
@@ -235,8 +237,8 @@ public class AssetDetailActivity2 extends AppCompatActivity {
     }
 
     public void initAdpter() {
-         rightAdapter = new RightAdapter2(this, R.layout.asset_detail_list1_item, rightList);
-         assetrelaAdapter = new AssetrelaAdapter(R.layout.asset_detail_list2_item, rchrrelList);
+        rightAdapter = new RightAdapter2(this, R.layout.asset_detail_list1_item, rightList);
+        assetrelaAdapter = new AssetrelaAdapter(R.layout.asset_detail_list2_item, rchrrelList);
         listView1.setAdapter(rightAdapter);
         listView2.setAdapter(assetrelaAdapter);
     }

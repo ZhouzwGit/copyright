@@ -25,6 +25,24 @@ public class Prrel implements Serializable {
     private String usestatus;
     private String finishplacearea;
     private String finishdate;
+    private String languages;
+    private String contractnum;
+
+    public String getContractnum() {
+        return contractnum;
+    }
+
+    public void setContractnum(String contractnum) {
+        this.contractnum = contractnum;
+    }
+
+    public String getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(String languages) {
+        this.languages = languages;
+    }
 
     public String getRightrestrict() {
         return rightrestrict;

@@ -60,7 +60,7 @@ public class RoyaltyActivity  extends AppCompatActivity implements View.OnClickL
     @Bind(R.id.swipe_container)
     SwipeRefreshLayout refresh_layout;//界面刷新
 
-    private int page = 1;
+    private int page;
 
     private JSONObject json;
 
@@ -90,6 +90,7 @@ public class RoyaltyActivity  extends AppCompatActivity implements View.OnClickL
         json = HttpConnect.getBasicJson(this);
         initAdpter();
         AcountUtil.showProgressDialog(this, "");
+        page = 1;
         getData();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

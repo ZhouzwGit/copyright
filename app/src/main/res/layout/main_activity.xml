@@ -3,12 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/background_gradient">
+    >
     <LinearLayout
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:visibility="visible"
+        android:visibility="gone"
         android:gravity="center|center_horizontal|center_vertical"
         >
         <TextView
@@ -21,29 +21,24 @@
 
             />
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1sp"
-        android:background="@color/gray"
-        ></View>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10">
         <include
             android:id="@+id/main_layout"
-            layout="@layout/mainlayout"></include>
+            layout="@layout/main_activity2"></include>
         <FrameLayout
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
         </FrameLayout>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="@color/blueshadow">
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        >
         <include layout="@layout/buttom_activity"></include>
     </LinearLayout>
 

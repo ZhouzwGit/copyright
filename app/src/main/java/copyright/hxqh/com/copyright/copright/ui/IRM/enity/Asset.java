@@ -99,7 +99,18 @@ public class Asset implements Serializable {
     private String iscutoff;
     private String releaseplace;
     private String createnature;
-    private int resourcenum,assetnum;
+    private int resourcenum;
+    private int assetnum;
+
+    public String getIsrcnum() {
+        return isrcnum;
+    }
+
+    public void setIsrcnum(String isrcnum) {
+        this.isrcnum = isrcnum;
+    }
+
+    private String isrcnum;
 
     public int getResourcenum() {
         return resourcenum;
