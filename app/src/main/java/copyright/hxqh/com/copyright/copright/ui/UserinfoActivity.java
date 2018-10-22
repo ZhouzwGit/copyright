@@ -30,7 +30,7 @@ public class UserinfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.userinfolayout);
+        setContentView(R.layout.userinfolayout2);
         userInfo = AcountUtil.getUser(this, "UserInfo", "user");
         findView();
         initView();

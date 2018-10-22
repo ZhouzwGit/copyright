@@ -4,13 +4,13 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:background="@drawable/ic_login_shape_nofoucs" >
+    android:background="@drawable/bg_common_toast" >
 
     <copyright.hxqh.com.copyright.copright.widget.FlippingImageView
         android:id="@+id/loadingdialog_fiv_icon"
         android:layout_width="30dip"
         android:layout_height="30dip"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@mipmap/app_image" />
 
     <TextView
         android:id="@+id/loadingdialog_htv_text"

@@ -70,7 +70,7 @@
                             android:layout_marginLeft="5dp"
                             android:layout_width="match_parent"
                             android:background="@color/white"
-                            android:textColor="#b4b5b5"
+                            android:textColor="@color/black"
                             android:hint="请输入账号"
                             android:textSize="12sp"
                             android:layout_height="match_parent" />
@@ -102,7 +102,7 @@
                             android:ems="16"
                             android:hint="请输入密码"
                             android:inputType="textPassword"
-                            android:textColor="#b4b5b5"
+                            android:textColor="@color/black"
                             android:maxLines="1"
                             android:minEms="6"
                             android:textSize="12sp"

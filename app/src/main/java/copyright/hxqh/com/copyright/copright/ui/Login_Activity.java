@@ -114,7 +114,6 @@ public class Login_Activity extends AppCompatActivity implements LoaderCallbacks
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
-        mPasswordView.setText("正在登录...");
     }
 
     private void populateAutoComplete() {
@@ -244,7 +243,7 @@ public class Login_Activity extends AppCompatActivity implements LoaderCallbacks
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
         // for very easy animations. If available, use these APIs to fade-in
         // the progress spinner.
-        getLoadingDialog("正在登录");
+        getLoadingDialog("正在登录.....").show();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
             int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
@@ -370,13 +369,14 @@ public class Login_Activity extends AppCompatActivity implements LoaderCallbacks
                 mPasswordView.requestFocus();
             }else {
                 if (success) {
-                    mLoadingDialog.dismiss();
+
                     AcountUtil.setUserNameAndPassWord(Login_Activity.this,mEmail, mPassword);
                     intentToMain();
                 } else {
                     mPasswordView.setError(getString(R.string.error_incorrect_password));
                     mPasswordView.requestFocus();
                 }
+                mLoadingDialog.dismiss();
             }
 
         }

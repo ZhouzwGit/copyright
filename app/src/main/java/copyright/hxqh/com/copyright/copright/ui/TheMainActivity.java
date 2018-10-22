@@ -1,5 +1,6 @@
 package copyright.hxqh.com.copyright.copright.ui;
 
+import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
@@ -41,7 +42,7 @@ public class TheMainActivity extends AppCompatActivity implements View.OnClickLi
     private Fragment fragment;
     private TextView hello;
     LinearLayout title;
-    private TextView titletext;
+    private TextView titletext,maintext,informtext,myinfotext,backlogtext;
     private static boolean isExit = false;
     Handler handler = new Handler() {
         @Override
@@ -99,7 +100,12 @@ public class TheMainActivity extends AppCompatActivity implements View.OnClickLi
         backlogImage = findViewById(R.id.backlog_image_id);
         titletext = findViewById(R.id.title_id);
         hello = findViewById(R.id.hello_id);
+        maintext = findViewById(R.id.idmain_text);
+        informtext = findViewById(R.id.inform_text);
+        myinfotext = findViewById(R.id.myinfo_text);
+        backlogtext = findViewById(R.id.task_text);
         hello.setText(getdate()+AcountUtil.getUsername(this));
+
         title = findViewById(R.id.title);
         title.setVisibility(View.GONE);
         main.setOnClickListener(this);
@@ -114,6 +120,7 @@ public class TheMainActivity extends AppCompatActivity implements View.OnClickLi
         main.performClick();
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onClick(View view) {
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
@@ -140,43 +147,60 @@ public class TheMainActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(intent5);
                 break;
             case R.id.main_layout_id:
+                mainView.setVisibility(View.VISIBLE);
+                title.setVisibility(View.GONE);
                 if (fragment!=null){
                     fragmentTransaction.remove(fragment);
                 }
+                maintext.setTextColor(R.color.blue);
+                backlogtext.setTextColor(R.color.bottomtext);
+                myinfotext.setTextColor(R.color.bottomtext);
+                informtext.setTextColor(R.color.bottomtext);
                 mainImage.setImageResource(R.mipmap.main_12);
                 myinfoImage.setImageResource(R.mipmap.main_2);
                 informImage.setImageResource(R.mipmap.main_13);
-                backlogImage.setImageResource(R.mipmap.main_2);
+                backlogImage.setImageResource(R.mipmap.tasktodo);
                 break;
             case R.id.inform_id:
                 title.setVisibility(View.GONE);
                 mainView.setVisibility(View.GONE);
                 fragment = new InformtListActivity();
-                titletext.setText("个人中心");
+                maintext.setTextColor(R.color.bottomtext);
+                backlogtext.setTextColor(R.color.bottomtext);
+                myinfotext.setTextColor(R.color.blue);
+                informtext.setTextColor(R.color.bottomtext);
                 informImage.setImageResource(R.mipmap.main_1);
                 myinfoImage.setImageResource(R.mipmap.main_2);
                 mainImage.setImageResource(R.mipmap.main_11);
-                backlogImage.setImageResource(R.mipmap.main_2);
+                backlogImage.setImageResource(R.mipmap.tasktodo);
                 fragmentTransaction.replace(R.id.container,fragment).commit();
                 break;
             case R.id.myinfo_id:
                 mainView.setVisibility(View.GONE);
                 fragment = new SelfManagerActivity();
-                titletext.setText("个人中心");
-                title.setVisibility(View.VISIBLE);
+                title.setBackgroundColor(R.color.blue);
+                maintext.setTextColor(R.color.bottomtext);
+                backlogtext.setTextColor(R.color.blue);
+                myinfotext.setTextColor(R.color.bottomtext);
+                informtext.setTextColor(R.color.bottomtext);
                 mainImage.setImageResource(R.mipmap.main_11);
                 myinfoImage.setImageResource(R.mipmap.main_3);
-                backlogImage.setImageResource(R.mipmap.main_2);
+                informImage.setImageResource(R.mipmap.main_13);
+                backlogImage.setImageResource(R.mipmap.tasktodo);
                 fragmentTransaction.replace(R.id.container,fragment).commit();
                 break;
             case R.id.backlog_id:
                 title.setVisibility(View.GONE);
                 mainView.setVisibility(View.GONE);
                 fragment = new DaibanFragment();
+                maintext.setTextColor(R.color.bottomtext);
+                backlogtext.setTextColor(R.color.blue);
+                myinfotext.setTextColor(R.color.bottomtext);
+                informtext.setTextColor(R.color.bottomtext);
                 informImage.setImageResource(R.mipmap.main_13);
                 mainImage.setImageResource(R.mipmap.main_11);
                 myinfoImage.setImageResource(R.mipmap.main_2);
-                backlogImage.setImageResource(R.mipmap.main_3);
+                backlogImage.setImageResource(R.mipmap.tasktodo1);
                 fragmentTransaction.replace(R.id.container,fragment).commit();
                 break;
         }

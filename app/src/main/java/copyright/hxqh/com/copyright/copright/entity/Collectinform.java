@@ -1,5 +1,7 @@
 package copyright.hxqh.com.copyright.copright.entity;
 
+import com.google.gson.Gson;
+
 import java.io.Serializable;
 
 /**
@@ -7,14 +9,13 @@ import java.io.Serializable;
  */
 
 public class Collectinform implements Serializable {
-        private String resourcename;
-        private String channelname;
-        private int countnum;
-        private int collectioncount;
-        private int pagenum;
-        private String collectiondate;
-        private String productname;
-
+    private String resourcename;
+    private String channelname;
+    private int countnum;
+    private int collectioncount;
+    private int pagenum;
+    private String collectiondate;
+    private String productname;
     public String getResourcename() {
         return resourcename;
     }
@@ -24,45 +25,51 @@ public class Collectinform implements Serializable {
     }
 
     public void setChannelname(String channelname) {
-            this.channelname = channelname;
-        }
-        public String getChannelname() {
-            return channelname;
-        }
+        this.channelname = channelname;
+    }
 
-        public void setCountnum(int countnum) {
-            this.countnum = countnum;
-        }
-        public int getCountnum() {
-            return countnum;
-        }
+    public String getChannelname() {
+        return channelname;
+    }
 
-        public void setCollectioncount(int collectioncount) {
-            this.collectioncount = collectioncount;
-        }
-        public int getCollectioncount() {
-            return collectioncount;
-        }
+    public void setCountnum(int countnum) {
+        this.countnum = countnum;
+    }
 
-        public void setPagenum(int pagenum) {
-            this.pagenum = pagenum;
-        }
-        public int getPagenum() {
-            return pagenum;
-        }
+    public int getCountnum() {
+        return countnum;
+    }
 
-        public void setCollectiondate(String collectiondate) {
-            this.collectiondate = collectiondate;
-        }
-        public String getCollectiondate() {
-            return collectiondate;
-        }
+    public void setCollectioncount(int collectioncount) {
+        this.collectioncount = collectioncount;
+    }
 
-        public void setProductname(String productname) {
-            this.productname = productname;
-        }
-        public String getProductname() {
-            return productname;
-        }
+    public int getCollectioncount() {
+        return collectioncount;
+    }
+
+    public void setPagenum(int pagenum) {
+        this.pagenum = pagenum;
+    }
+
+    public int getPagenum() {
+        return pagenum;
+    }
+
+    public void setCollectiondate(String collectiondate) {
+        this.collectiondate = collectiondate;
+    }
+
+    public String getCollectiondate() {
+        return collectiondate;
+    }
+
+    public void setProductname(String productname) {
+        this.productname = productname;
+    }
+
+    public String getProductname() {
+        return productname;
+    }
 
 }
