@@ -7,6 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="1dp"
     android:layout_marginTop="1dp"
+    android:background="#e4e4e4"
     android:foreground="?android:selectableItemBackground"
     android:orientation="horizontal"
     card_view:cardCornerRadius="2dp">
@@ -19,7 +20,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/item_bg"
+            android:background="@drawable/item_white_bg"
             android:orientation="vertical"
             android:layout_marginLeft="@dimen/dp_10"
             android:layout_marginRight="5dp"
@@ -37,12 +38,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="侵权作品:"
+                    android:text="流程类型:"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:layout_marginLeft="@dimen/dp_10"/>
                 <TextView
-                    android:id="@+id/lawvindicate_name"
+                    android:id="@+id/daiban_flowtype"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
@@ -63,9 +64,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textSize="14sp"
-                    android:text="维权编号:"/>
+                    android:text="申请单/作品名称:"/>
                 <TextView
-                    android:id="@+id/lawvindicate_num"
+                    android:id="@+id/diaban_workname"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
@@ -82,19 +83,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textSize="14sp"
-                    android:text="联系人:"/>
+                    android:text="当前环节:"/>
                 <TextView
-                    android:id="@+id/lawvindicate_author"
+                    android:id="@+id/daiban_step"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
-                    android:textSize="14sp"
-                    android:hint="暂无数据"/>
-                <TextView
-                    android:id="@+id/lawvindicate_phone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="15dp"
                     android:textSize="14sp"
                     android:hint="暂无数据"/>
             </LinearLayout>
@@ -112,9 +106,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:textSize="14sp"
-                        android:text="申请时间:"/>
+                        android:text="创建日期:"/>
                     <TextView
-                        android:id="@+id/lawvindicate_date"
+                        android:id="@+id/daiban_date"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
@@ -123,24 +117,17 @@
                         android:hint="暂无数据"/>
                 </LinearLayout>
                 <LinearLayout
-                    android:layout_weight="0.5"
+                    android:id="@+id/daiban_remark"
+                    android:layout_weight="0.3"
                     android:layout_width="0dp"
                     android:layout_height="match_parent">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textSize="15sp"
-                        android:text="状态:"
-                        android:textColor="@android:color/holo_green_dark"/>
-                    <TextView
-                        android:id="@+id/lawvindicate_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
-                        android:textSize="15sp"
-                        android:hint="暂无数据"
+                        android:textSize="16sp"
                         android:textColor="@android:color/holo_green_dark"
-                        android:text=""/>
+                        android:text="备注"/>
                 </LinearLayout>
 
             </LinearLayout>

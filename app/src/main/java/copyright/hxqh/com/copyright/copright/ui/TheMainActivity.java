@@ -35,8 +35,8 @@ import copyright.hxqh.com.copyright.copright.util.AcountUtil;
 
 public class TheMainActivity extends AppCompatActivity implements View.OnClickListener {
     private LinearLayout irm, product, author, contract,publicSer;
-    private LinearLayout main, inform, myinfo;
-    private ImageView mainImage, informImage, myinfoImage;
+    private LinearLayout main, inform, myinfo,backlog;
+    private ImageView mainImage, informImage, myinfoImage,backlogImage;
     private View mainView;
     private Fragment fragment;
     private TextView hello;
@@ -91,10 +91,12 @@ public class TheMainActivity extends AppCompatActivity implements View.OnClickLi
         main = findViewById(R.id.main_layout_id);
         inform = findViewById(R.id.inform_id);
         myinfo = findViewById(R.id.myinfo_id);
+        backlog = findViewById(R.id.backlog_id);
         mainView = findViewById(R.id.main_layout);
         mainImage = findViewById(R.id.main);
         informImage = findViewById(R.id.inform);
         myinfoImage = findViewById(R.id.selfmanager);
+        backlogImage = findViewById(R.id.backlog_image_id);
         titletext = findViewById(R.id.title_id);
         hello = findViewById(R.id.hello_id);
         hello.setText(getdate()+AcountUtil.getUsername(this));
@@ -103,6 +105,7 @@ public class TheMainActivity extends AppCompatActivity implements View.OnClickLi
         main.setOnClickListener(this);
         inform.setOnClickListener(this);
         myinfo.setOnClickListener(this);
+        backlog.setOnClickListener(this);
         irm.setOnClickListener(this);
         product.setOnClickListener(this);
         author.setOnClickListener(this);
@@ -143,6 +146,7 @@ public class TheMainActivity extends AppCompatActivity implements View.OnClickLi
                 mainImage.setImageResource(R.mipmap.main_12);
                 myinfoImage.setImageResource(R.mipmap.main_2);
                 informImage.setImageResource(R.mipmap.main_13);
+                backlogImage.setImageResource(R.mipmap.main_2);
                 break;
             case R.id.inform_id:
                 title.setVisibility(View.GONE);
@@ -152,6 +156,7 @@ public class TheMainActivity extends AppCompatActivity implements View.OnClickLi
                 informImage.setImageResource(R.mipmap.main_1);
                 myinfoImage.setImageResource(R.mipmap.main_2);
                 mainImage.setImageResource(R.mipmap.main_11);
+                backlogImage.setImageResource(R.mipmap.main_2);
                 fragmentTransaction.replace(R.id.container,fragment).commit();
                 break;
             case R.id.myinfo_id:
@@ -161,6 +166,17 @@ public class TheMainActivity extends AppCompatActivity implements View.OnClickLi
                 title.setVisibility(View.VISIBLE);
                 mainImage.setImageResource(R.mipmap.main_11);
                 myinfoImage.setImageResource(R.mipmap.main_3);
+                backlogImage.setImageResource(R.mipmap.main_2);
+                fragmentTransaction.replace(R.id.container,fragment).commit();
+                break;
+            case R.id.backlog_id:
+                title.setVisibility(View.GONE);
+                mainView.setVisibility(View.GONE);
+                fragment = new DaibanFragment();
+                informImage.setImageResource(R.mipmap.main_13);
+                mainImage.setImageResource(R.mipmap.main_11);
+                myinfoImage.setImageResource(R.mipmap.main_2);
+                backlogImage.setImageResource(R.mipmap.main_3);
                 fragmentTransaction.replace(R.id.container,fragment).commit();
                 break;
         }

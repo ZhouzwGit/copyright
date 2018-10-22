@@ -10,7 +10,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.CoreConnectionPNames;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -27,11 +26,11 @@ import copyright.hxqh.com.copyright.copright.ui.IRM.enity.Asset;
 import copyright.hxqh.com.copyright.copright.ui.IRM.enity.Resourcekind;
 import copyright.hxqh.com.copyright.copright.ui.author.entity.Author;
 import copyright.hxqh.com.copyright.copright.ui.author.entity.Royalty;
-import copyright.hxqh.com.copyright.copright.ui.contract.entity.AuthContract;
+import copyright.hxqh.com.copyright.copright.ui.publicService.entity.Consult;
+import copyright.hxqh.com.copyright.copright.ui.publicService.entity.RoyaltyEnity;
 import copyright.hxqh.com.copyright.copright.ui.contract.entity.Contract;
 import copyright.hxqh.com.copyright.copright.ui.product.entity.Channel;
 import copyright.hxqh.com.copyright.copright.ui.product.entity.Product;
-import copyright.hxqh.com.copyright.copright.ui.publicService.entity.RoyaltyEnity;
 import copyright.hxqh.com.copyright.copright.util.AcountUtil;
 import copyright.hxqh.com.copyright.copright.util.JsonUtil;
 
@@ -43,8 +42,6 @@ public class HttpConnect {
     public static String login(String username,String password){
         String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/applogin";
         HttpClient httpClient = new DefaultHttpClient();
-        httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,5000);//连接时间
-        httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,5000);
         HttpPost post = new HttpPost(url);
         JSONObject json = new JSONObject();
         StringEntity jsonEntity = null;
@@ -65,7 +62,6 @@ public class HttpConnect {
             }
         }catch (Exception e){
             e.printStackTrace();
-            return null;
         }
         return result;
     }
@@ -73,8 +69,6 @@ public class HttpConnect {
         String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/assetlist";
         HttpClient httpClient = new DefaultHttpClient();
         HttpPost post = new HttpPost(url);
-        httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,5000);//连接时间
-        httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,5000);
         StringEntity jsonEntity = null;
         String result = null;
         List<Asset> assets = new ArrayList<>();
@@ -86,7 +80,6 @@ public class HttpConnect {
             post.setEntity(jsonEntity);
             HttpResponse response = null;
             response = httpClient.execute(post);
-
             if (response.getStatusLine().getStatusCode() == 200){
                 HttpEntity httpEntity = response.getEntity();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(httpEntity.getContent()));
@@ -102,8 +95,6 @@ public class HttpConnect {
     public static  List<Resourcekind>  getResourcekind(){
         String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/getresourcekind";
         HttpClient httpClient = new DefaultHttpClient();
-        httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,5000);//连接时间
-        httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,5000);
         HttpPost post = new HttpPost(url);
         JSONObject json = new JSONObject();
         StringEntity jsonEntity = null;
@@ -130,8 +121,6 @@ public class HttpConnect {
     public static  List<Product>  getProductList(JSONObject json, int page){
         String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/productlist";
         HttpClient httpClient = new DefaultHttpClient();
-        httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,5000);//连接时间
-        httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,5000);
         HttpPost post = new HttpPost(url);
         StringEntity jsonEntity = null;
         String result = null;
@@ -159,8 +148,6 @@ public class HttpConnect {
     public static  List<Royalty>  getRoyaltyList(JSONObject json, int page){
         String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/authorpaylist";
         HttpClient httpClient = new DefaultHttpClient();
-        httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,5000);//连接时间
-        httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,5000);
         HttpPost post = new HttpPost(url);
         StringEntity jsonEntity = null;
         String result = null;
@@ -188,8 +175,6 @@ public class HttpConnect {
     public static  List<Author>  getAuthorList(JSONObject json, int page){
         String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/authorlist";
         HttpClient httpClient = new DefaultHttpClient();
-        httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,5000);//连接时间
-        httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,5000);
         HttpPost post = new HttpPost(url);
         StringEntity jsonEntity = null;
         String result = null;
@@ -217,8 +202,6 @@ public class HttpConnect {
     public static  List<Contract>  getContractList(JSONObject json, int page){
         String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/contractlist";
         HttpClient httpClient = new DefaultHttpClient();
-        httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,5000);//连接时间
-        httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,5000);
         HttpPost post = new HttpPost(url);
         StringEntity jsonEntity = null;
         String result = null;
@@ -243,11 +226,63 @@ public class HttpConnect {
         }
         return contractList;
     }
+    public static  List<RoyaltyEnity>  getLawvindicatelist(JSONObject json, int page){
+        String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/lawvindicatelist";
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpPost post = new HttpPost(url);
+        StringEntity jsonEntity = null;
+        String result = null;
+        List<RoyaltyEnity> royaltyList = new ArrayList<>();
+        try{
+            json.put("pageNo",page+"");
+            jsonEntity = new StringEntity(json.toString(),"UTF-8");
+            jsonEntity.setContentEncoding("UTF-8");
+            jsonEntity.setContentType("application/json");
+            post.setEntity(jsonEntity);
+            HttpResponse response = null;
+            response = httpClient.execute(post);
+            if (response.getStatusLine().getStatusCode() == 200){
+                HttpEntity httpEntity = response.getEntity();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(httpEntity.getContent()));
+                result = reader.readLine();
+                royaltyList = (List<RoyaltyEnity>) JsonUtil.getObject(result,new TypeToken<List<RoyaltyEnity>>(){});
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return royaltyList;
+    }
+    public static  List<Consult>  getConsultlist(JSONObject json, int page){
+        String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/consultlist";
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpPost post = new HttpPost(url);
+        StringEntity jsonEntity = null;
+        String result = null;
+        List<Consult> royaltyList = new ArrayList<>();
+        try{
+            json.put("pageNo",page+"");
+            jsonEntity = new StringEntity(json.toString(),"UTF-8");
+            jsonEntity.setContentEncoding("UTF-8");
+            jsonEntity.setContentType("application/json");
+            post.setEntity(jsonEntity);
+            HttpResponse response = null;
+            response = httpClient.execute(post);
+            if (response.getStatusLine().getStatusCode() == 200){
+                HttpEntity httpEntity = response.getEntity();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(httpEntity.getContent()));
+                result = reader.readLine();
+                royaltyList = (List<Consult>) JsonUtil.getObject(result,new TypeToken<List<Consult>>(){});
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return royaltyList;
+    }
     public static  List<Channel>  getChannelList(JSONObject json, int page){
         String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/channelinfolist";
         HttpClient httpClient = new DefaultHttpClient();
-        httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,5000);//连接时间
-        httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,5000);
         HttpPost post = new HttpPost(url);
         StringEntity jsonEntity = null;
         String result = null;
@@ -275,8 +310,6 @@ public class HttpConnect {
     public static UserInfo getUserinfoList(String username){
         String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/userInfo";
         HttpClient httpClient = new DefaultHttpClient();
-        httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,5000);//连接时间
-        httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,5000);
         HttpPost post = new HttpPost(url);
         JSONObject json = new JSONObject();
         StringEntity jsonEntity = null;
@@ -305,8 +338,6 @@ public class HttpConnect {
     public static  List<Expiretip>  getExpiretipList(JSONObject json, int page){
         String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/expiretip";
         HttpClient httpClient = new DefaultHttpClient();
-        httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,5000);//连接时间
-        httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,5000);
         HttpPost post = new HttpPost(url);
         StringEntity jsonEntity = null;
         String result = null;
@@ -334,8 +365,6 @@ public class HttpConnect {
     public static  List<Payinform>  getPayinformList(JSONObject json, int page){
         String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/payinformlist";
         HttpClient httpClient = new DefaultHttpClient();
-        httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,5000);//连接时间
-        httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,5000);
         HttpPost post = new HttpPost(url);
         StringEntity jsonEntity = null;
         String result = null;
@@ -363,8 +392,6 @@ public class HttpConnect {
     public static  List<Collectinform>  getCollectinformList(JSONObject json, int page){
         String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/collectinformlist";
         HttpClient httpClient = new DefaultHttpClient();
-        httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,5000);//连接时间
-        httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,5000);
         HttpPost post = new HttpPost(url);
         StringEntity jsonEntity = null;
         String result = null;
@@ -392,8 +419,6 @@ public class HttpConnect {
     public static  boolean modifyPwd(String username,String pwd){
         String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/modifyPwd";
         HttpClient httpClient = new DefaultHttpClient();
-        httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,5000);//连接时间
-        httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,5000);
         HttpPost post = new HttpPost(url);
         JSONObject json = new JSONObject();
         StringEntity jsonEntity = null;
@@ -432,64 +457,5 @@ public class HttpConnect {
             e.printStackTrace();
         }
         return jsonObject;
-    }
-    public static  List<AuthContract>  getAuthContractList(JSONObject json, int page){
-        String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/authcontractlist";
-        HttpClient httpClient = new DefaultHttpClient();
-        httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,5000);//连接时间
-        httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,5000);
-        HttpPost post = new HttpPost(url);
-        StringEntity jsonEntity = null;
-        String result = null;
-        List<AuthContract> contractList = new ArrayList<>();
-        try{
-            json.put("pageNo",page+"");
-            jsonEntity = new StringEntity(json.toString(),"UTF-8");
-            jsonEntity.setContentEncoding("UTF-8");
-            jsonEntity.setContentType("application/json");
-            post.setEntity(jsonEntity);
-            HttpResponse response = null;
-            response = httpClient.execute(post);
-            if (response.getStatusLine().getStatusCode() == 200){
-                HttpEntity httpEntity = response.getEntity();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(httpEntity.getContent()));
-                result = reader.readLine();
-                contractList = (List<AuthContract>) JsonUtil.getObject(result,new TypeToken<List<AuthContract>>(){});
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-            return null;
-        }
-        return contractList;
-    }
-
-    public static List<RoyaltyEnity> getLawvindicatelist(JSONObject json, int page) {
-        String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/lawvindicatelist";
-        HttpClient httpClient = new DefaultHttpClient();
-        httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,5000);//连接时间
-        httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,5000);
-        HttpPost post = new HttpPost(url);
-        StringEntity jsonEntity = null;
-        String result = null;
-        List<RoyaltyEnity> contractList = new ArrayList<>();
-        try{
-            json.put("pageNo",page+"");
-            jsonEntity = new StringEntity(json.toString(),"UTF-8");
-            jsonEntity.setContentEncoding("UTF-8");
-            jsonEntity.setContentType("application/json");
-            post.setEntity(jsonEntity);
-            HttpResponse response = null;
-            response = httpClient.execute(post);
-            if (response.getStatusLine().getStatusCode() == 200){
-                HttpEntity httpEntity = response.getEntity();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(httpEntity.getContent()));
-                result = reader.readLine();
-                contractList = (List<RoyaltyEnity>) JsonUtil.getObject(result,new TypeToken<List<RoyaltyEnity>>(){});
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-            return null;
-        }
-        return contractList;
     }
 }

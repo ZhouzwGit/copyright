@@ -28,21 +28,20 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import copyright.hxqh.com.copyright.R;
 import copyright.hxqh.com.copyright.copright.HttpManager.HttpConnect;
-import copyright.hxqh.com.copyright.copright.ui.author.RoyaltydetailActivity;
-import copyright.hxqh.com.copyright.copright.ui.author.adpter.RoyaltyAdapter;
-import copyright.hxqh.com.copyright.copright.ui.author.entity.Royalty;
+import copyright.hxqh.com.copyright.copright.ui.publicService.adapter.ConsultAdapter;
 import copyright.hxqh.com.copyright.copright.ui.publicService.adapter.LawvindicateAdapter;
+import copyright.hxqh.com.copyright.copright.ui.publicService.entity.Consult;
 import copyright.hxqh.com.copyright.copright.ui.publicService.entity.RoyaltyEnity;
 import copyright.hxqh.com.copyright.copright.util.AcountUtil;
 
 /**
- * Created by lianjh on 2018\10\17 0017.
+ * Created by lianjh on 2018\10\19 0019.
  * Current page
  */
 
-public class RoyaltyActivity  extends AppCompatActivity implements View.OnClickListener,SwipeRefreshLayout.OnRefreshListener {
+public class ConsultActivity extends AppCompatActivity implements View.OnClickListener,SwipeRefreshLayout.OnRefreshListener {
     @Bind(R.id.menu_title) //标题
-     TextView titleTextView;
+            TextView titleTextView;
     @Bind(R.id.back_id)
     ImageView backButton; //返回
     @Bind(R.id.title_search)
@@ -54,7 +53,7 @@ public class RoyaltyActivity  extends AppCompatActivity implements View.OnClickL
     LinearLayoutManager layoutManager;
 
     @Bind(R.id.recyclerView_id)//RecyclerView
-    RecyclerView recyclerView;
+            RecyclerView recyclerView;
     @Bind(R.id.have_not_data_id)
     LinearLayout nodatalayout; //暂无数据
     @Bind(R.id.swipe_container)
@@ -65,7 +64,7 @@ public class RoyaltyActivity  extends AppCompatActivity implements View.OnClickL
 
     private JSONObject json;
 
-    private LawvindicateAdapter lawvindicateAdapter;
+    private ConsultAdapter consultAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +76,7 @@ public class RoyaltyActivity  extends AppCompatActivity implements View.OnClickL
     }
 
     protected void initView() {
-        titleTextView.setText(R.string.title_law_apply);
+        titleTextView.setText(R.string.title_service_apply);
 
         layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -104,9 +103,9 @@ public class RoyaltyActivity  extends AppCompatActivity implements View.OnClickL
                 searchButton.setVisibility(View.VISIBLE);
                 titleTextView.setVisibility(View.VISIBLE);
                 page = 1;
-                AcountUtil.showProgressDialog(RoyaltyActivity.this, "正在搜索");
+                AcountUtil.showProgressDialog(ConsultActivity.this, "正在搜索");
                 getData();
-             return true;
+                return true;
             }
 
             @Override
@@ -115,7 +114,6 @@ public class RoyaltyActivity  extends AppCompatActivity implements View.OnClickL
             }
         });
     }
-
     @Override
     public void onRefresh() {
         refresh_layout.setRefreshing(true);
@@ -123,22 +121,21 @@ public class RoyaltyActivity  extends AppCompatActivity implements View.OnClickL
         page = 1;
         getData();
     }
-
     public void getData() {
-        new AsyncTask<String, String, List<RoyaltyEnity>>() {
+        new AsyncTask<String, String, List<Consult>>() {
 
             @Override
-            protected List<RoyaltyEnity> doInBackground(String... strings) {
-                List<RoyaltyEnity> products = (List<RoyaltyEnity>) HttpConnect.getLawvindicatelist(json, page);
+            protected List<Consult> doInBackground(String... strings) {
+                List<Consult> products = (List<Consult>) HttpConnect.getConsultlist(json, page);
                 return products;
             }
 
             @Override
-            protected void onPostExecute(List<RoyaltyEnity> preoducts) {
+            protected void onPostExecute(List<Consult> preoducts) {
                 super.onPostExecute(preoducts);
                 if (preoducts == null) {
-                    lawvindicateAdapter.loadMoreFail();
-                    if (lawvindicateAdapter.getData().isEmpty()) {
+                    consultAdapter.loadMoreFail();
+                    if (consultAdapter.getData().isEmpty()) {
                         AcountUtil.closeProgressDialog();
                         nodatalayout.setVisibility(View.VISIBLE);
                         TextView textView = (TextView) nodatalayout.getChildAt(0);
@@ -147,31 +144,31 @@ public class RoyaltyActivity  extends AppCompatActivity implements View.OnClickL
                     return;
                 }
                 if (preoducts.isEmpty()) {
-                    if (lawvindicateAdapter.getData().isEmpty()) {
+                    if (consultAdapter.getData().isEmpty()) {
                         nodatalayout.setVisibility(View.VISIBLE);
                         TextView textView = (TextView) nodatalayout.getChildAt(0);
                         textView.setText("暂无数据");
-                        lawvindicateAdapter.replaceData(new ArrayList<RoyaltyEnity>());
+                        consultAdapter.replaceData(new ArrayList<Consult>());
                     } else {
-                        lawvindicateAdapter.loadMoreEnd();
+                        consultAdapter.loadMoreEnd();
                     }
                 } else {
-                    page = preoducts.get(0).getPagenum();
+                    pageNum = preoducts.get(0).getPagenum();
                     nodatalayout.setVisibility(View.GONE);
-                    if (lawvindicateAdapter.getData().isEmpty()) {
-                        lawvindicateAdapter.addData(preoducts);
+                    if (consultAdapter.getData().isEmpty()) {
+                        consultAdapter.addData(preoducts);
                     } else {
                         if (page == 1) {
-                            lawvindicateAdapter.setNewData(preoducts);
-                        } else if (page <= page){
-                            lawvindicateAdapter.addData(preoducts);
-                            lawvindicateAdapter.loadMoreComplete();
+                            consultAdapter.setNewData(preoducts);
+                        } else if (page <= pageNum){
+                            consultAdapter.addData(preoducts);
+                            consultAdapter.loadMoreComplete();
                         }else {
-                            lawvindicateAdapter.loadMoreEnd();
+                            consultAdapter.loadMoreEnd();
                         }
                     }
                 }
-                lawvindicateAdapter.setEnableLoadMore(true);
+                consultAdapter.setEnableLoadMore(true);
                 refresh_layout.setRefreshing(false);
                 AcountUtil.closeProgressDialog();
             }
@@ -182,29 +179,27 @@ public class RoyaltyActivity  extends AppCompatActivity implements View.OnClickL
             }
         }.execute();
     }
-
     private void initAdpter() {
-        lawvindicateAdapter = new LawvindicateAdapter(R.layout.lawvindicate_list_item);
-        recyclerView.setAdapter(lawvindicateAdapter);
-        lawvindicateAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+        consultAdapter = new ConsultAdapter(R.layout.consult_list_item);
+        recyclerView.setAdapter(consultAdapter);
+        consultAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
                 page++;
                 getData();
             }
         }, recyclerView);
-        lawvindicateAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+        consultAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Intent intent = new Intent(RoyaltyActivity.this, LawVinDicateDetailActivity.class);
+                Intent intent = new Intent(ConsultActivity.this, ConsultDetailActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("royalty", (Serializable) lawvindicateAdapter.getItem(position));
+                bundle.putSerializable("consult", (Serializable) consultAdapter.getItem(position));
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

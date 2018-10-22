@@ -20,6 +20,132 @@ public class RoyaltyEnity implements Serializable {
     private String torttype;
     private String infringer;
     private String oblname;
+    private String printscreen;
+    private String credential;
+    private List<Tortinfo> tortinfoList;
+    private String iscredential;
+    private String resourcesname;
+    private String linkman;
+    private String dealidea;
+    private String sample;
+    private String lawvindicateno;
+    private String createDate;
+    private String iscertifyfile;
+    private String certifyfile;
+    private String signaturefiles;
+    private String isprintscreen;
+
+    public String getIsprintscreen() {
+        return isprintscreen;
+    }
+
+    public void setIsprintscreen(String isprintscreen) {
+        this.isprintscreen = isprintscreen;
+    }
+
+    public String getSignaturefiles() {
+        return signaturefiles;
+    }
+
+    public void setSignaturefiles(String signaturefiles) {
+        this.signaturefiles = signaturefiles;
+    }
+
+    public String getLawvindicateno() {
+        return lawvindicateno;
+    }
+
+    public void setLawvindicateno(String lawvindicateno) {
+        this.lawvindicateno = lawvindicateno;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getIscertifyfile() {
+        return iscertifyfile;
+    }
+
+    public void setIscertifyfile(String iscertifyfile) {
+        this.iscertifyfile = iscertifyfile;
+    }
+
+    public String getCertifyfile() {
+        return certifyfile;
+    }
+
+    public void setCertifyfile(String certifyfile) {
+        this.certifyfile = certifyfile;
+    }
+
+    public String getPrintscreen() {
+        return printscreen;
+    }
+
+    public void setPrintscreen(String printscreen) {
+        this.printscreen = printscreen;
+    }
+
+    public String getCredential() {
+        return credential;
+    }
+
+    public void setCredential(String credential) {
+        this.credential = credential;
+    }
+
+    public List<Tortinfo> getTortinfoList() {
+        return tortinfoList;
+    }
+
+    public void setTortinfoList(List<Tortinfo> tortinfoList) {
+        this.tortinfoList = tortinfoList;
+    }
+
+    public String getIscredential() {
+        return iscredential;
+    }
+
+    public void setIscredential(String iscredential) {
+        this.iscredential = iscredential;
+    }
+
+    public String getResourcesname() {
+        return resourcesname;
+    }
+
+    public void setResourcesname(String resourcesname) {
+        this.resourcesname = resourcesname;
+    }
+
+    public String getLinkman() {
+        return linkman;
+    }
+
+    public void setLinkman(String linkman) {
+        this.linkman = linkman;
+    }
+
+    public String getDealidea() {
+        return dealidea;
+    }
+
+    public void setDealidea(String dealidea) {
+        this.dealidea = dealidea;
+    }
+
+    public String getSample() {
+        return sample;
+    }
+
+    public void setSample(String sample) {
+        this.sample = sample;
+    }
 
     public String getPhone() {
         return phone;

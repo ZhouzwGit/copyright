@@ -30,12 +30,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/vin_law_num"
+                        android:text="咨询编号："
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:textSize="16dp"/>
                     <TextView
-                        android:id="@+id/lawvindicate_num"
+                        android:id="@+id/consult_num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
@@ -59,154 +59,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="@string/vin_law_status"
-                        android:textColor="#FF7575"
+                        android:textColor="@android:color/holo_green_dark"
                         android:gravity="center_vertical"
                         android:textSize="16dp"/>
                     <TextView
-                        android:id="@+id/lawvindicate_status"
+                        android:id="@+id/consult_status"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
                         android:text="待受理"
-                        android:textColor="#FF7575"
+                        android:hint="暂无数据"
+                        android:textColor="@android:color/holo_green_dark"
                         android:textSize="16dp"/>
                 </LinearLayout>
 
             </LinearLayout>
-            <copyright.hxqh.com.copyright.copright.view.MyListView
-                android:id="@+id/list"
-                android:layout_marginTop="10dp"
-                android:scrollbars="none"
-                android:cacheColorHint="@android:color/transparent"
-                android:fadingEdge="none"
-                android:divider="@null"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </copyright.hxqh.com.copyright.copright.view.MyListView>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="40dp"
-                android:background="@drawable/ic_item_bg">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="著作权归属证明："
-                        android:textColor="#000079"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="登记书"
-                        android:layout_margin="5dp"/>
-                    <TextView
-                        android:id="@+id/lawvindicate_book"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:drawableLeft="@drawable/ic_bg"
-                        android:hint="暂无数据"
-                        android:layout_margin="5dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="证明文件"
-                        android:layout_margin="5dp"/>
-                    <TextView
-                        android:id="@+id/lawvindicate_confidencefile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:drawableLeft="@drawable/ic_bg"
-                        android:hint="暂无数据"
-                        android:layout_margin="5dp"/>
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="著作权人署名截图："
-                        android:textColor="#000079"/>
-                    <TextView
-                        android:id="@+id/lawvindicate_printscreen"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:drawableLeft="@drawable/ic_bg"
-                        android:hint="暂无数据"
-                        android:layout_margin="5dp"/>
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="签章扫描件："
-                        android:textColor="#000079"/>
-                    <TextView
-                        android:id="@+id/lawvindicate_signaturefiles"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:drawableLeft="@drawable/ic_bg"
-                        android:hint="暂无数据"
-                        android:layout_margin="5dp"/>
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="作品样本："
-                        android:textColor="#000079"/>
-                    <TextView
-                        android:id="@+id/lawvindicate_demo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:drawableLeft="@drawable/ic_bg"
-                        android:hint="暂无数据"
-                        android:layout_margin="5dp"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <copyright.hxqh.com.copyright.copright.view.MyListView
-                android:id="@+id/list2"
-                android:layout_marginTop="5dp"
-                android:scrollbars="none"
-                android:cacheColorHint="@android:color/transparent"
-                android:fadingEdge="none"
-                android:divider="@null"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </copyright.hxqh.com.copyright.copright.view.MyListView>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -225,10 +92,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="联系人："
-                        android:textColor="#000079"/>
+                        android:text="申请人姓名/名称："
+                        android:textColor="@color/black"/>
                     <TextView
-                        android:id="@+id/lawvindicate_telepeople"
+                        android:id="@+id/consult_user"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
@@ -246,9 +113,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="联系电话："
-                        android:textColor="#000079"/>
+                        android:textColor="@color/black"/>
                     <TextView
-                        android:id="@+id/lawvindicate_telephone"
+                        android:id="@+id/consult_telephone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
@@ -265,15 +132,35 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="联系邮箱："
-                        android:textColor="#000079"/>
+                        android:text="需求描述："
+                        android:textColor="@color/black"/>
                     <TextView
-                        android:id="@+id/lawvindicate_email"
+                        android:id="@+id/consult_description"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
+                        android:textColor="@color/black"
                         android:hint="暂无数据"/>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="附件：" />
+                    <TextView
+                        android:id="@+id/consult_file"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="张三"
+                        android:textColor="@color/blue"
+                        android:hint="暂无数据"
+                        android:drawableLeft="@drawable/ic_bg" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -293,7 +180,7 @@
                     android:textColor="@color/black"
                     android:textSize="16dp"/>
                 <TextView
-                    android:id="@+id/lawvindicate_advice"
+                    android:id="@+id/consult_advice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
