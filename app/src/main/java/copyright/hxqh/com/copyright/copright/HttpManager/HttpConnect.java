@@ -18,9 +18,11 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import copyright.hxqh.com.copyright.copright.entity.Acttype;
 import copyright.hxqh.com.copyright.copright.entity.Collectinform;
 import copyright.hxqh.com.copyright.copright.entity.Expiretip;
 import copyright.hxqh.com.copyright.copright.entity.Payinform;
+import copyright.hxqh.com.copyright.copright.entity.ToDo;
 import copyright.hxqh.com.copyright.copright.entity.UserInfo;
 import copyright.hxqh.com.copyright.copright.ui.IRM.enity.Asset;
 import copyright.hxqh.com.copyright.copright.ui.IRM.enity.Resourcekind;
@@ -280,6 +282,87 @@ public class HttpConnect {
         }
         return royaltyList;
     }
+    public static  List<ToDo>  getToDolist(JSONObject json, int page){
+        String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/todolist";
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpPost post = new HttpPost(url);
+        StringEntity jsonEntity = null;
+        String result = null;
+        List<ToDo> royaltyList = new ArrayList<>();
+        try{
+            json.put("pageNo",page+"");
+            jsonEntity = new StringEntity(json.toString(),"UTF-8");
+            jsonEntity.setContentEncoding("UTF-8");
+            jsonEntity.setContentType("application/json");
+            post.setEntity(jsonEntity);
+            HttpResponse response = null;
+            response = httpClient.execute(post);
+            if (response.getStatusLine().getStatusCode() == 200){
+                HttpEntity httpEntity = response.getEntity();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(httpEntity.getContent()));
+                result = reader.readLine();
+                royaltyList = (List<ToDo>) JsonUtil.getObject(result,new TypeToken<List<ToDo>>(){});
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return royaltyList;
+    }
+    public static  List<Acttype>  getFlowType(JSONObject json, int page){
+        String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/acttype";
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpPost post = new HttpPost(url);
+        StringEntity jsonEntity = null;
+        String result = null;
+        List<Acttype> royaltyList = new ArrayList<>();
+        try{
+            json.put("pageNo",page+"");
+            jsonEntity = new StringEntity(json.toString(),"UTF-8");
+            jsonEntity.setContentEncoding("UTF-8");
+            jsonEntity.setContentType("application/json");
+            post.setEntity(jsonEntity);
+            HttpResponse response = null;
+            response = httpClient.execute(post);
+            if (response.getStatusLine().getStatusCode() == 200){
+                HttpEntity httpEntity = response.getEntity();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(httpEntity.getContent()));
+                result = reader.readLine();
+                royaltyList = (List<Acttype>) JsonUtil.getObject(result,new TypeToken<List<Acttype>>(){});
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return royaltyList;
+    }
+    public static String save(JSONObject json){
+        String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/todomark";
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpPost post = new HttpPost(url);
+        StringEntity jsonEntity = null;
+        String result = null;
+        List<String> royaltyList = new ArrayList<>();
+        try{
+//            json.put("pageNo",page+"");
+            jsonEntity = new StringEntity(json.toString(),"UTF-8");
+            jsonEntity.setContentEncoding("UTF-8");
+            jsonEntity.setContentType("application/json");
+            post.setEntity(jsonEntity);
+            HttpResponse response = null;
+            response = httpClient.execute(post);
+            if (response.getStatusLine().getStatusCode() == 200){
+                HttpEntity httpEntity = response.getEntity();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(httpEntity.getContent()));
+                result = reader.readLine();
+//                royaltyList = (List<String>) JsonUtil.getObject(result,new TypeToken<List<String>>(){});
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return result;
+    }
     public static  List<Channel>  getChannelList(JSONObject json, int page){
         String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/channelinfolist";
         HttpClient httpClient = new DefaultHttpClient();
@@ -453,6 +536,32 @@ public class HttpConnect {
         try {
             jsonObject.put("pageSize","20");
             jsonObject.put("username",AcountUtil.getUsername(ctx));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
+    }
+    public static JSONObject getFlowTypeJson(Context ctx,String actvalue,String startdate,String enddate){
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("pageSize","20");
+            jsonObject.put("username",AcountUtil.getUsername(ctx));
+            jsonObject.put("definitionkey",actvalue);
+            jsonObject.put("begindate",startdate);
+            jsonObject.put("enddate",enddate);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
+    }
+    public static JSONObject SaveJson(Context ctx,String tablename,String tableid,String procinsid,String flag){
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("tablename",tablename);
+            jsonObject.put("username",AcountUtil.getUsername(ctx));
+            jsonObject.put("tableid",tableid);
+            jsonObject.put("procinsid",procinsid);
+            jsonObject.put("flag",flag);
         } catch (JSONException e) {
             e.printStackTrace();
         }

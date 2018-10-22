@@ -76,7 +76,7 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp">
                 <TextView
@@ -87,7 +87,7 @@
                 <TextView
                     android:id="@+id/daiban_step"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:textSize="14sp"
                     android:hint="暂无数据"/>
@@ -110,24 +110,23 @@
                     <TextView
                         android:id="@+id/daiban_date"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:textSize="14sp"
                         android:text=""
                         android:hint="暂无数据"/>
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/daiban_remark"
+
                     android:layout_weight="0.3"
                     android:layout_width="0dp"
                     android:layout_height="match_parent">
-                    <TextView
+
+                    <ImageView
+                        android:id="@+id/daiban_remark"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="5dp"
-                        android:textSize="16sp"
-                        android:textColor="@android:color/holo_green_dark"
-                        android:text="备注"/>
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_not_concern"/>
                 </LinearLayout>
 
             </LinearLayout>
