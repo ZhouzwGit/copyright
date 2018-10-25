@@ -150,7 +150,7 @@ public class ChannelListFragment extends Fragment implements View.OnClickListene
                             channelAdapter.addData(preoducts);
                             channelAdapter.loadMoreComplete();
                         }else {
-                            channelAdapter.loadMoreEnd(true);
+                            channelAdapter.loadMoreEnd();
                         }
                     }
                 }

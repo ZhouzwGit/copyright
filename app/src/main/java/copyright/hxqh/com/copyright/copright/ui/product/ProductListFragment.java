@@ -131,7 +131,7 @@ public class ProductListFragment extends Fragment implements View.OnClickListene
                     return;
                 }
                 if (preoducts.isEmpty()){
-                    if (!productAdapter.getData().isEmpty()){
+                    if (productAdapter.getData().isEmpty()){
                         nodatalayout.setVisibility(View.VISIBLE);
                         TextView textView = (TextView) nodatalayout.getChildAt(0);
                         textView.setText("暂无数据");

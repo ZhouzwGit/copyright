@@ -9,6 +9,7 @@
     android:background="@color/white"
     android:foreground="?android:selectableItemBackground"
     android:orientation="horizontal"
+    card_view:cardUseCompatPadding="false"
     card_view:cardCornerRadius="4dp">
     <LinearLayout
         android:layout_width="match_parent"
