@@ -1,5 +1,6 @@
 package copyright.hxqh.com.copyright.copright.adpter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -8,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * Created by lianjh on 2018\10\19 0019.
  * Current page
@@ -15,9 +18,15 @@ import android.widget.TextView;
 
 public class SpinnerArrayAdapter extends ArrayAdapter<String> {
     private Context mContext;
-    private String[] mStringArray;
+    private ArrayList<String> mStringArray;
 
-    public SpinnerArrayAdapter(Context context, String[] stringArray) {
+//    public SpinnerArrayAdapter(Context context, String[] stringArray) {
+//        super(context, android.R.layout.simple_spinner_item, stringArray);
+//        mContext = context;
+//        mStringArray = stringArray;
+//    }
+
+    public SpinnerArrayAdapter(Context context, ArrayList<String> stringArray) {
         super(context, android.R.layout.simple_spinner_item, stringArray);
         mContext = context;
         mStringArray = stringArray;
@@ -33,7 +42,7 @@ public class SpinnerArrayAdapter extends ArrayAdapter<String> {
 
         //此处text1是Spinner默认的用来显示文字的TextView
         TextView tv = (TextView) convertView.findViewById(android.R.id.text1);
-        tv.setText(mStringArray[position]);
+        tv.setText(mStringArray.get(position));
         tv.setTextSize(18f);
 //        tv.setTextColor(Color.RED);
 
@@ -51,7 +60,7 @@ public class SpinnerArrayAdapter extends ArrayAdapter<String> {
 
         //此处text1是Spinner默认的用来显示文字的TextView
         TextView tv = (TextView) convertView.findViewById(android.R.id.text1);
-        tv.setText(mStringArray[position]);
+        tv.setText(mStringArray.get(position));
         tv.setTextSize(16f);
 //        tv.setTextColor(Color.BLUE);
         return convertView;

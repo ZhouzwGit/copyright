@@ -43,6 +43,8 @@ import copyright.hxqh.com.copyright.R;
 import copyright.hxqh.com.copyright.copright.HttpManager.HttpConnect;
 import copyright.hxqh.com.copyright.copright.adpter.DaibanAdapter;
 import copyright.hxqh.com.copyright.copright.adpter.SpinnerArrayAdapter;
+import copyright.hxqh.com.copyright.copright.entity.Acttype;
+import copyright.hxqh.com.copyright.copright.entity.ToDo;
 import copyright.hxqh.com.copyright.copright.ui.publicService.LawVinDicateDetailActivity;
 import copyright.hxqh.com.copyright.copright.ui.publicService.RoyaltyActivity;
 import copyright.hxqh.com.copyright.copright.ui.publicService.adapter.LawvindicateAdapter;
@@ -83,6 +85,8 @@ public class DaibanFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
     private JSONObject json;
 
+    private JSONObject json2;
+
     DaibanAdapter daibanAdapter;
 
     /**
@@ -94,8 +98,12 @@ public class DaibanFragment extends Fragment implements SwipeRefreshLayout.OnRef
     StringBuffer sb;
 
     private ArrayAdapter<String> mAdapter ;
-    private String [] mStringArray;
+    private ArrayList<String> mStringArray = new ArrayList<>();
+    private ArrayList<String> ValueArray= new ArrayList<>();
 
+    String actvalue;
+
+    Boolean flag = false;
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_list, container,
@@ -133,6 +141,7 @@ public class DaibanFragment extends Fragment implements SwipeRefreshLayout.OnRef
         initAdpter();
         AcountUtil.showProgressDialog(getActivity(), "");
         getData();
+        getFlowType();
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -144,7 +153,6 @@ public class DaibanFragment extends Fragment implements SwipeRefreshLayout.OnRef
                 startdate = view.findViewById(R.id.startdate_id);
                 enddate = view.findViewById(R.id.enddate_id);
                 spinner = view.findViewById(R.id.spinner2);
-                mStringArray=getResources().getStringArray(R.array.spingarr);
                 //使用自定义的ArrayAdapter
                 mAdapter = new SpinnerArrayAdapter(getActivity(),mStringArray);
                 spinner.setAdapter(mAdapter);
@@ -165,7 +173,9 @@ public class DaibanFragment extends Fragment implements SwipeRefreshLayout.OnRef
                 btn_agree_high_opion.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //... To-do
+                        flag = true;
+                        json2 = HttpConnect.getFlowTypeJson(getActivity(),actvalue ,startdate.getText().toString(),enddate.getText().toString());
+                        getData();
                         dialog.dismiss();
                     }
                 });
@@ -184,8 +194,8 @@ public class DaibanFragment extends Fragment implements SwipeRefreshLayout.OnRef
     private class ItemSelectedListenerImpl implements AdapterView.OnItemSelectedListener {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position,long arg3) {
-            String flowType = mStringArray[position];
-            System.out.println("选中了:"+flowType);
+            String flowType = mStringArray.get(position);
+            actvalue = ValueArray.get(position);
         }
 
         @Override
@@ -243,16 +253,22 @@ public class DaibanFragment extends Fragment implements SwipeRefreshLayout.OnRef
     }
 
     private void getData() {
-        new AsyncTask<String, String, List<Consult>>() {
+        new AsyncTask<String, String, List<ToDo>>() {
 
             @Override
-            protected List<Consult> doInBackground(String... strings) {
-                List<Consult> products = (List<Consult>) HttpConnect.getConsultlist(json, page);
+            protected List<ToDo> doInBackground(String... strings) {
+                List<ToDo> products;
+                if (flag == false){
+                    products = (List<ToDo>) HttpConnect.getToDolist(json, page);
+                }else {
+                   products = (List<ToDo>) HttpConnect.getToDolist(json2, page);
+                }
+
                 return products;
             }
 
             @Override
-            protected void onPostExecute(List<Consult> preoducts) {
+            protected void onPostExecute(List<ToDo> preoducts) {
                 super.onPostExecute(preoducts);
                 if (preoducts == null) {
                     daibanAdapter.loadMoreFail();
@@ -269,7 +285,7 @@ public class DaibanFragment extends Fragment implements SwipeRefreshLayout.OnRef
                         nodatalayout.setVisibility(View.VISIBLE);
                         TextView textView = (TextView) nodatalayout.getChildAt(0);
                         textView.setText("暂无数据");
-                        daibanAdapter.replaceData(new ArrayList<Consult>());
+                        daibanAdapter.replaceData(new ArrayList<ToDo>());
                     } else {
                         daibanAdapter.loadMoreEnd();
                     }
@@ -294,6 +310,28 @@ public class DaibanFragment extends Fragment implements SwipeRefreshLayout.OnRef
                 AcountUtil.closeProgressDialog();
             }
 
+            @Override
+            protected void finalize() throws Throwable {
+                super.finalize();
+            }
+        }.execute();
+    }
+    private void getFlowType() {
+        new AsyncTask<String, String, List<Acttype>>() {
+
+            @Override
+            protected List<Acttype> doInBackground(String... strings) {
+                List<Acttype> products = (List<Acttype>) HttpConnect.getFlowType(json, page);
+                return products;
+            }
+            @Override
+            protected void onPostExecute(List<Acttype> preoducts) {
+                for (int i = 0;i<preoducts.size();i++){
+                    mStringArray.add(preoducts.get(i).getActlabel());
+                    ValueArray.add(preoducts.get(i).getActvalue());
+                }
+
+            }
             @Override
             protected void finalize() throws Throwable {
                 super.finalize();
