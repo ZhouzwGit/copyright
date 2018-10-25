@@ -49,8 +49,11 @@ public class AcrelAdapter extends ArrayAdapter {
         channelname.setText(acrel.getChannelname());
         TextView rightlimit = view.findViewById(R.id.rightlimit_id);
         rightlimit.setText(acrel.getStartdate()+"至"+acrel.getEnddate());
-        TextView textView = view.findViewById(R.id.detais_id);
-        textView.setOnClickListener(new View.OnClickListener() {
+        TextView language = view.findViewById(R.id.languages_id);
+        TextView arear = view.findViewById(R.id.finishplacearea_id);
+        language.setText(acrel.getLanguagerestrict());
+        arear.setText(acrel.getTerritoryrestrict());
+        view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), ChannelActivity.class);

@@ -86,7 +86,7 @@ public class BasicInfoFragment extends Fragment {
         rightgainway.setText(asset.getRightgainway());
         resmedium.setText(asset.getResmedium());
         isrelease.setText(asset.getIsrelease());
-        createdate.setText(asset.getCreatedate());
+        createdate.setText(asset.getCreateDate());
         createCity.setText(asset.getCreateCity());
         if (asset.getReslevel()!=null && !asset.getReslevel().equals(""))
         {

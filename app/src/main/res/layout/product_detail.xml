@@ -2,246 +2,352 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@color/gray5"
+    android:orientation="vertical">
+
     <include layout="@layout/basic_title"></include>
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_marginHorizontal="7dp"
+        android:background="@color/gray5"
+        >
+
         <LinearLayout
-            android:id="@+id/addlinearlaout_id"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="6"
+            android:layout_height="match_parent"
             android:background="@color/white"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp">
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="23dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:text="产品名称:"
+                    android:layout_marginLeft="17dp"
                     android:gravity="center"
                     android:singleLine="true"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:text="产品编号:"
+                    android:textColor="@color/textcolor1"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/productno_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:text="1000"
+                    android:textColor="@color/textcolor2"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/status_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="17dp"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="专有许可"
+                    android:textColor="@android:color/holo_green_dark"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="17dp"
+                android:background="@color/gray5"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="17dp"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="产品名称:"
+                    android:textColor="@color/textcolor1"
+                    android:textSize="13sp" />
+
                 <TextView
                     android:id="@+id/productname_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="1000"
-                    android:textColor="@color/black"
                     android:gravity="center"
                     android:singleLine="true"
-                    android:textSize="16sp" />
+                    android:text="1000"
+                    android:textColor="@color/textcolor2"
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp">
+                android:layout_marginTop="11dp">
+
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:text="产品用途:"
+                        android:layout_marginLeft="17dp"
                         android:gravity="center"
                         android:singleLine="true"
-                        />
+                        android:text="产品用途:"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="13sp" />
+
                     <TextView
                         android:id="@+id/productusage_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:text="专有许可"
                         android:gravity="center"
                         android:singleLine="true"
-                        />
+                        android:text="专有许可"
+                        android:textColor="@color/textcolor2"
+                        android:textSize="13sp" />
                 </LinearLayout>
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent">
-                    <TextView
-                        android:layout_toLeftOf="@+id/status_id"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="状态:"
-                        android:gravity="center"
-                        android:singleLine="true"
-                        android:textColor="@android:color/holo_green_dark"
-                        />
-                    <TextView
-                        android:id="@+id/status_id"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="25dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="专有许可"
-                        android:gravity="center"
-                        android:singleLine="true"
-                        android:textColor="@android:color/holo_green_dark"
-                        />
-                </RelativeLayout>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="11dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:text="使用期限:"
+                    android:layout_marginLeft="17dp"
                     android:gravity="center"
                     android:singleLine="true"
-                  />
+                    android:text="使用期限:"
+                    android:textColor="@color/textcolor1"
+                    android:textSize="13sp" />
+
                 <TextView
                     android:id="@+id/timelimit_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text=""
                     android:gravity="center"
                     android:singleLine="true"
-                   />
+                    android:text=""
+                    android:textColor="@color/textcolor2"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="17dp"
+                android:background="@color/gray5"></View>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="17dp"
+                android:layout_marginTop="17dp"
+                android:layout_marginBottom="13dp"
+                android:gravity="center_vertical"
+                >
+                <View
+                    android:layout_width="3dp"
+                    android:layout_height="15dp"
+                    android:background="@color/blue"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="6dp"></View>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="引用实物:"
+                    android:textColor="#1F2128"
+                    android:textSize="17sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:layout_marginBottom="40dp"
+                android:orientation="vertical">
+                
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:orientation="horizontal">
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#6A9DF1"></View>
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"></View>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#EABA19"></View>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"></View>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#68B6B0"></View>
+
+                </LinearLayout>
+                <include
+                    android:id="@+id/incloud"
+                    layout="@layout/table_title_layout"></include>
+                <copyright.hxqh.com.copyright.copright.view.MyListView
+                    android:id="@+id/list_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/ic_imagebj"
+                    android:cacheColorHint="@android:color/transparent"
+                    android:divider="@color/white"
+                    android:dividerHeight="1.0dip"
+                    android:fadingEdge="none"
+                    android:scrollbars="none"></copyright.hxqh.com.copyright.copright.view.MyListView>
             </LinearLayout>
             <View
+                android:layout_width="match_parent"
+                android:layout_height="13dp"
+                android:background="@color/gray5"
+                ></View>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/statisticsbj"
+                android:orientation="vertical">
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_below="@+id/signature_layout_id"
-                    android:background="@color/gray3"></View>
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="17dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginBottom="13dp"
+                    android:gravity="center_vertical"
+                    >
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_height="15dp"
+                        android:background="@color/blue"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="6dp"></View>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="引用资产"
+                        android:textColor="#1F2128"
+                        android:textSize="17sp" />
 
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/have_not_data_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="暂无数据"
+                    android:textSize="16sp"
+                    android:visibility="gone" />
+
+                <copyright.hxqh.com.copyright.copright.view.MyListView
+                    android:id="@+id/list_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:cacheColorHint="@android:color/transparent"
+                    android:divider="@null"
+                    android:fadingEdge="none"
+                    android:scrollbars="none"></copyright.hxqh.com.copyright.copright.view.MyListView>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="13dp"
+                android:background="@color/gray5"
+                ></View>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="17dp"
+                android:layout_marginTop="17dp"
+                android:gravity="center_vertical"
+                >
+                <View
+                    android:layout_width="3dp"
+                    android:layout_height="15dp"
+                    android:background="@color/blue"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="6dp"></View>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="产品授权渠道"
+                    android:textColor="#1F2128"
+                    android:textSize="17sp" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/have_not_data_id2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="暂无数据"
+                android:textSize="16sp"
+                android:visibility="gone" />
+
+            <copyright.hxqh.com.copyright.copright.view.MyListView
+                android:id="@+id/list_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginHorizontal="17dp"
+                android:cacheColorHint="@android:color/transparent"
+                android:fadingEdge="none"
+                android:scrollbars="none"></copyright.hxqh.com.copyright.copright.view.MyListView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/gray5"
+                android:textSize="10sp"
+                android:gravity="center"
+                android:text="没有更多内容"
+                android:textColor="@color/textcolor1"/>
         </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="引用实物:"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="15sp"
-            android:textColor="@color/black"
-            android:textSize="16sp"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dip"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@color/black"/>
-
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:orientation="vertical"
-           android:layout_marginLeft="20dp"
-           android:layout_marginRight="20dp"
-           >
-           <include
-               android:id="@+id/incloud"
-               layout="@layout/table_title_layout"></include>
-           <View
-               android:layout_width="match_parent"
-               android:layout_height="1dip"
-               android:background="@color/black"/>
-           <copyright.hxqh.com.copyright.copright.view.MyListView
-               android:id="@+id/list_1"
-               android:divider="@color/black"
-               android:dividerHeight="1.0dip"
-               android:layout_marginLeft="20dp"
-               android:layout_marginRight="20dp"
-               android:scrollbars="none"
-               android:cacheColorHint="@android:color/transparent"
-               android:fadingEdge="none"
-               android:background="@drawable/ic_imagebj"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content" >
-           </copyright.hxqh.com.copyright.copright.view.MyListView>
-       </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dip"
-            android:dividerHeight="1.0dip"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            android:background="@color/black"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="引用资产:"
-            android:layout_marginLeft="15sp"
-            android:textColor="@color/black"
-            android:textSize="16sp"/>
-        <TextView
-            android:id="@+id/have_not_data_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:text="暂无数据"
-            android:visibility="gone"
-            />
-        <copyright.hxqh.com.copyright.copright.view.MyListView
-            android:id="@+id/list_2"
-            android:divider="@null"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/ic_imagebj"
-            android:scrollbars="none"
-            android:cacheColorHint="@android:color/transparent"
-            android:fadingEdge="none"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </copyright.hxqh.com.copyright.copright.view.MyListView>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="产品授权渠道:"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="15sp"
-            android:textColor="@color/black"
-            android:textSize="16sp"/>
-        <TextView
-            android:id="@+id/have_not_data_id2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:text="暂无数据"
-            android:visibility="gone"
-            />
-        <copyright.hxqh.com.copyright.copright.view.MyListView
-            android:id="@+id/list_3"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="15dp"
-            android:scrollbars="none"
-            android:cacheColorHint="@android:color/transparent"
-            android:fadingEdge="none"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </copyright.hxqh.com.copyright.copright.view.MyListView>
-    </LinearLayout>
     </ScrollView>
 </LinearLayout>

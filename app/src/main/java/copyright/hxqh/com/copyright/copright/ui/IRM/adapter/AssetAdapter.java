@@ -4,6 +4,8 @@ package copyright.hxqh.com.copyright.copright.ui.IRM.adapter;
 import android.annotation.SuppressLint;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.RecyclerView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -38,7 +40,16 @@ public class AssetAdapter extends BaseQuickAdapter<Asset,BaseViewHolder> {
     @SuppressLint("ResourceAsColor")
     @Override
     protected void convert(BaseViewHolder helper, Asset item) {
+
         CardView cardView = helper.getView(R.id.card_container);
+        if (helper.getLayoutPosition()==0){
+            RecyclerView.LayoutParams layoutParams = (RecyclerView.LayoutParams) cardView.getLayoutParams();
+            int i = (int) mContext.getResources().getDisplayMetrics().density;
+            layoutParams.setMargins(0,10*i,0,7*i);
+            cardView.setLayoutParams(layoutParams);
+        }else {
+
+        }
         MyImageView myImageView = helper.getView(R.id.bookimage_id);
         AcountUtil.imageShow(myImageView,item.getPreviewimg(),20);
         helper.setText(R.id.bookname_id,item.getResourcename());

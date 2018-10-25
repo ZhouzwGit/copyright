@@ -76,7 +76,7 @@ public class CopyRightDetailsActivity extends AppCompatActivity implements View.
         searchimage.setVisibility(View.GONE);
         history.setOnClickListener(this);
         earnings2.setOnClickListener(this);
-        if (prrel!=null) {
+        if (prrel != null) {
             rightrestrict.setText(prrel.getRightrestrict());
             earnings.setText(prrel.getEarnings());
             costprice.setText(prrel.getCostprice());
@@ -93,7 +93,7 @@ public class CopyRightDetailsActivity extends AppCompatActivity implements View.
             titletext.setText(prrel.getResourcename());
             contractnum.setText(prrel.getContractnum());
             languages.setText(prrel.getLanguages());
-        }else {
+        } else {
             rightrestrict.setText(rightInfo.getRightrestrict());
             earnings.setText(rightInfo.getEarnings());
             costprice.setText(rightInfo.getCostprice());
@@ -131,9 +131,9 @@ public class CopyRightDetailsActivity extends AppCompatActivity implements View.
 
     private void getIntentData() {
 
-        if (getIntent().getIntExtra("type",0) == 1){
+        if (getIntent().getIntExtra("type", 0) == 1) {
             prrel = (Prrel) getIntent().getSerializableExtra("copyright");
-        }else {
+        } else {
             rightInfo = (RightInfo) getIntent().getSerializableExtra("copyright");
         }
     }

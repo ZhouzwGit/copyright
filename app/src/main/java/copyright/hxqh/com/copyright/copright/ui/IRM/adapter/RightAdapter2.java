@@ -4,10 +4,12 @@ package copyright.hxqh.com.copyright.copright.ui.IRM.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -49,6 +51,10 @@ public class RightAdapter2 extends ArrayAdapter<RightInfo>{
     public View getView(int i, View view, ViewGroup viewGroup) {
         final RightInfo rightInfo = (RightInfo) getItem(i);
         view = inflater.inflate(resource, null);
+        if (i==0){
+            View view1 = view.findViewById(R.id.line_id);
+            view1.setVisibility(View.GONE);
+        }
         ViewHolder viewHolder = new ViewHolder();
         viewHolder.textView1 = view.findViewById(R.id.name_id);
         viewHolder.textView2 = view.findViewById(R.id.copyright_id);
@@ -58,7 +64,7 @@ public class RightAdapter2 extends ArrayAdapter<RightInfo>{
         viewHolder.textView6 = view.findViewById(R.id.isrelease_id);
         viewHolder.textView7 = view.findViewById(R.id.finishplacearea_id);
         viewHolder.textView8 = view.findViewById(R.id.languages_id);
-        viewHolder.textView9 = view.findViewById(R.id.detais_id);
+        //viewHolder.textView9 = view.findViewById(R.id.detais_id);
         viewHolder.textView1.setText(rightInfo.getCopyright());
         viewHolder.textView2.setText(rightInfo.getContractnum());
         viewHolder.textView3.setText(rightInfo.getStartdate() + "至" + rightInfo.getFinishdate());
@@ -67,7 +73,7 @@ public class RightAdapter2 extends ArrayAdapter<RightInfo>{
         viewHolder.textView6 .setText(rightInfo.getPersonalproduct());
         viewHolder.textView7 .setText(rightInfo.getFinishplacearea());
         viewHolder.textView8.setText(rightInfo.getLanguages());
-        viewHolder.textView9.setOnClickListener(new View.OnClickListener() {
+        view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), CopyRightDetailsActivity.class);

@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.SimpleAdapter;
@@ -77,7 +78,7 @@ public class AssetDetailActivity2 extends AppCompatActivity {
             createdate,
             remark,
             havenodate1,
-            havenodata2, copyrightcount, relatcount, title,isrcno;
+            havenodata2, copyrightcount, relatcount, title, isrcno;
     private Asset asset;
     private ImageView previewimg, backimage, searchimage;
     private RatingBar ratingBar;
@@ -89,6 +90,9 @@ public class AssetDetailActivity2 extends AppCompatActivity {
     private RightAdapter2 rightAdapter;
     private AssetrelaAdapter assetrelaAdapter;
     private LinearLayoutManager layoutManager;
+    LinearLayout isshowlist1, isshowlist2;
+    boolean showlist1, showlist2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,6 +141,9 @@ public class AssetDetailActivity2 extends AppCompatActivity {
         purpose = findViewById(R.id.purpose_id);
         title = findViewById(R.id.menu_title);
         isrcno = findViewById(R.id.ISRC_id);
+        isshowlist1 = findViewById(R.id.isshowlist_id);
+        isshowlist2 = findViewById(R.id.isshowlist2_id);
+
     }
 
     private void initView() {
@@ -147,15 +154,17 @@ public class AssetDetailActivity2 extends AppCompatActivity {
         fstrlsadd.setText(asset.getFstrlsadd());
         if (rightList.isEmpty()) {
             havenodate1.setVisibility(View.VISIBLE);
+            isshowlist1.setVisibility(View.GONE);
         }
         if (rchrrelList.isEmpty()) {
             havenodata2.setVisibility(View.VISIBLE);
+            isshowlist2.setVisibility(View.GONE);
         }
-        relatcount.setText("关联资产(" + rchrrelList.size() + "项)");
-        copyrightcount.setText("权利项（" + rightList.size() + "项）");
+        relatcount.setText("共 " + rchrrelList.size() + " 项");
+        copyrightcount.setText("共 " + rightList.size() + " 项");
         searchimage.setVisibility(View.GONE);
-        createdate.setText(asset.getCreatedate());
-        createby.setText(asset.getCreatenature());
+        createdate.setText(asset.getCreateDate());
+        createby.setText(asset.getCreateBy());
         remark.setText(asset.getRemark());
         cost.setText("￥" + asset.getResourcecost() + "元");
         signature.setText(asset.getSignname());
@@ -199,6 +208,27 @@ public class AssetDetailActivity2 extends AppCompatActivity {
         listView2.setLayoutManager(layoutManager);
         initGrid();
         initAdpter();
+        isshowlist1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!showlist1) {
+                    listView1.setVisibility(View.GONE);
+                } else {
+                    listView1.setVisibility(View.VISIBLE);
+                }
+
+            }
+        });
+        listView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!showlist2) {
+                    listView2.setVisibility(View.GONE);
+                } else {
+                    listView2.setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
 
     private void getIntentDate() {

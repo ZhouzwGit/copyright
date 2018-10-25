@@ -32,8 +32,8 @@ public class StockUtil {
 
     public void downLoadFile(final Context context, String Credential) {
         String str = Credential.substring(1, Credential.length()-1);
-        String downLoadUrl = "http://118.190.115.150:8889" + str;
-//        String downLoadUrl = "http://118.190.115.150:8889/jeesite/upload/20181018/signaturefiles/1/EAM2.0.pdf";
+        //String downLoadUrl = "http://118.190.115.150:8889" + str;
+        String downLoadUrl = "http://118.190.115.150:8889/jeesite/upload/20181018/signaturefiles/1/EAM2.0.pdf";
         CDownloadConfig downloadConfig = CDownloadConfig.build()
 
                 .setDiskCachePath("/sdcard/Download")

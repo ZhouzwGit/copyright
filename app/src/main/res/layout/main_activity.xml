@@ -34,12 +34,8 @@
             android:layout_height="match_parent">
         </FrameLayout>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginBottom="10dp"
-        >
+
         <include layout="@layout/buttom_activity"></include>
-    </LinearLayout>
+
 
 </LinearLayout>

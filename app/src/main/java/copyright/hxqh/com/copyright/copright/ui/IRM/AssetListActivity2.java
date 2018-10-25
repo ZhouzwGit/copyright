@@ -3,6 +3,8 @@ package copyright.hxqh.com.copyright.copright.ui.IRM;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,9 +15,11 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -35,13 +39,15 @@ import copyright.hxqh.com.copyright.copright.ui.author.AuthordetailActivity;
 import copyright.hxqh.com.copyright.copright.ui.author.adpter.AuthorAdapter;
 import copyright.hxqh.com.copyright.copright.ui.author.entity.Author;
 import copyright.hxqh.com.copyright.copright.util.AcountUtil;
+import q.rorbin.badgeview.Badge;
+import q.rorbin.badgeview.QBadgeView;
 
 /**
  * Created by zzw on 2018/9/27.
  */
 
 public class AssetListActivity2 extends Activity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
-    private TextView titletext, producttext, channeltext;
+    private TextView titletext, producttext, channeltext,badge1,badge2;
     private ImageView backimage, searchimage;
     private AssetAdapter authorAdapter;
     private View tagview, listView;
@@ -58,6 +64,7 @@ public class AssetListActivity2 extends Activity implements View.OnClickListener
     private int pageNo;
     private int assetCount;
     private int rescouceCount;
+    View line1,line2;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,6 +85,10 @@ public class AssetListActivity2 extends Activity implements View.OnClickListener
         nodatalayout = findViewById(R.id.have_not_data_id);
         listView = findViewById(R.id.listshow_id);
         searchView = findViewById(R.id.search_bar);
+        line1 = findViewById(R.id.line1);
+        line2 = findViewById(R.id.line2);
+        badge1 = findViewById(R.id.badge1);
+        badge2 = findViewById(R.id.badge2);
     }
 
     public void initView() {
@@ -87,8 +98,8 @@ public class AssetListActivity2 extends Activity implements View.OnClickListener
         channeltext.setOnClickListener(this);
         producttext.setOnClickListener(this);
         searchimage.setOnClickListener(this);
-        producttext.setText("资产（0）个");
-        channeltext.setText("资源（0）个");
+        producttext.setText("资产");
+        channeltext.setText("资源");
         layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         layoutManager.scrollToPosition(0);
@@ -123,12 +134,12 @@ public class AssetListActivity2 extends Activity implements View.OnClickListener
                 getData();
                 return true;
             }
-
             @Override
             public boolean onQueryTextChange(String s) {
                 return false;
             }
         });
+        producttext.performClick();
     }
 
     @Override
@@ -144,15 +155,23 @@ public class AssetListActivity2 extends Activity implements View.OnClickListener
                 }
                 break;
             case R.id.basictag_1:
-                producttext.setBackgroundColor(getResources().getColor(R.color.blue));
-                channeltext.setBackgroundColor(getResources().getColor(R.color.white));
+                producttext.setTextColor(Color.parseColor("#1385f8"));
+                producttext.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+                channeltext.setTextColor(Color.BLACK);
+                channeltext.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                line1.setVisibility(View.VISIBLE);
+                line2.setVisibility(View.GONE);
                 authorAdapter.setNewData(assets);
                 recyclerView.scrollToPosition(0);
                 isAsset = true;
                 break;
             case R.id.basictag_2:
-                channeltext.setBackgroundColor(getResources().getColor(R.color.blue));
-                producttext.setBackgroundColor(getResources().getColor(R.color.white));
+                producttext.setTextColor(Color.BLACK);
+                producttext.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                channeltext.setTextColor(Color.parseColor("#1385f8"));
+                channeltext.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+                line1.setVisibility(View.GONE);
+                line2.setVisibility(View.VISIBLE);
                 authorAdapter.setNewData(assets1);
                 recyclerView.scrollToPosition(0);
                 isAsset = false;
@@ -313,8 +332,8 @@ public class AssetListActivity2 extends Activity implements View.OnClickListener
         public void handleMessage(android.os.Message msg) {
             assetCount= msg.arg2;
             rescouceCount = msg.arg1;
-            producttext.setText("资产（"+msg.arg2+"）个");
-            channeltext.setText("资源（"+msg.arg1+"）个");
+            badge1.setText(msg.arg2+"");
+            badge2.setText(msg.arg1+"");
         }
     };
 }

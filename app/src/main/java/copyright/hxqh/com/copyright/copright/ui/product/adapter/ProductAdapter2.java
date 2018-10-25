@@ -4,6 +4,7 @@ package copyright.hxqh.com.copyright.copright.ui.product.adapter;
 import android.annotation.SuppressLint;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.RecyclerView;
 import android.text.method.ScrollingMovementMethod;
 import android.widget.TextView;
 
@@ -37,6 +38,15 @@ public class ProductAdapter2 extends BaseQuickAdapter<Product,BaseViewHolder> {
     @Override
     protected void convert(BaseViewHolder helper, Product item) {
         CardView cardView = helper.getView(R.id.card_container);
+        RecyclerView.LayoutParams layoutParams = (RecyclerView.LayoutParams) cardView.getLayoutParams();
+        int i = (int) mContext.getResources().getDisplayMetrics().density;
+        if (helper.getLayoutPosition()==0){
+            layoutParams.setMargins(0,10*i,0,10*i);
+            cardView.setLayoutParams(layoutParams);
+        }else {
+            layoutParams.setMargins(0,0,0,10*i);
+            cardView.setLayoutParams(layoutParams);
+        }
         helper.setText(R.id.productname_id,item.getProductname());
         TextView name = helper.getView(R.id.productname_id);
         name.setMovementMethod(ScrollingMovementMethod.getInstance());

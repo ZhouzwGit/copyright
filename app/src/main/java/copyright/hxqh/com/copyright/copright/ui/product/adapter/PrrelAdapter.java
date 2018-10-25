@@ -36,6 +36,10 @@ public class PrrelAdapter extends ArrayAdapter {
         ViewHolder viewHolder;
         viewHolder = new ViewHolder();
         View view = inflater.inflate(resource, null);
+        if (position==0){
+            View view1 = view.findViewById(R.id.line_id);
+            view1.setVisibility(View.GONE);
+        }
         view.setBackgroundResource(R.color.white);
        /* viewHolder.resourceno = view.findViewById(R.id.);
         viewHolder.status= view.findViewById(R.id.);*/
@@ -55,8 +59,8 @@ public class PrrelAdapter extends ArrayAdapter {
         viewHolder.resourcename.setText(item.getResourcename());
         viewHolder.rightno.setText(item.getRightno());
         viewHolder.finishdate.setText(item.getStartdate() + "至" + item.getFinishdate());
-        viewHolder.todetail = view.findViewById(R.id.detais_id);
-        viewHolder.todetail.setOnClickListener(new View.OnClickListener() {
+
+        view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), CopyRightDetailsActivity.class);

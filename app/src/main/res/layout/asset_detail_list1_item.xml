@@ -5,196 +5,205 @@
     android:id="@+id/card_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="1dp"
-    android:layout_marginTop="1dp"
+    android:layout_marginTop="5dp"
     android:foreground="?android:selectableItemBackground"
     android:orientation="horizontal"
-    card_view:cardCornerRadius="2dp">
+>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/ic_imagebj"
         android:orientation="vertical">
+        <View
+            android:id="@+id/line_id"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@color/gray5"
+            android:visibility="visible">
+        </View>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            >
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:paddingHorizontal="23dp"
+            android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp">
+                android:layout_height="wrap_content"
+                >
                 <TextView
                     android:id="@+id/name_id"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
+                    android:paddingVertical="10dp"
+                    android:textSize="13sp"
                     android:layout_weight="1"
                     android:maxLines="1"
                     android:scrollbars="vertical"
                     android:scrollbarSize="0dp"
                     android:scrollbarStyle="insideOverlay"
                     android:maxEms="4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textcolor2"
                     android:text="产品001"/>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="合同编号:"
-                        />
-                    <copyright.hxqh.com.copyright.copright.view.MyTextView
-                        android:id="@+id/copyright_id"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="p12345678"/>
-                </LinearLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/ic_right4"/>
             </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            >
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_marginLeft="10dp"
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line1"></View>
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
                 >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="取得方式:"
-                    />
-                <copyright.hxqh.com.copyright.copright.view.MyTextView
-                    android:id="@+id/getType_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="产品001"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-
-                >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="语种:"
+                    android:textColor="@color/textcolor1"
+                    android:textSize="13sp"
+                    android:text="语种"
                     />
                 <copyright.hxqh.com.copyright.copright.view.MyTextView
                     android:id="@+id/languages_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/textcolor2"
+                    android:layout_alignParentRight="true"
+                    android:textSize="13sp"
                     android:layout_marginLeft="10dp"
                     android:text="产品001"/>
-            </LinearLayout>
-
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            >
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="权利属性:"
-                    />
-                <copyright.hxqh.com.copyright.copright.view.MyTextView
-                    android:id="@+id/rightkind_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="产品001"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="地域:"
+                    android:textColor="@color/textcolor1"
+                    android:textSize="13sp"
+                    android:text="地域"
                     />
                 <copyright.hxqh.com.copyright.copright.view.MyTextView
                     android:id="@+id/finishplacearea_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/textcolor2"
+                    android:textSize="13sp"
                     android:text="产品001"/>
-            </LinearLayout>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            >
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp">
+            </RelativeLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="是否允许转许可:"
+                    android:textColor="@color/textcolor1"
+                    android:textSize="13sp"
+                    android:text="权利属性"
+                    />
+                <copyright.hxqh.com.copyright.copright.view.MyTextView
+                    android:id="@+id/rightkind_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:textColor="@color/textcolor2"
+                    android:textSize="13sp"
+                    android:text="产品001"/>
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textcolor1"
+                    android:textSize="13sp"
+                    android:text="取得方式"
+                    />
+                <copyright.hxqh.com.copyright.copright.view.MyTextView
+                    android:id="@+id/getType_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:textColor="@color/textcolor2"
+                    android:textSize="13sp"
+                    android:text="产品001"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textcolor1"
+                    android:textSize="13sp"
+                    android:text="是否允许转许可"
                     />
                 <copyright.hxqh.com.copyright.copright.view.MyTextView
                     android:id="@+id/isrelease_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="end"
+                    android:textColor="@color/textcolor2"
+                    android:textSize="13sp"
                     android:text="产品001"/>
-            </LinearLayout>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            >
-            <LinearLayout
-                android:layout_width="wrap_content"
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textcolor1"
+                    android:textSize="13sp"
+                    android:text="合同编号"
+                    />
+                <copyright.hxqh.com.copyright.copright.view.MyTextView
+                    android:id="@+id/copyright_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:textColor="@color/textcolor2"
+                    android:textSize="13sp"
+                    android:text="p12345678"/>
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginVertical="15dp"
                 >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="使用期限:"
+                    android:textColor="@color/textcolor1"
+                    android:textSize="13sp"
+                    android:text="使用期限"
                     />
                 <copyright.hxqh.com.copyright.copright.view.MyTextView
                     android:id="@+id/to_date_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="end"
+                    android:textColor="@color/textcolor2"
+                    android:textSize="13sp"
                     android:text="质押"/>
-            </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="10dp">
-                <TextView
+            </FrameLayout>
+            <!--    <TextView
                     android:id="@+id/detais_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -202,8 +211,8 @@
                     android:layout_marginRight="10dp"
                     android:text="详情"
                     android:textColor="@android:color/holo_blue_bright"
-                    />
-            </RelativeLayout>
+                    />-->
+
         </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

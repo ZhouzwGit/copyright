@@ -16,6 +16,10 @@
     <color name="orange">#fec87b</color>
     <color name="gray3">#636467</color>
     <color name="gray4">#f3f3f3</color>
+    <color name="gray5">#f2f3f4</color>
     <color name="red">#F80718</color>
     <color name="bottomtext">#6d6d6d</color>
+    <color name="line1">#cecfcf</color>
+    <color name="textcolor1">#84879a</color>
+    <color name="textcolor2">#333333</color>
 </resources>

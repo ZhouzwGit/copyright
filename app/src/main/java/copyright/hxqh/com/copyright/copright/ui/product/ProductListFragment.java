@@ -131,13 +131,15 @@ public class ProductListFragment extends Fragment implements View.OnClickListene
                     return;
                 }
                 if (preoducts.isEmpty()){
-                    if (productAdapter.getData().isEmpty()){
+                    if (!productAdapter.getData().isEmpty()){
+                        nodatalayout.setVisibility(View.VISIBLE);
+                        TextView textView = (TextView) nodatalayout.getChildAt(0);
+                        textView.setText("暂无数据");
                         productAdapter.replaceData(new ArrayList<Product>());
                     }else {
-                        nodatalayout.setVisibility(View.VISIBLE);
+                        productAdapter.loadMoreEnd();
                     }
 
-                    productAdapter.loadMoreEnd();
                 }else {
                     pageNum = preoducts.get(0).getPagenum();
                     nodatalayout.setVisibility(View.GONE);

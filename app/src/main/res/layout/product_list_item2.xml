@@ -5,16 +5,54 @@
     android:id="@+id/card_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="1dp"
-    android:layout_marginTop="1dp"
+    android:layout_marginHorizontal="7dp"
     android:background="@color/white"
     android:foreground="?android:selectableItemBackground"
     android:orientation="horizontal"
-    card_view:cardCornerRadius="2dp">
+    card_view:cardCornerRadius="4dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingHorizontal="17dp"
+        android:background="@color/white"
         android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="10dp"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="产品名称:"
+                android:textSize="13sp"
+                android:textColor="@color/textcolor2"
+                />
+            <TextView
+                android:id="@+id/productname_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:textSize="13sp"
+                android:maxLines="1"
+                android:scrollbars="horizontal"
+                android:scrollbarSize="0dp"
+                android:textColor="@color/textcolor2"
+                android:text="产品001"/>
+                <copyright.hxqh.com.copyright.copright.view.MyTextView
+                    android:id="@+id/status_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/holo_green_light"
+                    android:textSize="13sp"
+                    android:text="未完成"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray5"></View>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,58 +62,62 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_marginLeft="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="产品名称:"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"
-                    />
-                <TextView
-                    android:id="@+id/productname_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:textSize="16sp"
-                    android:maxLines="1"
-                    android:maxEms="5"
-                    android:scrollbars="horizontal"
-                    android:scrollbarSize="0dp"
-                    android:textColor="@color/black"
-                    android:text="产品001"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
                 >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="产品编号:"
+                    android:textSize="13sp"
+                    android:textColor="@color/textcolor1"
                     />
                 <copyright.hxqh.com.copyright.copright.view.MyTextView
                     android:id="@+id/productno_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
+                    android:textSize="13sp"
+                    android:textColor="@color/textcolor2"
                     android:text="p12345678"/>
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center_vertical|right"
+                android:layout_weight="1"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textcolor2"
+                    android:textSize="10sp"
+                    android:text="资产数:"
+                    />
+                <copyright.hxqh.com.copyright.copright.view.MyTextView
+                    android:id="@+id/productqty_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/textcolor2"
+                    android:textSize="10sp"
+                    android:text="p12345678"/>
+            </LinearLayout>
+
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
+            android:layout_marginVertical="10dp"
             >
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginLeft="10dp">
+                android:layout_weight="1">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="@color/textcolor1"
                     android:text="产品用途:"
                     />
                 <copyright.hxqh.com.copyright.copright.view.MyTextView
@@ -83,40 +125,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
+                    android:textSize="13sp"
+                    android:textColor="@color/textcolor2"
                     android:text="质押"/>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="资产数量:"
-                    />
-                <copyright.hxqh.com.copyright.copright.view.MyTextView
-                    android:id="@+id/productqty_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="p12345678"/>
-            </LinearLayout>
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray5"></View>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginVertical="10dp"
             >
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginLeft="10dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="@color/textcolor1"
                     android:text="创建时间:"
                     />
                 <copyright.hxqh.com.copyright.copright.view.MyTextView
@@ -124,25 +151,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
+                    android:textSize="13sp"
+                    android:textColor="@color/textcolor2"
                     android:text="产品001"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="状态:"
-                    />
-                <copyright.hxqh.com.copyright.copright.view.MyTextView
-                    android:id="@+id/status_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="p12345678"/>
-            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>

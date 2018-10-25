@@ -3,6 +3,8 @@ package copyright.hxqh.com.copyright.copright.ui.product;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.FragmentTransaction;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -25,13 +27,14 @@ import copyright.hxqh.com.copyright.copright.util.AcountUtil;
  */
 
 public class ProductListActivity2 extends AppCompatActivity implements View.OnClickListener {
-    private TextView titletext, producttext, channeltext;
+    private TextView titletext, producttext, channeltext,badge1,badge2;
     private ImageView backimage, searchimage;
     private ProductListFragment productListFragment;
     private ChannelListFragment channelListFragment;
     private View titleView;
     private SearchView searchView;
     private boolean  isProduct;
+    View line1,line2;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,6 +68,10 @@ public class ProductListActivity2 extends AppCompatActivity implements View.OnCl
         searchimage = findViewById(R.id.title_search);
         titleView = findViewById(R.id.title_id);
         searchView = findViewById(R.id.search_bar);
+        line1 = findViewById(R.id.line1);
+        line2 = findViewById(R.id.line2);
+        badge1 = findViewById(R.id.badge1);
+        badge2 = findViewById(R.id.badge2);
     }
 
     public void initView() {
@@ -73,6 +80,8 @@ public class ProductListActivity2 extends AppCompatActivity implements View.OnCl
         channeltext.setOnClickListener(this);
         producttext.setOnClickListener(this);
         searchimage.setOnClickListener(this);
+        badge1.setVisibility(View.GONE);
+        badge2.setVisibility(View.GONE);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -113,8 +122,12 @@ public class ProductListActivity2 extends AppCompatActivity implements View.OnCl
                 break;
             case R.id.basictag_1:
                 isProduct = true;
-                producttext.setBackgroundColor(getResources().getColor(R.color.blue));
-                channeltext.setBackgroundColor(getResources().getColor(R.color.white));
+                producttext.setTextColor(Color.parseColor("#1385f8"));
+                producttext.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+                channeltext.setTextColor(Color.BLACK);
+                channeltext.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                line1.setVisibility(View.VISIBLE);
+                line2.setVisibility(View.GONE);
                 if (productListFragment == null) {
                     productListFragment = new ProductListFragment();
                 }
@@ -122,8 +135,12 @@ public class ProductListActivity2 extends AppCompatActivity implements View.OnCl
                 break;
             case R.id.basictag_2:
                 isProduct = false;
-                channeltext.setBackgroundColor(getResources().getColor(R.color.blue));
-                producttext.setBackgroundColor(getResources().getColor(R.color.white));
+                producttext.setTextColor(Color.BLACK);
+                producttext.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                channeltext.setTextColor(Color.parseColor("#1385f8"));
+                channeltext.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+                line1.setVisibility(View.GONE);
+                line2.setVisibility(View.VISIBLE);
                 if (channelListFragment == null) {
                     channelListFragment = new ChannelListFragment();
                 }

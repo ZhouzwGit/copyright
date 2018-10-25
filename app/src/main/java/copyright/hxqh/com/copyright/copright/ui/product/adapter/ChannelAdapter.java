@@ -15,7 +15,6 @@ import java.util.List;
 
 import copyright.hxqh.com.copyright.R;
 import copyright.hxqh.com.copyright.copright.ui.product.entity.Channel;
-import copyright.hxqh.com.copyright.copright.ui.product.entity.Product;
 
 /**
  * Created by zzw on 2018/9/18.
@@ -47,7 +46,7 @@ public class ChannelAdapter extends BaseQuickAdapter<Channel,BaseViewHolder> {
         helper.setText(R.id.channelno_id,item.getChannelnum());
         helper.setText(R.id.channelType_id,item.getChanneltype());
         helper.setText(R.id.creditworthiness_id,item.getCredibility());
-        helper.setText(R.id.createdate_id,item.getCreatedate());
+        helper.setText(R.id.createdate_id,item.getCreateDate());
 
     }
 }

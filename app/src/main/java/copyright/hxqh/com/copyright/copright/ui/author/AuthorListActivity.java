@@ -3,6 +3,8 @@ package copyright.hxqh.com.copyright.copright.ui.author;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -38,7 +40,7 @@ import copyright.hxqh.com.copyright.copright.util.AcountUtil;
  */
 
 public class AuthorListActivity extends Activity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
-    private TextView titletext, producttext, channeltext;
+    private TextView titletext, producttext, channeltext,badge1,badge2;
     private ImageView backimage, searchimage;
     private AuthorAdapter authorAdapter;
     private View tagview, listView;
@@ -55,6 +57,7 @@ public class AuthorListActivity extends Activity implements View.OnClickListener
     private SearchView searchView;
     private int pageNo;
     private int countNum;
+    View line1,line2;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,10 +78,19 @@ public class AuthorListActivity extends Activity implements View.OnClickListener
         nodatalayout = findViewById(R.id.have_not_data_id);
         listView = findViewById(R.id.listshow_id);
         searchView = findViewById(R.id.search_bar);
+        line1 = findViewById(R.id.line1);
+        line2 = findViewById(R.id.line2);
+        badge1 = findViewById(R.id.badge1);
+        badge2 = findViewById(R.id.badge2);
     }
 
     public void initView() {
+        badge1.setVisibility(View.GONE);
+        badge2.setVisibility(View.GONE);
         titletext.setText("来源方管理");
+        line1.setVisibility(View.VISIBLE);
+        producttext.setTextColor(Color.parseColor("#1385f8"));
+        producttext.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
         listView.setVisibility(View.VISIBLE);
         backimage.setOnClickListener(this);
         channeltext.setOnClickListener(this);
@@ -136,15 +148,23 @@ public class AuthorListActivity extends Activity implements View.OnClickListener
                 }
                 break;
             case R.id.basictag_1:
-                producttext.setBackgroundColor(getResources().getColor(R.color.blue));
-                channeltext.setBackgroundColor(getResources().getColor(R.color.white));
+                producttext.setTextColor(Color.parseColor("#1385f8"));
+                producttext.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+                channeltext.setTextColor(Color.BLACK);
+                channeltext.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                line1.setVisibility(View.VISIBLE);
+                line2.setVisibility(View.GONE);
                 authorAdapter.setNewData(authors);
                 recyclerView.scrollToPosition(0);
                 isAuthor = true;
                 break;
             case R.id.basictag_2:
-                channeltext.setBackgroundColor(getResources().getColor(R.color.blue));
-                producttext.setBackgroundColor(getResources().getColor(R.color.white));
+                producttext.setTextColor(Color.BLACK);
+                producttext.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                channeltext.setTextColor(Color.parseColor("#1385f8"));
+                channeltext.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+                line1.setVisibility(View.GONE);
+                line2.setVisibility(View.VISIBLE);
                 authorAdapter.setNewData(authorsrol);
                 recyclerView.scrollToPosition(0);
                 isAuthor = false;

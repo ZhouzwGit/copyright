@@ -117,7 +117,7 @@
             android:padding="10dp"
             android:scaleType="fitXY"
             android:src="@drawable/defaultuserpg"
-            android:background="@drawable/ic_imagebj"
+            android:background="@drawable/ic_circlebj"
             android:layout_centerHorizontal="true"
             />
         <LinearLayout

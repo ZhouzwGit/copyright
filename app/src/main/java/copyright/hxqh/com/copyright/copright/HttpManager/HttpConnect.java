@@ -511,7 +511,7 @@ public class HttpConnect {
         boolean successful = false;
         try{
             json.put("username",username);
-            json.put("password",pwd);
+            json.put("newpassword",pwd);
             jsonEntity = new StringEntity(json.toString(),"UTF-8");
             jsonEntity.setContentEncoding("UTF-8");
             jsonEntity.setContentType("application/json");

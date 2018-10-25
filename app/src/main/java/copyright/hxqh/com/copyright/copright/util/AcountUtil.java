@@ -115,7 +115,7 @@ public class AcountUtil {
         if (progressDialog != null) {
             progressDialog.cancel();
         }
-        progressDialog = new ProgressDialog(ctx);
+        progressDialog = new ProgressDialog(ctx,ProgressDialog.THEME_HOLO_DARK);
        /* Drawable drawable = ctx.getResources().getDrawable(R.color.);
         progressDialog.setIndeterminateDrawable(drawable);*/
         progressDialog.setIndeterminate(true);

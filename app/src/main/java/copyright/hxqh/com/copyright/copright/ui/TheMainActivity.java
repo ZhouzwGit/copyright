@@ -32,10 +32,11 @@ import copyright.hxqh.com.copyright.copright.ui.product.ProductListActivity;
 import copyright.hxqh.com.copyright.copright.ui.product.ProductListActivity2;
 import copyright.hxqh.com.copyright.copright.ui.product.entity.Product;
 import copyright.hxqh.com.copyright.copright.ui.publicService.PublicServiceActivity;
+import copyright.hxqh.com.copyright.copright.ui.statistics.StatisticsActivity;
 import copyright.hxqh.com.copyright.copright.util.AcountUtil;
 
 public class TheMainActivity extends AppCompatActivity implements View.OnClickListener {
-    private LinearLayout irm, product, author, contract,publicSer;
+    private LinearLayout irm, product, author, contract,publicSer,statistics;
     private LinearLayout main, inform, myinfo,backlog;
     private ImageView mainImage, informImage, myinfoImage,backlogImage;
     private View mainView;
@@ -104,6 +105,7 @@ public class TheMainActivity extends AppCompatActivity implements View.OnClickLi
         informtext = findViewById(R.id.inform_text);
         myinfotext = findViewById(R.id.myinfo_text);
         backlogtext = findViewById(R.id.task_text);
+        statistics = findViewById(R.id.statistics_id);
         hello.setText(getdate()+AcountUtil.getUsername(this));
 
         title = findViewById(R.id.title);
@@ -117,6 +119,7 @@ public class TheMainActivity extends AppCompatActivity implements View.OnClickLi
         author.setOnClickListener(this);
         contract.setOnClickListener(this);
         publicSer.setOnClickListener(this);
+        statistics.setOnClickListener(this);
         main.performClick();
     }
 
@@ -202,6 +205,10 @@ public class TheMainActivity extends AppCompatActivity implements View.OnClickLi
                 myinfoImage.setImageResource(R.mipmap.main_2);
                 backlogImage.setImageResource(R.mipmap.tasktodo1);
                 fragmentTransaction.replace(R.id.container,fragment).commit();
+                break;
+            case R.id.statistics_id:
+                Intent intent = new Intent(this, StatisticsActivity.class);
+                startActivity(intent);
                 break;
         }
     }

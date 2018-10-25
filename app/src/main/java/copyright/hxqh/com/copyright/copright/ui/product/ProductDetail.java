@@ -32,7 +32,7 @@ import copyright.hxqh.com.copyright.copright.ui.product.entity.Prrel;
  */
 
 public class ProductDetail extends AppCompatActivity implements View.OnClickListener {
-    private TextView productusage,
+    private TextView productusage,productno,
             lifetimeto,
             status,
             productname,
@@ -79,9 +79,11 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         listView1 = findViewById(R.id.list_1);
         listView2 = findViewById(R.id.list_2);
         listView3 = findViewById(R.id.list_3);
+        productno = findViewById(R.id.productno_id);
     }
 
     public void initView() {
+        productno.setText(product.getProductno());
         backimage.setOnClickListener(this);
         tabletitle1.setText("序号");
         tabletitle2.setText("作品编号");

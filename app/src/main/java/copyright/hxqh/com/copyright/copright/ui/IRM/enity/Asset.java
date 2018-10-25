@@ -14,7 +14,7 @@ public class Asset implements Serializable {
     private String count;
     private String remark;
     private String createCity;
-    private String createdate;
+    private String createDate;
     private String orignid;
     private String resourcetype;
     private String rightgainwayatt;
@@ -101,6 +101,15 @@ public class Asset implements Serializable {
     private String createnature;
     private int resourcenum;
     private int assetnum;
+    private String createBy;
+
+    public String getCreateBy() {
+        return createBy;
+    }
+
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy;
+    }
 
     public String getIsrcnum() {
         return isrcnum;
@@ -170,11 +179,11 @@ public class Asset implements Serializable {
         return createCity;
     }
 
-    public void setCreatedate(String createdate) {
-        this.createdate = createdate;
+    public void setCreateDate(String createdate) {
+        this.createDate = createdate;
     }
-    public String getCreatedate() {
-        return createdate;
+    public String getCreateDate() {
+        return createDate;
     }
 
     public void setOrignid(String orignid) {

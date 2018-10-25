@@ -14,117 +14,84 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="22dp"
+                android:layout_marginVertical="16dp">
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="10dp"
+                    android:layout_gravity="center"
+                    android:background="@color/blue"></View>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="10dp"
+                    android:text="编号:"
+                    android:textColor="#333333"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/resourceno_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#333333"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="@color/line1"></View>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginTop="15dp">
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="12dp">
 
                 <copyright.hxqh.com.copyright.copright.view.MyImageView
                     android:id="@+id/assetimage_id"
                     android:layout_width="120dp"
                     android:layout_height="180dp"
-                    />
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/test_image" />
 
                 <LinearLayout
                     android:id="@+id/basic_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="7dp"
                     android:layout_toRightOf="@+id/assetimage_id"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
-                            android:text="NO:" />
-
-                        <TextView
-                            android:id="@+id/resourceno_id"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                             />
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
-                            android:text="名称:"
-                            android:textColor="@color/black"
-                            android:textSize="16sp" />
+                        android:layout_marginTop="9dp">
 
                         <TextView
                             android:id="@+id/resourcename_id"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="123456"
                             android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textSize="13sp" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
-                            android:text="关键字:" />
-                        <copyright.hxqh.com.copyright.copright.view.MyGridView
-                            android:id="@+id/lablegrid_id"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:numColumns="3"
-                            android:verticalSpacing="5dp"
-                            android:horizontalSpacing="3dp"
-                            ></copyright.hxqh.com.copyright.copright.view.MyGridView>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
-                            android:text="类 别:" />
-
-                        <TextView
-                            android:id="@+id/resourcekind_id"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
-                            android:text="等 级:" />
+                        android:layout_marginTop="9dp">
 
                         <RatingBar
                             android:id="@+id/ratingbar_id"
@@ -142,490 +109,694 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp">
+                        android:layout_marginTop="12dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="10dp"
                             android:text="作 者:"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/textcolor1"
+                            android:textSize="13sp" />
 
                         <TextView
                             android:id="@+id/authorname_id"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/textcolor1"
+                            android:textSize="13sp" />
                     </LinearLayout>
-
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp">
+                        android:layout_marginTop="15dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="10dp"
                             android:text="权利人:"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/textcolor1"
+                            android:textSize="13sp" />
 
                         <TextView
                             android:id="@+id/copyrightrole_id"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/textcolor1"
+                            android:textSize="13sp" />
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:text="类 别:"
+                            android:textColor="@color/textcolor1"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/resourcekind_id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/textcolor1"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:text="关键字:"
+                            android:textColor="@color/textcolor1"
+                            android:textSize="13sp" />
+
+                        <copyright.hxqh.com.copyright.copright.view.MyGridView
+                            android:id="@+id/lablegrid_id"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:numColumns="3"
+                            android:horizontalSpacing="3dp"
+                            android:verticalSpacing="5dp"></copyright.hxqh.com.copyright.copright.view.MyGridView>
+
+
+                    </LinearLayout>
+
+
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dip"
-                    android:layout_below="@+id/basic_info"
-                    android:layout_marginTop="15dp"
-                    android:background="@android:color/darker_gray"></View>
             </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="9dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="@color/line1"></View>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="17dp">
+
+                <TextView
+                    android:id="@+id/resdiscribe_id"
+                    android:layout_width="295dp"
+                    android:layout_height="wrap_content"
+                    android:text="内容简介:"
+                    android:lineSpacingExtra="4dp"
+                    android:textColor="@color/textcolor1"
+                    android:layout_marginRight="10dp"
+                    android:textSize="11sp" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="17dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="@color/line1"></View>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="23dp"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
+                    >
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="13sp"
                         android:text="作者署名:" />
 
                     <TextView
                         android:id="@+id/signature_id"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textSize="13sp"
+                        android:textColor="@color/textcolor2"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="15dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="13sp"
                         android:text="原系统编号:" />
 
                     <TextView
                         android:id="@+id/originalnum_id"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"></TextView>
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textcolor2"
+                        android:textSize="13sp"></TextView>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
+                    android:layout_marginTop="15dp">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
+                            android:textColor="@color/textcolor1"
+                            android:textSize="13sp"
                             android:text="介     质:" />
 
                         <TextView
                             android:id="@+id/resmedium_id"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/textcolor2"
+                            android:textSize="13sp"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
+                            />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    >
+                    <TextView
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="13sp"
+                        android:layout_height="wrap_content"
+                        android:text="使用目的:" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
-                            android:text="使用目的:" />
-
-                        <TextView
-                            android:id="@+id/purpose_id"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp" />
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/purpose_id"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/textcolor2"
+                        android:textSize="13sp"
+                        android:layout_height="wrap_content"
+                        />
                 </LinearLayout>
+
+
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="15dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="13sp"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
-                        android:text="内容简介:" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/resdiscribe_id"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
                         android:text="ISBN/版号/播放许可证:" />
 
                     <TextView
                         android:id="@+id/ISBN_id"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/textcolor2"
+                        android:textSize="13sp"
                         android:layout_height="wrap_content"></TextView>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="15dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="13sp"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
                         android:text="ISRC编号:" />
 
                     <TextView
                         android:id="@+id/ISRC_id"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/textcolor2"
+                        android:textSize="13sp"
                         android:layout_height="wrap_content"></TextView>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="15dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="13sp"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
                         android:text="成     本:" />
 
                     <TextView
                         android:id="@+id/cost_id"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/textcolor2"
+                        android:textSize="13sp"
                         android:layout_height="wrap_content"></TextView>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="15dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="13sp"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
                         android:text="资源取得方式:" />
 
                     <TextView
                         android:id="@+id/resgainway_id"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/textcolor2"
+                        android:textSize="13sp"
                         android:layout_height="wrap_content"></TextView>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="15dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="13sp"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
                         android:text="权利归属方式:" />
 
                     <TextView
                         android:id="@+id/rightgainway_id"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/textcolor2"
+                        android:textSize="13sp"
                         android:layout_height="wrap_content"></TextView>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="15dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="13sp"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
                         android:text="创作完成日期:" />
 
                     <TextView
                         android:id="@+id/finishdate_id"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/textcolor2"
+                        android:textSize="13sp"
                         android:layout_height="wrap_content"></TextView>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="15dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="13sp"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
                         android:text="创作完成地点:" />
 
                     <TextView
                         android:id="@+id/finishplacearea_id"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/textcolor2"
+                        android:textSize="13sp"
                         android:layout_height="wrap_content"></TextView>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="15dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="13sp"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
                         android:text="是否已发表:" />
 
                     <TextView
                         android:id="@+id/isrelease_id"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"></TextView>
+                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/textcolor2"
+                        android:textSize="13sp"></TextView>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="15dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="13sp"
                         android:text="首发地址:" />
 
                     <TextView
                         android:id="@+id/fstrlsadd_id"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"></TextView>
+                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/textcolor2"
+                        android:textSize="13sp"></TextView>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="15dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="13sp"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
                         android:text="发表日期:" />
 
                     <TextView
                         android:id="@+id/fstrlsdate_id"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"></TextView>
+                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/textcolor2"
+                        android:textSize="13sp"></TextView>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
+                        android:layout_height="match_parent"
+                        android:textSize="13sp"
+                        android:textColor="@color/textcolor1"
                         android:text="资质证明:" />
                 </LinearLayout>
-                    <copyright.hxqh.com.copyright.copright.view.MyGridView
-                        android:id="@+id/credentials_id"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:horizontalSpacing="3dp"
-                        android:numColumns="5"></copyright.hxqh.com.copyright.copright.view.MyGridView>
+
+                <copyright.hxqh.com.copyright.copright.view.MyGridView
+                    android:id="@+id/credentials_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:horizontalSpacing="3dp"
+                    android:numColumns="5"></copyright.hxqh.com.copyright.copright.view.MyGridView>
+            </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@color/line1"></View>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginHorizontal="23dp"
+                    >
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center"
+                        android:background="@color/blue"></View>
 
                     <TextView
                         android:layout_width="wrap_content"
+                        android:textColor="@color/textcolor2"
+                        android:textSize="13sp"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
-                        android:text="备     注:" />
+                        android:layout_marginLeft="7dp"
+                        android:text="备 注:" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginHorizontal="23dp"
+                    android:layout_marginVertical="10dp">
 
                     <TextView
                         android:id="@+id/remark_id"
-                        android:layout_width="wrap_content"
+                        android:layout_width="295dp"
+                        android:textSize="11sp"
+                        android:lineSpacingExtra="8dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
                         android:text="" />
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dip"
-                    android:layout_marginTop="15dp"
-                    android:background="@android:color/darker_gray"></View>
+                    android:layout_height="10dp"
+                    android:background="@color/gray5"></View>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
-
+                    android:layout_marginHorizontal="23dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginBottom="10dp">
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="7dp"
+                        android:background="@color/blue"></View>
                     <TextView
-                        android:id="@+id/copyright_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:text="权利项（*项）："
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
+                        android:layout_marginRight="17dp"
+                        android:text="权利项"
+                        android:textColor="@color/textcolor2"
+                        android:textSize="13sp" />
+                    <TextView
+                        android:id="@+id/copyright_id"
+                        android:textColor="@color/textcolor2"
+                        android:layout_width="wrap_content"
+                        android:gravity="bottom"
+                        android:layout_height="match_parent"
+                        android:textSize="11sp"
+                        android:text="共 0 项"/>
                 </LinearLayout>
+
                 <TextView
                     android:id="@+id/have_not_data_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginVertical="15dp"
                     android:gravity="center"
                     android:text="暂无数据"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
+
                 <copyright.hxqh.com.copyright.copright.view.MyListView
                     android:id="@+id/list_1"
-                    android:divider="@null"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:cacheColorHint="@android:color/transparent"
+                    android:background="@color/gray5"
+                    android:cacheColorHint="@color/gray5"
+                    android:divider="@null"
                     android:fadingEdge="none"
                     android:scrollbars="none"></copyright.hxqh.com.copyright.copright.view.MyListView>
+            <LinearLayout
+                android:id="@+id/isshowlist_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:src="@mipmap/ic_hiden"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/gray5"></View>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginHorizontal="23dp"
+                    android:layout_marginTop="17dp">
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="7dp"
+                        android:background="@color/blue"></View>
 
                     <TextView
-                        android:id="@+id/relationship_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:text="关联资产（*项）："
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
+                        android:layout_marginRight="17dp"
+                        android:text="关联资产"
+                        android:textColor="@color/textcolor2"
+                        android:textSize="13sp" />
+                    <TextView
+                        android:id="@+id/relationship_id"
+                        android:textColor="@color/textcolor2"
+                        android:layout_width="wrap_content"
+                        android:gravity="bottom"
+                        android:layout_height="wrap_content"
+                        android:textSize="11sp"
+                        android:text="共 0 项"/>
+
 
                 </LinearLayout>
+
                 <TextView
                     android:id="@+id/have_not_data_id2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginVertical="15dp"
                     android:gravity="center"
                     android:text="暂无数据"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/list_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cacheColorHint="@android:color/transparent"
                     android:divider="@null"
                     android:dividerHeight="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:cacheColorHint="@android:color/transparent"
                     android:fadingEdge="none"
                     android:scrollbars="none"></android.support.v7.widget.RecyclerView>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
+            <LinearLayout
+                android:id="@+id/isshowlist2_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginVertical="10dp"
+                    android:src="@mipmap/ic_hiden"/>
+            </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/gray5"></View>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="23dp"
+                >
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
-                        android:layout_toLeftOf="@+id/createby_id"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="3dp"
+                        android:gravity="center_vertical"
+                        android:textSize="13sp"
+                        android:textColor="@color/textcolor1"
                         android:text="创建人:" />
 
                     <TextView
                         android:id="@+id/createby_id"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textSize="13sp"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/textcolor1"
                         android:layout_alignParentRight="true"
                         android:text="          "></TextView>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="5dp">
-
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
-                        android:layout_toLeftOf="@+id/createdate_id"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_marginRight="3dp"
+                        android:textSize="13sp"
+                        android:textColor="@color/textcolor1"
                         android:text="创建日期:" />
 
                     <TextView
                         android:id="@+id/createdate_id"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:textSize="13sp"
+                        android:textColor="@color/textcolor1"
                         android:layout_alignParentRight="true"
                         android:text="                              "></TextView>
-                </RelativeLayout>
+                </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

@@ -38,14 +38,14 @@ public class Channel implements Serializable {
         private String legalrepresentative;
         private String email;
         private int countnum;
-        private String createdate;
+        private String createDate;
 
-    public String getCreatedate() {
-        return createdate;
+    public String getCreateDate() {
+        return createDate;
     }
 
-    public void setCreatedate(String createdate) {
-        this.createdate = createdate;
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
     }
 
     public List<ProductInfoCollect> getProductInfoCollectList() {
