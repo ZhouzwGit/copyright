@@ -11,6 +11,7 @@ import butterknife.ButterKnife;
 import copyright.hxqh.com.copyright.R;
 import copyright.hxqh.com.copyright.copright.ui.publicService.entity.Consult;
 import copyright.hxqh.com.copyright.copright.ui.publicService.entity.RoyaltyEnity;
+import copyright.hxqh.com.copyright.copright.util.StockUtil;
 
 /**
  * Created by lianjh on 2018\10\19 0019.
@@ -75,5 +76,11 @@ public class ConsultDetailActivity extends AppCompatActivity {
             String[] splitstr=str.split("/");
             consultFile.setText(splitstr[splitstr.length - 1]);
         }
+        consultFile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new StockUtil().downLoadFile(ConsultDetailActivity.this, consult.getServicefile());
+            }
+        });
     }
 }

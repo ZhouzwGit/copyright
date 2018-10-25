@@ -19,6 +19,7 @@ public class LoadActivity extends AppCompatActivity {
             Manifest.permission.READ_PHONE_STATE,
             Manifest.permission.CAMERA,
             Manifest.permission.INTERNET,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
     };
     private PermissionsChecker mPermissionsChecker;
     @Override
