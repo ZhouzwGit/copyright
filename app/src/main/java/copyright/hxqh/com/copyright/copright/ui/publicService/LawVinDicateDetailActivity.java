@@ -16,6 +16,8 @@ import copyright.hxqh.com.copyright.copright.ui.publicService.adapter.TortinfoAd
 import copyright.hxqh.com.copyright.copright.ui.publicService.entity.Obligeeinfo;
 import copyright.hxqh.com.copyright.copright.ui.publicService.entity.RoyaltyEnity;
 import copyright.hxqh.com.copyright.copright.ui.publicService.entity.Tortinfo;
+import copyright.hxqh.com.copyright.copright.util.AcountUtil;
+import copyright.hxqh.com.copyright.copright.util.StockUtil;
 import copyright.hxqh.com.copyright.copright.view.MyListView;
 
 /**
@@ -23,7 +25,8 @@ import copyright.hxqh.com.copyright.copright.view.MyListView;
  * Current page
  */
 
-public class LawVinDicateDetailActivity extends AppCompatActivity {
+public class LawVinDicateDetailActivity extends AppCompatActivity implements View.OnClickListener{
+    private static final String TAG = LawVinDicateDetailActivity.class.getSimpleName();
     @Bind(R.id.menu_title) //标题
     TextView titleTextView;
     @Bind(R.id.back_id)
@@ -92,6 +95,11 @@ public class LawVinDicateDetailActivity extends AppCompatActivity {
             }
         });
         searchButton.setVisibility(View.GONE);
+        lawvindicateBook.setOnClickListener(this);
+        lawvindicateConfidenceFile.setOnClickListener(this);
+        lawvindicateprintscreen.setOnClickListener(this);
+        lawvindicatesignaturefiles.setOnClickListener(this);
+        lawvindicateDemo.setOnClickListener(this);
         if (royaltyEnity != null){
             lawvindicateNum.setText(royaltyEnity.getLawvindicateno());
             lawvindicateStatus.setText(royaltyEnity.getStatus());
@@ -133,5 +141,26 @@ public class LawVinDicateDetailActivity extends AppCompatActivity {
 
         tortinfoAdapter = new TortinfoAdapter(this, R.layout.tortinfo_card,tortinfoList);
         mListView.setAdapter(tortinfoAdapter);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.lawvindicate_book:
+                new StockUtil().downLoadFile(this, royaltyEnity.getCredential());
+                break;
+            case R.id.lawvindicate_confidencefile:
+                new StockUtil().downLoadFile(this, royaltyEnity.getCertifyfile());
+                break;
+            case R.id.lawvindicate_printscreen:
+                new StockUtil().downLoadFile(this, royaltyEnity.getIsprintscreen());
+                break;
+            case R.id.lawvindicate_signaturefiles:
+                new StockUtil().downLoadFile(this, royaltyEnity.getSignaturefiles());
+                break;
+            case R.id.lawvindicate_demo:
+                new StockUtil().downLoadFile(this, royaltyEnity.getSample());
+                break;
+        }
     }
 }

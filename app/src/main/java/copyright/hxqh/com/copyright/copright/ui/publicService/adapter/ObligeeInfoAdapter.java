@@ -17,6 +17,7 @@ import copyright.hxqh.com.copyright.copright.ui.author.adpter.RightAdapter;
 import copyright.hxqh.com.copyright.copright.ui.author.entity.Payres;
 import copyright.hxqh.com.copyright.copright.ui.publicService.entity.Obligeeinfo;
 import copyright.hxqh.com.copyright.copright.util.AcountUtil;
+import copyright.hxqh.com.copyright.copright.util.StockUtil;
 
 /**
  * Created by lianjh on 2018\10\17 0017.
@@ -26,14 +27,16 @@ import copyright.hxqh.com.copyright.copright.util.AcountUtil;
 public class ObligeeInfoAdapter extends ArrayAdapter {
     private LayoutInflater inflater;
     private int resource;
+    Context context;
     public ObligeeInfoAdapter(@NonNull Context context, int resource, List<Obligeeinfo> textViewResourceId) {
         super(context, resource, textViewResourceId);
         inflater = LayoutInflater.from(context);
         this.resource = resource;
+        this.context = context;
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Obligeeinfo item = (Obligeeinfo) this.getItem(position);
+        final Obligeeinfo item = (Obligeeinfo) this.getItem(position);
         ObligeeInfoAdapter.ViewHolder viewHolder;
         viewHolder = new ObligeeInfoAdapter.ViewHolder();
         View view = inflater.inflate(resource, null);
@@ -45,6 +48,12 @@ public class ObligeeInfoAdapter extends ArrayAdapter {
         String str1 = item.getIdentification();
         String[] splitstr=str1.split("/");
         viewHolder.id_file.setText(splitstr[splitstr.length - 1]);
+        viewHolder.id_file.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new StockUtil().downLoadFile(context, item.getIdentification());
+            }
+        });
         return view;
     }
 

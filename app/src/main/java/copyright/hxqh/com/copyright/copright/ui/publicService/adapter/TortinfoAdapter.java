@@ -19,6 +19,7 @@ import copyright.hxqh.com.copyright.copright.ui.publicService.LawVinDicateDetail
 import copyright.hxqh.com.copyright.copright.ui.publicService.entity.Obligeeinfo;
 import copyright.hxqh.com.copyright.copright.ui.publicService.entity.RoyaltyEnity;
 import copyright.hxqh.com.copyright.copright.ui.publicService.entity.Tortinfo;
+import copyright.hxqh.com.copyright.copright.util.StockUtil;
 
 /**
  * Created by lianjh on 2018\10\19 0019.
@@ -28,15 +29,17 @@ import copyright.hxqh.com.copyright.copright.ui.publicService.entity.Tortinfo;
 public class TortinfoAdapter extends ArrayAdapter {
     private LayoutInflater inflater;
     private int resource;
+    Context context;
     public TortinfoAdapter(@NonNull Context context, int resource, List<Tortinfo> textViewResourceId) {
         super(context, resource, textViewResourceId);
         inflater = LayoutInflater.from(context);
         this.resource = resource;
+        this.context = context;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Tortinfo item = (Tortinfo) this.getItem(position);
+        final Tortinfo item = (Tortinfo) this.getItem(position);
         TortinfoAdapter.ViewHolder viewHolder;
         viewHolder = new TortinfoAdapter.ViewHolder();
         View view = inflater.inflate(resource, null);
@@ -50,7 +53,6 @@ public class TortinfoAdapter extends ArrayAdapter {
         viewHolder.lawvindicateRemarks.setText(item.getTortnote());
         String str1 = item.getTorturl();
         String[] splitstr=str1.split("/");
-        viewHolder.lawvindicateTortURL.setText(splitstr[splitstr.length - 1]);
         return view;
     }
 
