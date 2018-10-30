@@ -1,5 +1,6 @@
 package copyright.hxqh.com.copyright.copright.ui.statistics;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import copyright.hxqh.com.copyright.R;
+import copyright.hxqh.com.copyright.copright.ui.publicService.PublicServiceActivity;
 
 public class StatisticsActivity extends AppCompatActivity implements View.OnClickListener {
     @Bind(R.id.workscount_id)
@@ -49,6 +51,8 @@ public class StatisticsActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.workscount_id:
+                Intent intent = new Intent(this, ProductionActivity.class);
+                startActivity(intent);
                 break;
             case R.id.rightcount_id:
                 break;

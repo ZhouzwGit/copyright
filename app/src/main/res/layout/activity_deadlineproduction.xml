@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="已截稿"
+                android:textColor="#ff333333"
+                android:textSize="14sp"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:id="@+id/storage_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="#ff01bf9d"
+                    android:textSize="25sp"
+                    />
+                <TextView
+                    android:id="@+id/storage_precent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="(0%)"
+                    android:textColor="#333333"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#EDEDED"></View>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="未截稿"
+                android:textColor="#ff333333"
+                android:textSize="14sp"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:id="@+id/unstorage_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="#274784"
+                    android:textSize="25sp"
+                    />
+                <TextView
+                    android:id="@+id/unstorage_precent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="(0%)"
+                    android:textColor="#333333"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/liner_pie"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="100dp"
+            android:background="@drawable/tab_left_selector">
+
+            <ImageView
+                android:id="@+id/image_pie"
+                android:layout_width="15dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:src="@drawable/ic_pie"/>
+            <TextView
+                android:id="@+id/text_pie"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="饼图"
+                android:gravity="center"
+                android:textSize="13sp"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/liner_LBar"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginRight="100dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/tab_right_unselector">
+
+            <ImageView
+                android:id="@+id/image_Lbar"
+                android:layout_width="15dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_line"/>
+            <TextView
+                android:id="@+id/text_Lbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="柱图"
+                android:gravity="center"
+                android:textSize="13sp"
+                android:textColor="#218BFF" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--<ScrollView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/dp_10">
+
+        <com.lixs.charts.PieChartView
+            android:id="@+id/pieView"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            app:circleStrokeWidth='2dp'
+            android:layout_marginLeft="30dp"/>
+
+        <lecho.lib.hellocharts.view.ColumnChartView
+            android:id="@+id/frameNewBase"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:visibility="gone">
+        </lecho.lib.hellocharts.view.ColumnChartView>
+
+
+    </LinearLayout>
+    <!--</ScrollView>-->
+</LinearLayout>

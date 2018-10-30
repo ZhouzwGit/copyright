@@ -22,4 +22,8 @@
     <color name="line1">#cecfcf</color>
     <color name="textcolor1">#84879a</color>
     <color name="textcolor2">#333333</color>
+    <color name="barcolor">#ff9a9a9a</color>
+    <color name="press_button_color">#218BFF</color>
+    <color name="pie_blue">#274784</color>
+    <color name="pie_green">#ff01bf9d</color>
 </resources>

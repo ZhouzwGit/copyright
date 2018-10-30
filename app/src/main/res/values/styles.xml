@@ -109,5 +109,12 @@
         <!--是否模糊-->
         <item name="android:backgroundDimEnabled">false</item>
     </style>
-
+    <style name="my_dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+    <style name="dialo_gstyle" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/dialog_enter</item>
+        <item name="android:windowExitAnimation">@anim/dialog_exit</item>
+    </style>
 </resources>

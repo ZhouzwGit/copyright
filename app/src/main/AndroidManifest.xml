@@ -77,6 +77,12 @@
         <activity android:name=".copright.ui.publicService.ConsultActivity" />
         <activity android:name=".copright.ui.publicService.ConsultDetailActivity" />
         <activity android:name=".copright.ui.statistics.StatisticsActivity"></activity>
+        <activity android:name=".copright.ui.statistics.WorksCountActivity"></activity>
+        <activity android:name=".copright.ui.statistics.ProductionActivity"></activity>
+        <activity android:name=".copright.ui.statistics.DeadLineProductionCountsActivity"></activity>
+        <activity android:name=".copright.ui.statistics.MaxConversionAuthorActivity"></activity>
+        <activity android:name=".copright.ui.statistics.WorksPropertyActivity"></activity>
+        <activity android:name=".copright.ui.statistics.ResTypePieActivity"></activity>
         <provider android:name="android.support.v4.content.FileProvider"
             android:authorities="com.pgyersdk.copyright.provider.fileProvider"
             android:exported="false"
