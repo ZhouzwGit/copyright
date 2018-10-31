@@ -83,6 +83,9 @@
         <activity android:name=".copright.ui.statistics.MaxConversionAuthorActivity"></activity>
         <activity android:name=".copright.ui.statistics.WorksPropertyActivity"></activity>
         <activity android:name=".copright.ui.statistics.ResTypePieActivity"></activity>
+        <activity android:name=".copright.ui.statistics.RightCountActivity"></activity>
+        <activity android:name=".copright.ui.statistics.RightPutInStorageActivity"></activity>
+        <activity android:name=".copright.ui.statistics.RightPropertyStorageActivity"></activity>
         <provider android:name="android.support.v4.content.FileProvider"
             android:authorities="com.pgyersdk.copyright.provider.fileProvider"
             android:exported="false"

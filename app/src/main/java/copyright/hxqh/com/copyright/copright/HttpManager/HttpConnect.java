@@ -37,6 +37,7 @@ import copyright.hxqh.com.copyright.copright.ui.product.entity.Channel;
 import copyright.hxqh.com.copyright.copright.ui.product.entity.Product;
 import copyright.hxqh.com.copyright.copright.ui.statistics.entity.MaxConversion;
 import copyright.hxqh.com.copyright.copright.ui.statistics.entity.ResourceKind;
+import copyright.hxqh.com.copyright.copright.ui.statistics.entity.RightPutInStorage;
 import copyright.hxqh.com.copyright.copright.ui.statistics.entity.StorageCounts;
 import copyright.hxqh.com.copyright.copright.util.AcountUtil;
 import copyright.hxqh.com.copyright.copright.util.JsonUtil;
@@ -473,6 +474,33 @@ public class HttpConnect {
         }
         return royaltyList;
     }
+    public static RightPutInStorage getRightPutInStorageCounts(JSONObject json){
+        String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/rightPutInStorageCounts";
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpPost post = new HttpPost(url);
+        StringEntity jsonEntity = null;
+        String result = null;
+        RightPutInStorage royaltyList = new RightPutInStorage();
+        try{
+            jsonEntity = new StringEntity(json.toString(),"UTF-8");
+            jsonEntity.setContentEncoding("UTF-8");
+            jsonEntity.setContentType("application/json");
+            post.setEntity(jsonEntity);
+            HttpResponse response = null;
+            response = httpClient.execute(post);
+            if (response.getStatusLine().getStatusCode() == 200){
+                HttpEntity httpEntity = response.getEntity();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(httpEntity.getContent()));
+                result = reader.readLine().toLowerCase();
+                royaltyList =  com.alibaba.fastjson.JSONObject.parseObject(result, new TypeReference<RightPutInStorage>() {});
+//                royaltyList = (MaxConversion) JsonUtil.getObject(result,new TypeToken<List<MaxConversion>>(){});
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return royaltyList;
+    }
     public static String save(JSONObject json){
         String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/todomark";
         HttpClient httpClient = new DefaultHttpClient();
@@ -707,6 +735,19 @@ public class HttpConnect {
             jsonObject.put("type",type);
             jsonObject.put("resourcekind",resourcekind);
             jsonObject.put("chartsType",chartsType);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
+    }
+    public static JSONObject getRightPutInStorageJson(Context ctx,String resourcekind,String chartsType,String type,String copyright){
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("username",AcountUtil.getUsername(ctx));
+            jsonObject.put("type",type);
+            jsonObject.put("resourcekind",resourcekind);
+            jsonObject.put("chartsType",chartsType);
+            jsonObject.put("copyright",copyright);
         } catch (JSONException e) {
             e.printStackTrace();
         }
