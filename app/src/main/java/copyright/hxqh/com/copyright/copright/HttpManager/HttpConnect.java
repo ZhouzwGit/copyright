@@ -17,6 +17,7 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import copyright.hxqh.com.copyright.copright.entity.Acttype;
@@ -493,6 +494,32 @@ public class HttpConnect {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(httpEntity.getContent()));
                 result = reader.readLine().toLowerCase();
                 royaltyList =  com.alibaba.fastjson.JSONObject.parseObject(result, new TypeReference<RightPutInStorage>() {});
+//                royaltyList = (MaxConversion) JsonUtil.getObject(result,new TypeToken<List<MaxConversion>>(){});
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return royaltyList;
+    }
+    public static StorageCounts getRightAssets(JSONObject json,String url){
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpPost post = new HttpPost(url);
+        StringEntity jsonEntity = null;
+        String result = null;
+        StorageCounts royaltyList = new StorageCounts();
+        try{
+            jsonEntity = new StringEntity(json.toString(),"UTF-8");
+            jsonEntity.setContentEncoding("UTF-8");
+            jsonEntity.setContentType("application/json");
+            post.setEntity(jsonEntity);
+            HttpResponse response = null;
+            response = httpClient.execute(post);
+            if (response.getStatusLine().getStatusCode() == 200){
+                HttpEntity httpEntity = response.getEntity();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(httpEntity.getContent()));
+                result = reader.readLine().toLowerCase();
+                royaltyList =  com.alibaba.fastjson.JSONObject.parseObject(result, new TypeReference<StorageCounts>() {});
 //                royaltyList = (MaxConversion) JsonUtil.getObject(result,new TypeToken<List<MaxConversion>>(){});
             }
         }catch (Exception e){

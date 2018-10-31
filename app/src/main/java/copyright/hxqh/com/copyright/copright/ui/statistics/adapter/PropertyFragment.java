@@ -87,7 +87,10 @@ public class PropertyFragment  extends BaseFragment {
 
     private int blueColor = Color.rgb(39,71,132);
     private int greenColor = Color.rgb(1,191,157);
-
+    //x轴的数据
+    List<String> itemX = new ArrayList<>();
+    //y轴的数据
+    ArrayList<Integer> itemY = new ArrayList<>();
 
     public static PropertyFragment newInstance(int num, StorageCounts storageCounts) {
         PropertyFragment fragment = new PropertyFragment();
@@ -222,43 +225,50 @@ public class PropertyFragment  extends BaseFragment {
             storagecount.setText("0");
             storageprecent.setText("(0%)");
             for (int i = 0;i<serieslist.size();i++){
-                if (serieslist.get(i).getName().equals("资产")){
-                    text1.setText(serieslist.get(i).getName());
-                    text2.setText("资源");
+                if (serieslist.get(i).getName().contains("非资产")){
+                    text1.setText("资产");
+                    text2.setText("非资产");
                     unstoragecount.setText(String.valueOf(serieslist.get(i).getValue()));
                     unstorage = Float.valueOf(String.format("%.2f",(float)serieslist.get(i).getValue()/sum));
                     unstorageprecent.setText("("+String.valueOf(unstorage * 100)+"%)");
                     mDescription.add(serieslist.get(i).getName());
                     mArcColors.add(blueColor);
                     mRatios.add(unstorage);
+                    itemX.add(serieslist.get(i).getName());
+                    itemY.add(serieslist.get(i).getValue());
+                }else if (serieslist.get(i).getName().equals("资产")){
+                    text1.setText("资产");
+                    text2.setText("非资产");
+                    storagecount.setText(String.valueOf(serieslist.get(i).getValue()));
+                    instorage =Float.valueOf(String.format("%.2f",(float)serieslist.get(i).getValue()/sum));
+                    storageprecent.setText("("+String.valueOf(instorage * 100)+"%)");
+                    mDescription.add(serieslist.get(i).getName());
+                    mArcColors.add(greenColor);
+                    mRatios.add(instorage);
+                    itemX.add(serieslist.get(i).getName());
+                    itemY.add(serieslist.get(i).getValue());
+                }else if (serieslist.get(i).getName().contains("非资源")){
+                    text1.setText("资源");
+                    text2.setText("非资源");
+                    unstoragecount.setText(String.valueOf(serieslist.get(i).getValue()));
+                    unstorage = Float.valueOf(String.format("%.2f",(float)serieslist.get(i).getValue()/sum));
+                    unstorageprecent.setText("("+String.valueOf(unstorage * 100)+"%)");
+                    mDescription.add(serieslist.get(i).getName());
+                    mArcColors.add(blueColor);
+                    mRatios.add(unstorage);
+                    itemX.add(serieslist.get(i).getName());
+                    itemY.add(serieslist.get(i).getValue());
                 }else if (serieslist.get(i).getName().equals("资源")){
-                    text1.setText(serieslist.get(i).getName());
-                    text2.setText("资产");
+                    text1.setText("资源");
+                    text2.setText("非资源");
                     storagecount.setText(String.valueOf(serieslist.get(i).getValue()));
                     instorage =Float.valueOf(String.format("%.2f",(float)serieslist.get(i).getValue()/sum));
                     storageprecent.setText("("+String.valueOf(instorage * 100)+"%)");
                     mDescription.add(serieslist.get(i).getName());
                     mArcColors.add(greenColor);
                     mRatios.add(instorage);
-                }
-                if (serieslist.get(i).getName().contains("未")){
-                    text1.setText("已转化");
-                    text2.setText("未转化");
-                    unstoragecount.setText(String.valueOf(serieslist.get(i).getValue()));
-                    unstorage = Float.valueOf(String.format("%.2f",(float)serieslist.get(i).getValue()/sum));
-                    unstorageprecent.setText("("+String.valueOf(unstorage * 100)+"%)");
-                    mDescription.add(serieslist.get(i).getName());
-                    mArcColors.add(blueColor);
-                    mRatios.add(unstorage);
-                }else if (serieslist.get(i).getName().contains("已")){
-                    text1.setText("已转化");
-                    text2.setText("未转化");
-                    storagecount.setText(String.valueOf(serieslist.get(i).getValue()));
-                    instorage =Float.valueOf(String.format("%.2f",(float)serieslist.get(i).getValue()/sum));
-                    storageprecent.setText("("+String.valueOf(instorage * 100)+"%)");
-                    mDescription.add(serieslist.get(i).getName());
-                    mArcColors.add(greenColor);
-                    mRatios.add(instorage);
+                    itemX.add(serieslist.get(i).getName());
+                    itemY.add(serieslist.get(i).getValue());
                 }
             }
 
@@ -269,43 +279,11 @@ public class PropertyFragment  extends BaseFragment {
         pieChartView.setDatas(mRatios, mArcColors, mDescription);
     }
     private void initColumnDatas() {
-        //x轴的数据
-        List<String> itemX = new ArrayList<>();
-        if (serieslist!=null){
-            for (int i = 0;i<serieslist.size();i++){
-                if (serieslist.get(i).getName().equals("资产")){
-                    itemX.add(serieslist.get(i).getName());
-                }else if (serieslist.get(i).getName().equals("资源")){
-                    itemX.add(serieslist.get(i).getName());
-                }
-                if (serieslist.get(i).getName().contains("未")){
-                    itemX.add(serieslist.get(i).getName());
-                }else if (serieslist.get(i).getName().contains("已")){
-                    itemX.add(serieslist.get(i).getName());
-                }
-            }
-        }
 
         //定义X轴刻度值的数据集合
         ArrayList<AxisValue> axisValuesX = new ArrayList<AxisValue>();
         for (int j = 0; j < itemX.size(); ++j) {
             axisValuesX.add(new AxisValue(j).setValue(j).setLabel(itemX.get(j)));
-        }
-        //y轴的数据
-        ArrayList<Integer> itemY = new ArrayList<>();
-        if (serieslist!=null) {
-            for (int i = 0; i < serieslist.size(); i++) {
-                if (serieslist.get(i).getName().equals("资产")) {
-                    itemY.add(serieslist.get(i).getValue());
-                } else if (serieslist.get(i).getName().equals("资源")) {
-                    itemY.add(serieslist.get(i).getValue());
-                }
-                if (serieslist.get(i).getName().contains("未")) {
-                    itemY.add(serieslist.get(i).getValue());
-                } else if (serieslist.get(i).getName().contains("已")) {
-                    itemY.add(serieslist.get(i).getValue());
-                }
-            }
         }
         int numSubcolumns = 1;
         int numColumns = itemX.size();
