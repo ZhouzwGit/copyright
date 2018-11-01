@@ -226,9 +226,16 @@
 
         </LinearLayout>
 
-        <!--<ScrollView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
+        <View
+            android:id="@+id/dotted_line"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
+            android:layout_marginTop="@dimen/dp_10"
+            android:background="@drawable/bg_dotted_line"
+            android:layerType="software"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -247,6 +254,8 @@
                 android:id="@+id/frameNewBase"
                 android:layout_width="match_parent"
                 android:layout_height="260dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
                 android:visibility="gone">
             </lecho.lib.hellocharts.view.ColumnChartView>
 

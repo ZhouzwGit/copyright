@@ -100,7 +100,7 @@ public class StorageFragment extends BaseFragment {
     List<String> mDescription = new ArrayList<>();
     List<Integer> mArcColors = new ArrayList<>();
     List<Float> mRatios = new ArrayList<>();
-    Float instorage;
+
     Float unstorage;
 
     //x轴的数据

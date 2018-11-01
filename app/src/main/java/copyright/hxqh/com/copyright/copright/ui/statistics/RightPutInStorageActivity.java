@@ -112,6 +112,8 @@ public class RightPutInStorageActivity extends FragmentActivity {
     TextView text1;
     @Bind(R.id.text2)
     TextView text2;
+    @Bind(R.id.dotted_line)
+    View line;
 
     Dialog mCameraDialog;
 
@@ -132,10 +134,15 @@ public class RightPutInStorageActivity extends FragmentActivity {
     };
     List<String> mDescription = new ArrayList<>();
     List<Integer> mArcColors = new ArrayList<>();
+    List<Float> mRatios = new ArrayList<>();
     Float instorage;
     Float unstorage;
     private int blueColor = Color.rgb(39,71,132);
     private int greenColor = Color.rgb(1,191,157);
+    //x轴的数据
+    List<String> itemX = new ArrayList<>();
+    //y轴的数据
+    ArrayList<Integer> itemY = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -161,6 +168,7 @@ public class RightPutInStorageActivity extends FragmentActivity {
         recoursetype.setOnClickListener(recoursetypeOnClickListener);
         righttype.setOnClickListener(righttypeOnClickListener);
         barChart.setVisibility(View.GONE);
+        line.setVisibility(View.GONE);
         barChart.setOnValueTouchListener(new ValueTouchListener());
         barChart.setValueSelectionEnabled(true);
         linerPie.setOnClickListener(new View.OnClickListener() {
@@ -169,6 +177,7 @@ public class RightPutInStorageActivity extends FragmentActivity {
             public void onClick(View v) {
                 pieChartView.setVisibility(View.VISIBLE);
                 barChart.setVisibility(View.GONE);
+                line.setVisibility(View.GONE);
                 textpie.setTextColor(Color.parseColor("#ffffff"));
                 textLbar.setTextColor(Color.parseColor("#218BFF"));
                 linerPie.setBackgroundResource(R.drawable.tab_left_selector);
@@ -182,6 +191,7 @@ public class RightPutInStorageActivity extends FragmentActivity {
             public void onClick(View v) {
                 pieChartView.setVisibility(View.GONE);
                 barChart.setVisibility(View.VISIBLE);
+                line.setVisibility(View.VISIBLE);
                 textpie.setTextColor(Color.parseColor("#218BFF"));
                 textLbar.setTextColor(Color.parseColor("#ffffff"));
                 linerPie.setBackgroundResource(R.drawable.tab_left_unselector);
@@ -334,7 +344,7 @@ public class RightPutInStorageActivity extends FragmentActivity {
 
             } else if (i == R.id.right_sure) {
                 rightkind.setText(rightkinds);
-                json2 = HttpConnect.getRightPutInStorageJson(RightPutInStorageActivity.this,resourcekind,"pie","rightPutInStorage",rightkinds);
+                json2 = HttpConnect.getRightPutInStorageJson(RightPutInStorageActivity.this,textresourcekind.getText().toString(),"pie","rightPutInStorage",rightkinds);
                 getData(json2);
                 mCameraDialog.dismiss();
 
@@ -353,8 +363,10 @@ public class RightPutInStorageActivity extends FragmentActivity {
             @Override
             protected void onPostExecute(RightPutInStorage preoducts) {
                 super.onPostExecute(preoducts);
-                data = (ArrayList<Integer>) preoducts.getSeries().get(0).getData();
-                text = (ArrayList<String>) preoducts.getXaxis().get(0).getData();
+                if (preoducts!=null){
+                    data = (ArrayList<Integer>) preoducts.getSeries().get(0).getData();
+                    text = (ArrayList<String>) preoducts.getXaxis().get(0).getData();
+                }
                 if (data == null){
                     linerLbar.setEnabled(false);
                     linerPie.setEnabled(false);
@@ -373,29 +385,10 @@ public class RightPutInStorageActivity extends FragmentActivity {
 
     }
     private void initColumnDatas() {
-        //x轴的数据
-        List<String> itemX = new ArrayList<>();
-        if (text!=null){
-            for (int i = 0;i<text.size();i++){
-
-                itemX.add(text.get(i));
-
-            }
-        }
-
         //定义X轴刻度值的数据集合
         ArrayList<AxisValue> axisValuesX = new ArrayList<AxisValue>();
         for (int j = 0; j < itemX.size(); ++j) {
             axisValuesX.add(new AxisValue(j).setValue(j).setLabel(itemX.get(j)));
-        }
-        //y轴的数据
-        ArrayList<Integer> itemY = new ArrayList<>();
-        if (data!=null) {
-            for (int i = 0; i < data.size(); i++) {
-
-                itemY.add(data.get(i));
-
-            }
         }
         int numSubcolumns = 1;
         int numColumns = itemX.size();
@@ -421,15 +414,15 @@ public class RightPutInStorageActivity extends FragmentActivity {
             axisX.setValues(axisValuesX);
             axisX.setHasTiltedLabels(false);
             axisX.setTextSize(12);// 设置X轴文字大小
-            axisX.setHasLines(true); //x 轴分割线
+            axisX.setHasLines(false); //x 轴分割线
             axisX.setMaxLabelChars(4);
-            Axis axisY = new Axis().setHasLines(true);
+            Axis axisY = new Axis().setHasLines(false);
             if (ConstantsChart.hasAxesNames) {
 //                axisX.setName("作品入库情况占比");
-                axisY.setName("数量");
+//                axisY.setName("数量");
             }
             data.setAxisXBottom(axisX);
-            data.setAxisYLeft(axisY);
+//            data.setAxisYLeft(axisY);
         } else {
             data.setAxisXBottom(null);
             data.setAxisYLeft(null);
@@ -439,37 +432,43 @@ public class RightPutInStorageActivity extends FragmentActivity {
         barChart.setColumnChartData(data);
     }
     private void initPieDatas() {
-        List<Float> mRatios = new ArrayList<>();
-        mDescription.clear();
-        mArcColors.clear();
         mRatios.clear();
+        mArcColors.clear();
+        mDescription.clear();
+        itemX.clear();
+        itemY.clear();
+        mArcColors.add(greenColor);
+        mArcColors.add(blueColor);
         unstoragecount.setText("0");
         unstorageprecent.setText("(0%)");
         storagecount.setText("0");
         storageprecent.setText("(0%)");
+
         if (data != null){
             int sum = 0;
             for (int i = 0;i<data.size();i++){
                 sum = sum + data.get(i);
             }
-            text1.setText("未入库");
-            text2.setText("已入库");
             for (int i = 0;i<data.size();i++){
-                if (text.get(i).contains("未")){
-                    storagecount.setText(String.valueOf(data.get(i)));
-                    instorage =Float.valueOf(String.format("%.2f",(float)data.get(i)/sum));
-                    storageprecent.setText("("+String.valueOf(instorage * 100)+"%)");
-                    mDescription.add(text.get(i));
-                    mArcColors.add(greenColor);
-                    mRatios.add(instorage);
-                }else if (text.get(i).contains("已")){
-                    unstoragecount.setText(String.valueOf(data.get(i)));
-                    unstorage = Float.valueOf(String.format("%.2f",(float)data.get(i)/sum));
-                    unstorageprecent.setText("("+String.valueOf(unstorage * 100)+"%)");
-                    mDescription.add(text.get(i));
-                    mArcColors.add(blueColor);
-                    mRatios.add(unstorage);
-                }
+                itemX.add(text.get(i).replaceAll("\r\n",""));
+                itemY.add(data.get(i));
+                mDescription.add(text.get(i).replaceAll("\r\n",""));
+                unstorage = Float.valueOf(String.format("%.2f",(float)data.get(i)/sum));
+                mRatios.add(unstorage);
+            }
+            if (mRatios.size()>1){
+                text1.setText(mDescription.get(0));
+                text2.setText(mDescription.get(1));
+                storagecount.setText(String.valueOf(itemY.get(0)));
+                unstoragecount.setText(String.valueOf(itemY.get(1)));
+                storageprecent.setText("("+String.valueOf(mRatios.get(0)*100)+"%)");
+                unstorageprecent.setText("("+String.valueOf(mRatios.get(1)*100)+"%)");
+            }else {
+                text1.setText(mDescription.get(0));
+                text2.setText("");
+                storagecount.setText(String.valueOf(itemY.get(0)));
+                storageprecent.setText("("+String.valueOf(mRatios.get(0)*100)+"%)");
+
             }
 
         }else {

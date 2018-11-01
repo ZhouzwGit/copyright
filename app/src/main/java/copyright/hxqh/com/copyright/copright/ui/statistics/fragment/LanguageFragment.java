@@ -52,7 +52,8 @@ public class LanguageFragment extends BaseFragment {
     ArrayList<Series_data> serieslist = new ArrayList<>();
     List<String> mDescription = new ArrayList<>();
     List<Integer> mArcColors = new ArrayList<>();
-    Float instorage;
+    List<Float> mRatios = new ArrayList<>();
+    ArrayList<Integer> itemY = new ArrayList<>();
     Float unstorage;
 
     private int blueColor = Color.rgb(39, 71, 132);
@@ -126,40 +127,43 @@ public class LanguageFragment extends BaseFragment {
     }
 
     private void initPieDatas() {
-        List<Float> mRatios = new ArrayList<>();
         mDescription.clear();
         mArcColors.clear();
-        if (serieslist != null) {
+        mRatios.clear();
+        itemY.clear();
+        unstoragecount.setText("0");
+        unstorageprecent.setText("(0%)");
+        storagecount.setText("0");
+        storageprecent.setText("(0%)");
+        mArcColors.add(greenColor);
+        mArcColors.add(blueColor);
+        if (serieslist != null && serieslist.size()!=0){
             int sum = 0;
-            for (int i = 0; i < serieslist.size(); i++) {
+            for (int i = 0;i<serieslist.size();i++){
                 sum = sum + serieslist.get(i).getValue();
             }
-            unstoragecount.setText("0");
-            unstorageprecent.setText("(0%)");
-            storagecount.setText("0");
-            storageprecent.setText("(0%)");
-            text1.setText("超语种使用");
-            text2.setText("未超语种使用");
-            for (int i = 0; i < serieslist.size(); i++) {
-                if (serieslist.get(i).getName().contains("未")) {
-                    unstoragecount.setText(String.valueOf(serieslist.get(i).getValue()));
-                    unstorage = Float.valueOf(String.format("%.2f", (float) serieslist.get(i).getValue() / sum));
-                    unstorageprecent.setText("(" + String.valueOf(unstorage * 100) + "%)");
-                    mDescription.add(serieslist.get(i).getName());
-                    mArcColors.add(blueColor);
-                    mRatios.add(unstorage);
-                } else{
-                    storagecount.setText(String.valueOf(serieslist.get(i).getValue()));
-                    instorage = Float.valueOf(String.format("%.2f", (float) serieslist.get(i).getValue() / sum));
-                    storageprecent.setText("(" + String.valueOf(instorage * 100) + "%)");
-                    mDescription.add(serieslist.get(i).getName());
-                    mArcColors.add(greenColor);
-                    mRatios.add(instorage);
-                }
+
+            for (int i = 0;i<serieslist.size();i++){
+                itemY.add(serieslist.get(i).getValue());
+                mDescription.add(serieslist.get(i).getName().replaceAll("\r\n",""));
+                unstorage = Float.valueOf(String.format("%.2f",(float)serieslist.get(i).getValue()/sum));
+                mRatios.add(unstorage);
             }
+            if (mRatios.size()>1){
+                text1.setText(mDescription.get(0));
+                text2.setText(mDescription.get(1));
+                storagecount.setText(String.valueOf(itemY.get(0)));
+                unstoragecount.setText(String.valueOf(itemY.get(1)));
+                storageprecent.setText("("+String.valueOf(mRatios.get(0)*100)+"%)");
+                unstorageprecent.setText("("+String.valueOf(mRatios.get(1)*100)+"%)");
+            }else {
+                text1.setText(mDescription.get(0));
+                text2.setText("");
+                storagecount.setText(String.valueOf(itemY.get(0)));
+                storageprecent.setText("("+String.valueOf(mRatios.get(0)*100)+"%)");
 
+            }
         }
-
         //点击动画开启
         pieChartView.setCanClickAnimation(true);
         pieChartView.setDatas(mRatios, mArcColors, mDescription);

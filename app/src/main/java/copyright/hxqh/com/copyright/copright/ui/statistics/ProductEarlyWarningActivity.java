@@ -88,12 +88,7 @@ public class ProductEarlyWarningActivity  extends FragmentActivity {
      */
     ArrayList<RelativeLayout> relativeLayouts = new ArrayList<RelativeLayout>();
 
-    String resourcekind;
-    private JSONObject json2;
     int index = 0;
-
-    ArrayList<String> list = new ArrayList<>();
-    List<StorageCounts> storageCountsList= new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

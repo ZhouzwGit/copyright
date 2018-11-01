@@ -88,6 +88,8 @@ public class RightPropertyStorageActivity  extends FragmentActivity {
     TextView text1;
     @Bind(R.id.text2)
     TextView text2;
+    @Bind(R.id.dotted_line)
+    View line;
 
     Dialog mCameraDialog;
 
@@ -105,11 +107,15 @@ public class RightPropertyStorageActivity  extends FragmentActivity {
     ArrayList<String> list = new ArrayList<>();
     List<String> mDescription = new ArrayList<>();
     List<Integer> mArcColors = new ArrayList<>();
+    List<Float> mRatios = new ArrayList<>();
     Float instorage;
     Float unstorage;
     private int blueColor = Color.rgb(39,71,132);
     private int greenColor = Color.rgb(1,191,157);
-
+    //x轴的数据
+    List<String> itemX = new ArrayList<>();
+    //y轴的数据
+    ArrayList<Integer> itemY = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,6 +139,7 @@ public class RightPropertyStorageActivity  extends FragmentActivity {
         });
         recoursetype.setOnClickListener(recoursetypeOnClickListener);
         barChart.setVisibility(View.GONE);
+        line.setVisibility(View.GONE);
         barChart.setOnValueTouchListener(new ValueTouchListener());
         barChart.setValueSelectionEnabled(true);
         linerPie.setOnClickListener(new View.OnClickListener() {
@@ -141,6 +148,7 @@ public class RightPropertyStorageActivity  extends FragmentActivity {
             public void onClick(View v) {
                 pieChartView.setVisibility(View.VISIBLE);
                 barChart.setVisibility(View.GONE);
+                line.setVisibility(View.GONE);
                 textpie.setTextColor(Color.parseColor("#ffffff"));
                 textLbar.setTextColor(Color.parseColor("#218BFF"));
                 linerPie.setBackgroundResource(R.drawable.tab_left_selector);
@@ -154,6 +162,7 @@ public class RightPropertyStorageActivity  extends FragmentActivity {
             public void onClick(View v) {
                 pieChartView.setVisibility(View.GONE);
                 barChart.setVisibility(View.VISIBLE);
+                line.setVisibility(View.VISIBLE);
                 textpie.setTextColor(Color.parseColor("#218BFF"));
                 textLbar.setTextColor(Color.parseColor("#ffffff"));
                 linerPie.setBackgroundResource(R.drawable.tab_left_unselector);
@@ -288,30 +297,13 @@ public class RightPropertyStorageActivity  extends FragmentActivity {
 
     }
     private void initColumnDatas() {
-        //x轴的数据
-        List<String> itemX = new ArrayList<>();
-        if (text!=null){
-            for (int i = 0;i<text.size();i++){
-
-                itemX.add(text.get(i));
-
-            }
-        }
 
         //定义X轴刻度值的数据集合
         ArrayList<AxisValue> axisValuesX = new ArrayList<AxisValue>();
         for (int j = 0; j < itemX.size(); ++j) {
             axisValuesX.add(new AxisValue(j).setValue(j).setLabel(itemX.get(j)));
         }
-        //y轴的数据
-        ArrayList<Integer> itemY = new ArrayList<>();
-        if (data!=null) {
-            for (int i = 0; i < data.size(); i++) {
 
-                itemY.add(data.get(i));
-
-            }
-        }
         int numSubcolumns = 1;
         int numColumns = itemX.size();
         List<Column> columns = new ArrayList<Column>();
@@ -336,15 +328,15 @@ public class RightPropertyStorageActivity  extends FragmentActivity {
             axisX.setValues(axisValuesX);
             axisX.setHasTiltedLabels(false);
             axisX.setTextSize(12);// 设置X轴文字大小
-            axisX.setHasLines(true); //x 轴分割线
+            axisX.setHasLines(false); //x 轴分割线
             axisX.setMaxLabelChars(4);
-            Axis axisY = new Axis().setHasLines(true);
+            Axis axisY = new Axis().setHasLines(false);
             if (ConstantsChart.hasAxesNames) {
 //                axisX.setName("作品入库情况占比");
-                axisY.setName("数量");
+//                axisY.setName("数量");
             }
             data.setAxisXBottom(axisX);
-            data.setAxisYLeft(axisY);
+//            data.setAxisYLeft(axisY);
         } else {
             data.setAxisXBottom(null);
             data.setAxisYLeft(null);
@@ -354,7 +346,8 @@ public class RightPropertyStorageActivity  extends FragmentActivity {
         barChart.setColumnChartData(data);
     }
     private void initPieDatas() {
-        List<Float> mRatios = new ArrayList<>();
+        itemX.clear();
+        itemY.clear();
         mDescription.clear();
         mArcColors.clear();
         mRatios.clear();
@@ -362,29 +355,33 @@ public class RightPropertyStorageActivity  extends FragmentActivity {
         unstorageprecent.setText("(0%)");
         storagecount.setText("0");
         storageprecent.setText("(0%)");
+        mArcColors.add(greenColor);
+        mArcColors.add(blueColor);
         if (data != null ) {
             int sum = 0;
             for (int i = 0; i < data.size(); i++) {
                 sum = sum + data.get(i);
             }
-            text1.setText("资产");
-            text2.setText("资源");
-            for (int i = 0; i < data.size(); i++) {
-                if (text.get(i).contains("资产")) {
-                    storagecount.setText(String.valueOf(data.get(i)));
-                    instorage = Float.valueOf(String.format("%.2f", (float) data.get(i) / sum));
-                    storageprecent.setText("(" + String.valueOf(instorage * 100) + "%)");
-                    mDescription.add(text.get(i));
-                    mArcColors.add(greenColor);
-                    mRatios.add(instorage);
-                } else if (text.get(i).contains("资源")) {
-                    unstoragecount.setText(String.valueOf(data.get(i)));
-                    unstorage = Float.valueOf(String.format("%.2f", (float) data.get(i) / sum));
-                    unstorageprecent.setText("(" + String.valueOf(unstorage * 100) + "%)");
-                    mDescription.add(text.get(i));
-                    mArcColors.add(blueColor);
-                    mRatios.add(unstorage);
-                }
+            for (int i = 0;i<data.size();i++){
+                itemX.add(text.get(i).replaceAll("\r\n",""));
+                itemY.add(data.get(i));
+                mDescription.add(text.get(i).replaceAll("\r\n",""));
+                unstorage = Float.valueOf(String.format("%.2f",(float)data.get(i)/sum));
+                mRatios.add(unstorage);
+            }
+            if (mRatios.size()>1){
+                text1.setText(mDescription.get(0));
+                text2.setText(mDescription.get(1));
+                storagecount.setText(String.valueOf(itemY.get(0)));
+                unstoragecount.setText(String.valueOf(itemY.get(1)));
+                storageprecent.setText("("+String.valueOf(mRatios.get(0)*100)+"%)");
+                unstorageprecent.setText("("+String.valueOf(mRatios.get(1)*100)+"%)");
+            }else {
+                text1.setText(mDescription.get(0));
+                text2.setText("");
+                storagecount.setText(String.valueOf(itemY.get(0)));
+                storageprecent.setText("("+String.valueOf(mRatios.get(0)*100)+"%)");
+
             }
         }else {
             Toast.makeText(RightPropertyStorageActivity.this, "暂无数据", Toast.LENGTH_SHORT).show();
