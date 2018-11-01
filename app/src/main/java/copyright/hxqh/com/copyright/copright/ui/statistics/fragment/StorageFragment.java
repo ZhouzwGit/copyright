@@ -83,6 +83,13 @@ public class StorageFragment extends BaseFragment {
     PieChartView pieChartView;
     @Bind(R.id.frameNewBase)
     ColumnChartView barChart;
+    @Bind(R.id.dotted_line)
+    View line;
+
+    @Bind(R.id.text1)
+    TextView text1;
+    @Bind(R.id.text2)
+    TextView text2;
 
     RxBus rxBus;
     int mNum; //页号
@@ -92,8 +99,14 @@ public class StorageFragment extends BaseFragment {
     ArrayList<Series_data> serieslist= new ArrayList<>();
     List<String> mDescription = new ArrayList<>();
     List<Integer> mArcColors = new ArrayList<>();
+    List<Float> mRatios = new ArrayList<>();
     Float instorage;
     Float unstorage;
+
+    //x轴的数据
+    List<String> itemX = new ArrayList<>();
+    //y轴的数据
+    ArrayList<Integer> itemY = new ArrayList<>();
 
     private int blueColor = Color.rgb(39,71,132);
     private int greenColor = Color.rgb(1,191,157);
@@ -150,14 +163,23 @@ public class StorageFragment extends BaseFragment {
         barChart = view.findViewById(R.id.frameNewBase);
         imagepie = view.findViewById(R.id.image_pie);
         imageLbar = view.findViewById(R.id.image_Lbar);
+        text1 = view.findViewById(R.id.text1);
+        text2 = view.findViewById(R.id.text2);
+        line = view.findViewById(R.id.dotted_line);
     }
     protected void initView() {
+        mRatios.clear();
+        mArcColors.clear();
+        mDescription.clear();
+        itemX.clear();
+        itemY.clear();
         initRxBus();
         if (serieslist!= null){
             initPieDatas();
             initColumnDatas();
         }
         barChart.setVisibility(View.GONE);
+        line.setVisibility(View.GONE);
         barChart.setOnValueTouchListener(new ValueTouchListener());
         barChart.setValueSelectionEnabled(true);
         linerPie.setOnClickListener(new View.OnClickListener() {
@@ -166,6 +188,7 @@ public class StorageFragment extends BaseFragment {
             public void onClick(View v) {
                 pieChartView.setVisibility(View.VISIBLE);
                 barChart.setVisibility(View.GONE);
+                line.setVisibility(View.GONE);
                 textpie.setTextColor(Color.parseColor("#ffffff"));
                 textLbar.setTextColor(Color.parseColor("#218BFF"));
                 linerPie.setBackgroundResource(R.drawable.tab_left_selector);
@@ -179,6 +202,7 @@ public class StorageFragment extends BaseFragment {
             public void onClick(View v) {
                 pieChartView.setVisibility(View.GONE);
                 barChart.setVisibility(View.VISIBLE);
+                line.setVisibility(View.VISIBLE);
                 textpie.setTextColor(Color.parseColor("#218BFF"));
                 textLbar.setTextColor(Color.parseColor("#ffffff"));
                 linerPie.setBackgroundResource(R.drawable.tab_left_unselector);
@@ -197,6 +221,11 @@ public class StorageFragment extends BaseFragment {
                 if (rxBusMessage.getMessage().equals("update")){
                     storageCounts = rxBusMessage.getStorageCounts().get(mNum);
                     serieslist = (ArrayList<Series_data>) storageCounts.getSeries().get(0).getData();
+                    mRatios.clear();
+                    mArcColors.clear();
+                    mDescription.clear();
+                    itemX.clear();
+                    itemY.clear();
                     if (serieslist!=null){
                         initPieDatas();
                         initColumnDatas();
@@ -217,34 +246,39 @@ public class StorageFragment extends BaseFragment {
     }
 
     private void initPieDatas() {
-        List<Float> mRatios = new ArrayList<>();
-        mDescription.clear();
-        mArcColors.clear();
-        if (serieslist != null){
+        mArcColors.add(greenColor);
+        mArcColors.add(blueColor);
+        unstoragecount.setText("0");
+        unstorageprecent.setText("(0%)");
+        storagecount.setText("0");
+        storageprecent.setText("(0%)");
+
+        if (serieslist != null && serieslist.size()!=0){
             int sum = 0;
             for (int i = 0;i<serieslist.size();i++){
                 sum = sum + serieslist.get(i).getValue();
             }
-            unstoragecount.setText("0");
-            unstorageprecent.setText("(0%)");
-            storagecount.setText("0");
-            storageprecent.setText("(0%)");
+
             for (int i = 0;i<serieslist.size();i++){
-               if (serieslist.get(i).getName().contains("未")){
-                    unstoragecount.setText(String.valueOf(serieslist.get(i).getValue()));
-                    unstorage = Float.valueOf(String.format("%.3f",(float)serieslist.get(i).getValue()/sum));
-                    unstorageprecent.setText("("+String.valueOf(unstorage * 100)+"%)");
-                    mDescription.add(serieslist.get(i).getName());
-                    mArcColors.add(blueColor);
-                    mRatios.add(unstorage);
-               }else if (serieslist.get(i).getName().contains("已")){
-                   storagecount.setText(String.valueOf(serieslist.get(i).getValue()));
-                   instorage =Float.valueOf(String.format("%.3f",(float)serieslist.get(i).getValue()/sum));
-                   storageprecent.setText("("+String.valueOf(instorage * 100)+"%)");
-                   mDescription.add(serieslist.get(i).getName());
-                   mArcColors.add(greenColor);
-                   mRatios.add(instorage);
-               }
+                itemX.add(serieslist.get(i).getName().replaceAll("\r\n",""));
+                itemY.add(serieslist.get(i).getValue());
+                mDescription.add(serieslist.get(i).getName().replaceAll("\r\n",""));
+                unstorage = Float.valueOf(String.format("%.2f",(float)serieslist.get(i).getValue()/sum));
+                mRatios.add(unstorage);
+            }
+            if (mRatios.size()>1){
+                text1.setText(mDescription.get(0));
+                text2.setText(mDescription.get(1));
+                storagecount.setText(String.valueOf(itemY.get(0)));
+                unstoragecount.setText(String.valueOf(itemY.get(1)));
+                storageprecent.setText("("+String.valueOf(mRatios.get(0)*100)+"%)");
+                unstorageprecent.setText("("+String.valueOf(mRatios.get(1)*100)+"%)");
+            }else {
+                text1.setText(mDescription.get(0));
+                text2.setText("");
+                storagecount.setText(String.valueOf(itemY.get(0)));
+                storageprecent.setText("("+String.valueOf(mRatios.get(0)*100)+"%)");
+
             }
 
         }
@@ -254,33 +288,11 @@ public class StorageFragment extends BaseFragment {
         pieChartView.setDatas(mRatios, mArcColors, mDescription);
     }
     private void initColumnDatas() {
-        //x轴的数据
-        List<String> itemX = new ArrayList<>();
-        if (serieslist!=null){
-            for (int i = 0;i<serieslist.size();i++){
-                if (serieslist.get(i).getName().contains("未")){
-                    itemX.add(serieslist.get(i).getName());
-                }else if (serieslist.get(i).getName().contains("已")){
-                    itemX.add(serieslist.get(i).getName());
-                }
-            }
-        }
 
         //定义X轴刻度值的数据集合
         ArrayList<AxisValue> axisValuesX = new ArrayList<AxisValue>();
         for (int j = 0; j < itemX.size(); ++j) {
             axisValuesX.add(new AxisValue(j).setValue(j).setLabel(itemX.get(j)));
-        }
-        //y轴的数据
-        ArrayList<Integer> itemY = new ArrayList<>();
-        if (serieslist!=null) {
-            for (int i = 0; i < serieslist.size(); i++) {
-                if (serieslist.get(i).getName().contains("未")) {
-                    itemY.add(serieslist.get(i).getValue());
-                } else if (serieslist.get(i).getName().contains("已")) {
-                    itemY.add(serieslist.get(i).getValue());
-                }
-            }
         }
         int numSubcolumns = 1;
         int numColumns = itemX.size();
@@ -306,15 +318,15 @@ public class StorageFragment extends BaseFragment {
             axisX.setValues(axisValuesX);
             axisX.setHasTiltedLabels(false);
             axisX.setTextSize(12);// 设置X轴文字大小
-            axisX.setHasLines(true); //x 轴分割线
+            axisX.setHasLines(false); //x 轴分割线
             axisX.setMaxLabelChars(4);
-            Axis axisY = new Axis().setHasLines(true);
+            Axis axisY = new Axis().setHasLines(false);
             if (ConstantsChart.hasAxesNames) {
 //                axisX.setName("作品入库情况占比");
-                axisY.setName("数量");
+//                axisY.setName("数量");
             }
             data.setAxisXBottom(axisX);
-            data.setAxisYLeft(axisY);
+//            data.setAxisYLeft(axisY);
         } else {
             data.setAxisXBottom(null);
             data.setAxisYLeft(null);
@@ -322,17 +334,8 @@ public class StorageFragment extends BaseFragment {
         data.setValueLabelTextSize(12);
         data.setFillRatio(0.4F);
 
-        //设置行为属性，支持缩放、滑动以及平移
-//        barChart.setInteractive(false);
-//        barChart.setZoomType(ZoomType.HORIZONTAL);
-//        barChart.setMaxZoom((float) 4);//最大方法比例
-//        barChart.setContainerScrollEnabled(true, ContainerScrollType.HORIZONTAL);
         barChart.setColumnChartData(data);
 
-//        Viewport v = new Viewport(barChart.getMaximumViewport());
-//        v.left = 0;
-//        v.right = 3;
-//        barChart.setCurrentViewport(v);
     }
     private class ValueTouchListener implements ColumnChartOnValueSelectListener {
 
@@ -353,6 +356,11 @@ public class StorageFragment extends BaseFragment {
     public void onResume(){
         super.onResume();
         if (getUserVisibleHint()) {
+            mRatios.clear();
+            mArcColors.clear();
+            mDescription.clear();
+            itemX.clear();
+            itemY.clear();
             initPieDatas();
             initColumnDatas();
         }

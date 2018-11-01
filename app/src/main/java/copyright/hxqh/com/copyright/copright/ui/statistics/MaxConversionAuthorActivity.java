@@ -225,7 +225,6 @@ public class MaxConversionAuthorActivity extends FragmentActivity {
             }
         }
 
-
         //定义X轴刻度值的数据集合
         ArrayList<AxisValue> axisValuesX = new ArrayList<AxisValue>();
         for (int j = 0; j < itemX.size(); ++j) {
@@ -263,15 +262,15 @@ public class MaxConversionAuthorActivity extends FragmentActivity {
             axisX.setValues(axisValuesX);
             axisX.setHasTiltedLabels(false);
             axisX.setTextSize(12);// 设置X轴文字大小
-            axisX.setHasLines(true); //x 轴分割线
+            axisX.setHasLines(false); //x 轴分割线
             axisX.setMaxLabelChars(4);
-            Axis axisY = new Axis().setHasLines(true);
+            Axis axisY = new Axis().setHasLines(false);
             if (ConstantsChart.hasAxesNames) {
 //                axisX.setName("作品入库情况占比");
 //                axisY.setName("数量");
             }
             data.setAxisXBottom(axisX);
-            data.setAxisYLeft(axisY);
+//            data.setAxisYLeft(axisY);
         } else {
             data.setAxisXBottom(null);
             data.setAxisYLeft(null);

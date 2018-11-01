@@ -22,7 +22,7 @@
                 android:id="@+id/text1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="已入库"
+                android:text=""
                 android:textColor="#ff333333"
                 android:textSize="14sp"
                 />
@@ -66,7 +66,7 @@
                 android:id="@+id/text2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="未入库"
+                android:text=""
                 android:textColor="#ff333333"
                 android:textSize="14sp"
                 />
@@ -99,9 +99,6 @@
 
     </LinearLayout>
 
-    <!--<ScrollView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content">-->
 
     <LinearLayout
         android:layout_width="match_parent"
