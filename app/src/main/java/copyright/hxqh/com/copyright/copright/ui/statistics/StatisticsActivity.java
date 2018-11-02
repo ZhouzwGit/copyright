@@ -63,8 +63,12 @@ public class StatisticsActivity extends AppCompatActivity implements View.OnClic
                 startActivity(intent2);
                 break;
             case R.id.earnings_id:
+                Intent intent3 = new Intent(this, EarningsActivity.class);
+                startActivity(intent3);
                 break;
             case R.id.productseq_id:
+                Intent intent4 = new Intent(this, SingleResActivity.class);
+                startActivity(intent4);
                 break;
             case R.id.back_id:
                 finish();

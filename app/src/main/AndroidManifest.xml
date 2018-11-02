@@ -92,6 +92,8 @@
         <activity android:name=".copright.ui.statistics.ResCostingByKindActivity"></activity>
         <activity android:name=".copright.ui.statistics.RightCostingByResActivity"></activity>
         <activity android:name=".copright.ui.statistics.ResCostingByAuthorActivity"></activity>
+        <activity android:name=".copright.ui.statistics.EarningsActivity"></activity>
+        <activity android:name=".copright.ui.statistics.SingleResActivity"></activity>
         <provider android:name="android.support.v4.content.FileProvider"
             android:authorities="com.pgyersdk.copyright.provider.fileProvider"
             android:exported="false"
