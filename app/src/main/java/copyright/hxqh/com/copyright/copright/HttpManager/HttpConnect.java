@@ -37,7 +37,9 @@ import copyright.hxqh.com.copyright.copright.ui.contract.entity.Contract;
 import copyright.hxqh.com.copyright.copright.ui.product.entity.Channel;
 import copyright.hxqh.com.copyright.copright.ui.product.entity.Product;
 import copyright.hxqh.com.copyright.copright.ui.statistics.entity.MaxConversion;
+import copyright.hxqh.com.copyright.copright.ui.statistics.entity.ResCostingByKind;
 import copyright.hxqh.com.copyright.copright.ui.statistics.entity.ResourceKind;
+import copyright.hxqh.com.copyright.copright.ui.statistics.entity.ResourceName;
 import copyright.hxqh.com.copyright.copright.ui.statistics.entity.RightPutInStorage;
 import copyright.hxqh.com.copyright.copright.ui.statistics.entity.StorageCounts;
 import copyright.hxqh.com.copyright.copright.util.AcountUtil;
@@ -370,6 +372,33 @@ public class HttpConnect {
         }
         return royaltyList;
     }
+    public static  List<ResourceName>  getResourceNmae(JSONObject json, int page){
+        String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/getresourcename";
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpPost post = new HttpPost(url);
+        StringEntity jsonEntity = null;
+        String result = null;
+        List<ResourceName> royaltyList = new ArrayList<>();
+        try{
+            json.put("pageNo",page+"");
+            jsonEntity = new StringEntity(json.toString(),"UTF-8");
+            jsonEntity.setContentEncoding("UTF-8");
+            jsonEntity.setContentType("application/json");
+            post.setEntity(jsonEntity);
+            HttpResponse response = null;
+            response = httpClient.execute(post);
+            if (response.getStatusLine().getStatusCode() == 200){
+                HttpEntity httpEntity = response.getEntity();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(httpEntity.getContent()));
+                result = reader.readLine();
+                royaltyList = (List<ResourceName>) JsonUtil.getObject(result,new TypeToken<List<ResourceName>>(){});
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return royaltyList;
+    }
     public static  List<StorageCounts>  getPutInStorageCounts(JSONObject json){
         String url = "http://118.190.115.150:8889/jeesite/htjk/apphttpjk/resPutInStorageCounts";
         HttpClient httpClient = new DefaultHttpClient();
@@ -494,6 +523,32 @@ public class HttpConnect {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(httpEntity.getContent()));
                 result = reader.readLine().toLowerCase();
                 royaltyList =  com.alibaba.fastjson.JSONObject.parseObject(result, new TypeReference<RightPutInStorage>() {});
+//                royaltyList = (MaxConversion) JsonUtil.getObject(result,new TypeToken<List<MaxConversion>>(){});
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return royaltyList;
+    }
+    public static ResCostingByKind getResCostingByKind(JSONObject json,String url){
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpPost post = new HttpPost(url);
+        StringEntity jsonEntity = null;
+        String result = null;
+        ResCostingByKind royaltyList = new ResCostingByKind();
+        try{
+            jsonEntity = new StringEntity(json.toString(),"UTF-8");
+            jsonEntity.setContentEncoding("UTF-8");
+            jsonEntity.setContentType("application/json");
+            post.setEntity(jsonEntity);
+            HttpResponse response = null;
+            response = httpClient.execute(post);
+            if (response.getStatusLine().getStatusCode() == 200){
+                HttpEntity httpEntity = response.getEntity();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(httpEntity.getContent()));
+                result = reader.readLine().toLowerCase();
+                royaltyList =  com.alibaba.fastjson.JSONObject.parseObject(result, new TypeReference<ResCostingByKind>() {});
 //                royaltyList = (MaxConversion) JsonUtil.getObject(result,new TypeToken<List<MaxConversion>>(){});
             }
         }catch (Exception e){
@@ -786,6 +841,18 @@ public class HttpConnect {
             jsonObject.put("username",AcountUtil.getUsername(ctx));
             jsonObject.put("resourcekind",resourcekind);
             jsonObject.put("chartsType",chartsType);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
+    }
+    public static JSONObject getRightCostJson(Context ctx,String resourcekind,String chartsType,String resourcename){
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("username",AcountUtil.getUsername(ctx));
+            jsonObject.put("resourcekind",resourcekind);
+            jsonObject.put("chartsType",chartsType);
+            jsonObject.put("resourcename",resourcename);
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -49,16 +49,16 @@ public class CostCountActivity  extends AppCompatActivity implements View.OnClic
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.costtype_id:
-//                Intent intent0 = new Intent(this, WorksPropertyActivity.class);
-//                startActivity(intent0);
+                Intent intent0 = new Intent(this, ResCostingByKindActivity.class);
+                startActivity(intent0);
                 break;
             case R.id.costright_id:
-//                Intent intent = new Intent(this, WorksCountActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(this, RightCostingByResActivity.class);
+                startActivity(intent);
                 break;
             case R.id.costauthor_id:
-//                Intent intent1 = new Intent(this, DeadLineProductionCountsActivity.class);
-//                startActivity(intent1);
+                Intent intent1 = new Intent(this, ResCostingByAuthorActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.back_id:
                 finish();
