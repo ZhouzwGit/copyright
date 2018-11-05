@@ -165,7 +165,11 @@ public class ResCostingByAuthorActivity  extends FragmentActivity {
             @Override
             public void onClick(View v) {
                 pieChartView.setVisibility(View.VISIBLE);
-                liner_detail.setVisibility(View.VISIBLE);
+                if (itemY.size()<3){
+                    liner_detail.setVisibility(View.GONE);
+                }else {
+                    liner_detail.setVisibility(View.VISIBLE);
+                }
                 recyclerView.setVisibility(View.VISIBLE);
                 liner_form.setVisibility(View.VISIBLE);
                 barChart.setVisibility(View.GONE);
@@ -195,9 +199,6 @@ public class ResCostingByAuthorActivity  extends FragmentActivity {
                 linerLbar.setBackgroundResource(R.drawable.tab_right_selector);
                 imagepie.setImageResource(R.drawable.ic_unselector_pie);
                 imageLbar.setImageResource(R.drawable.ic_unselector_line);
-                if (resCostingByKind != null){
-                    money.setText(resCostingByKind.getTitle().getSubtext().substring(5));
-                }
 
             }
         });
@@ -327,6 +328,14 @@ public class ResCostingByAuthorActivity  extends FragmentActivity {
                     linerLbar.setEnabled(false);
                     linerPie.setEnabled(false);
                     pieChartView.setVisibility(View.GONE);
+                    liner_detail.setVisibility(View.GONE);
+                    resCostAdapter = new ResCostAdapter(ResCostingByAuthorActivity.this,data,text, (ArrayList<Float>) mRatios3);
+                    recyclerView.setAdapter(resCostAdapter);
+                }else {
+                    linerLbar.setEnabled(true);
+                    linerPie.setEnabled(true);
+                    pieChartView.setVisibility(View.VISIBLE);
+                    liner_detail.setVisibility(View.VISIBLE);
                 }
 
                 initPieDatas();
@@ -342,6 +351,9 @@ public class ResCostingByAuthorActivity  extends FragmentActivity {
 
     }
     private void initPieDatas() {
+        if (resCostingByKind != null){
+            money.setText(resCostingByKind.getTitle().getSubtext().substring(4));
+        }
         mRatios.clear();
         mArcColors.clear();
         mDescription.clear();
@@ -365,26 +377,26 @@ public class ResCostingByAuthorActivity  extends FragmentActivity {
                 mRatios.add(unstorage);
                 mArcColors.add(ChartUtils.COLORS[i]);
             }
-
+            if (itemY.size() < 3){
+                liner_detail.setVisibility(View.GONE);
+                resCostAdapter = new ResCostAdapter(this,data,text, (ArrayList<Float>) mRatios);
+                recyclerView.setAdapter(resCostAdapter);
+            }else {
+                itemY3.clear();
+                text3.clear();
+                mRatios3.clear();
+                for (int i=0;i<4;i++){
+                    itemY3.add(data.get(i));
+                    mRatios3.add(mRatios.get(i));
+                    text3.add(itemX.get(i));
+                }
+                resCostAdapter = new ResCostAdapter(this,itemY3,text3, (ArrayList<Float>) mRatios3);
+                recyclerView.setAdapter(resCostAdapter);
+            }
         }else {
             Toast.makeText(ResCostingByAuthorActivity.this, "暂无数据", Toast.LENGTH_SHORT).show();
         }
-        if (itemY.size() < 3){
-            liner_detail.setVisibility(View.GONE);
-            resCostAdapter = new ResCostAdapter(this,data,text, (ArrayList<Float>) mRatios);
-            recyclerView.setAdapter(resCostAdapter);
-        }else {
-            itemY3.clear();
-            text3.clear();
-            mRatios3.clear();
-            for (int i=0;i<4;i++){
-                itemY3.add(data.get(i));
-                mRatios3.add(mRatios.get(i));
-                text3.add(itemX.get(i));
-            }
-            resCostAdapter = new ResCostAdapter(this,itemY3,text3, (ArrayList<Float>) mRatios3);
-            recyclerView.setAdapter(resCostAdapter);
-        }
+
         //点击动画开启
         pieChartView.setCanClickAnimation(true);
         pieChartView.setDatas(mRatios, mArcColors, mDescription);

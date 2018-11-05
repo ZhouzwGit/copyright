@@ -1,5 +1,6 @@
 package copyright.hxqh.com.copyright.copright.ui.statistics;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -51,20 +52,20 @@ public class SingleResActivity  extends AppCompatActivity implements View.OnClic
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.single_use_id:
-//                Intent intent0 = new Intent(this, ResCostingByKindActivity.class);
-//                startActivity(intent0);
+                Intent intent0 = new Intent(this, SingleResUtilizeActivity.class);
+                startActivity(intent0);
                 break;
             case R.id.single_change_id:
-//                Intent intent = new Intent(this, RightCostingByResActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(this, SingleResTransformActivity.class);
+                startActivity(intent);
                 break;
             case R.id.single_roude_id:
-//                Intent intent1 = new Intent(this, ResCostingByAuthorActivity.class);
-//                startActivity(intent1);
+                Intent intent1 = new Intent(this, ThreeMonthAccreditActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.single_sale_id:
-//                Intent intent1 = new Intent(this, ResCostingByAuthorActivity.class);
-//                startActivity(intent1);
+                Intent intent2 = new Intent(this, ThreeMonthSalesActivity.class);
+                startActivity(intent2);
                 break;
             case R.id.back_id:
                 finish();

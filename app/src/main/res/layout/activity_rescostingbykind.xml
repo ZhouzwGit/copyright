@@ -27,6 +27,7 @@
                 android:background="@color/blue">
             </View>
             <TextView
+                android:id="@+id/item_tittle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="按作品类型的成本统计"

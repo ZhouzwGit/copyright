@@ -60,7 +60,11 @@ public class ResCostAdapter extends RecyclerView.Adapter<ResCostAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return data.size();
+        if (data == null){
+            return 0;
+        }else {
+            return data.size();
+        }
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView type;
