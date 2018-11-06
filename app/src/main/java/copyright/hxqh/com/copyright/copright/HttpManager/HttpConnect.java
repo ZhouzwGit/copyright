@@ -495,7 +495,7 @@ public class HttpConnect {
             if (response.getStatusLine().getStatusCode() == 200){
                 HttpEntity httpEntity = response.getEntity();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(httpEntity.getContent()));
-                result = reader.readLine();
+                result = reader.readLine().toLowerCase();
                 royaltyList =  com.alibaba.fastjson.JSONObject.parseObject(result, new TypeReference<MaxConversion>() {});
 //                royaltyList = (MaxConversion) JsonUtil.getObject(result,new TypeToken<List<MaxConversion>>(){});
             }

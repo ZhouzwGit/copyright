@@ -112,8 +112,6 @@ public class RightPutInStorageActivity extends FragmentActivity {
     TextView text1;
     @Bind(R.id.text2)
     TextView text2;
-    @Bind(R.id.dotted_line)
-    View line;
 
     Dialog mCameraDialog;
 
@@ -168,7 +166,6 @@ public class RightPutInStorageActivity extends FragmentActivity {
         recoursetype.setOnClickListener(recoursetypeOnClickListener);
         righttype.setOnClickListener(righttypeOnClickListener);
         barChart.setVisibility(View.GONE);
-        line.setVisibility(View.GONE);
         barChart.setOnValueTouchListener(new ValueTouchListener());
         barChart.setValueSelectionEnabled(true);
         linerPie.setOnClickListener(new View.OnClickListener() {
@@ -177,7 +174,6 @@ public class RightPutInStorageActivity extends FragmentActivity {
             public void onClick(View v) {
                 pieChartView.setVisibility(View.VISIBLE);
                 barChart.setVisibility(View.GONE);
-                line.setVisibility(View.GONE);
                 textpie.setTextColor(Color.parseColor("#ffffff"));
                 textLbar.setTextColor(Color.parseColor("#218BFF"));
                 linerPie.setBackgroundResource(R.drawable.tab_left_selector);
@@ -191,7 +187,6 @@ public class RightPutInStorageActivity extends FragmentActivity {
             public void onClick(View v) {
                 pieChartView.setVisibility(View.GONE);
                 barChart.setVisibility(View.VISIBLE);
-                line.setVisibility(View.VISIBLE);
                 textpie.setTextColor(Color.parseColor("#218BFF"));
                 textLbar.setTextColor(Color.parseColor("#ffffff"));
                 linerPie.setBackgroundResource(R.drawable.tab_left_unselector);
@@ -410,7 +405,7 @@ public class RightPutInStorageActivity extends FragmentActivity {
 
         if (ConstantsChart.hasAxes) {
             Axis axisX = new Axis();
-            axisX.setTextColor(ChartUtils.COLOR_BLUE);
+            axisX.setTextColor(copyright.hxqh.com.copyright.copright.util.ChartUtils.DARKEN_COLOR);
             axisX.setValues(axisValuesX);
             axisX.setHasTiltedLabels(false);
             axisX.setTextSize(12);// 设置X轴文字大小
@@ -437,14 +432,14 @@ public class RightPutInStorageActivity extends FragmentActivity {
         mDescription.clear();
         itemX.clear();
         itemY.clear();
-        mArcColors.add(greenColor);
-        mArcColors.add(blueColor);
         unstoragecount.setText("0");
         unstorageprecent.setText("(0%)");
         storagecount.setText("0");
         storageprecent.setText("(0%)");
 
         if (data != null){
+            mArcColors.add(greenColor);
+            mArcColors.add(blueColor);
             int sum = 0;
             for (int i = 0;i<data.size();i++){
                 sum = sum + data.get(i);
@@ -453,7 +448,12 @@ public class RightPutInStorageActivity extends FragmentActivity {
                 itemX.add(text.get(i).replaceAll("\r\n",""));
                 itemY.add(data.get(i));
                 mDescription.add(text.get(i).replaceAll("\r\n",""));
-                unstorage = Float.valueOf(String.format("%.2f",(float)data.get(i)/sum));
+                if (Float.valueOf(data.get(i)) == 0 || Float.valueOf(data.get(i)) == 0.0){
+                    unstorage = Float.valueOf(0);
+                }else {
+                    unstorage = Float.valueOf(String.format("%.4f",(float)Float.valueOf(data.get(i))/sum));
+                }
+//                unstorage = Float.valueOf(String.format("%.2f",(float)data.get(i)/sum));
                 mRatios.add(unstorage);
             }
             if (mRatios.size()>1){

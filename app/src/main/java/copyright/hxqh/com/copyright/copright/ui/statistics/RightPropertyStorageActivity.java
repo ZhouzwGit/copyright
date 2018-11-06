@@ -35,13 +35,13 @@ import copyright.hxqh.com.copyright.copright.custom.ConstantsChart;
 import copyright.hxqh.com.copyright.copright.ui.statistics.entity.ResourceKind;
 import copyright.hxqh.com.copyright.copright.ui.statistics.entity.RightPutInStorage;
 import copyright.hxqh.com.copyright.copright.util.AcountUtil;
+import copyright.hxqh.com.copyright.copright.util.ChartUtils;
 import lecho.lib.hellocharts.listener.ColumnChartOnValueSelectListener;
 import lecho.lib.hellocharts.model.Axis;
 import lecho.lib.hellocharts.model.AxisValue;
 import lecho.lib.hellocharts.model.Column;
 import lecho.lib.hellocharts.model.ColumnChartData;
 import lecho.lib.hellocharts.model.SubcolumnValue;
-import lecho.lib.hellocharts.util.ChartUtils;
 import lecho.lib.hellocharts.view.ColumnChartView;
 
 /**
@@ -88,8 +88,6 @@ public class RightPropertyStorageActivity  extends FragmentActivity {
     TextView text1;
     @Bind(R.id.text2)
     TextView text2;
-    @Bind(R.id.dotted_line)
-    View line;
 
     Dialog mCameraDialog;
 
@@ -108,7 +106,7 @@ public class RightPropertyStorageActivity  extends FragmentActivity {
     List<String> mDescription = new ArrayList<>();
     List<Integer> mArcColors = new ArrayList<>();
     List<Float> mRatios = new ArrayList<>();
-    Float instorage;
+
     Float unstorage;
     private int blueColor = Color.rgb(39,71,132);
     private int greenColor = Color.rgb(1,191,157);
@@ -139,7 +137,6 @@ public class RightPropertyStorageActivity  extends FragmentActivity {
         });
         recoursetype.setOnClickListener(recoursetypeOnClickListener);
         barChart.setVisibility(View.GONE);
-        line.setVisibility(View.GONE);
         barChart.setOnValueTouchListener(new ValueTouchListener());
         barChart.setValueSelectionEnabled(true);
         linerPie.setOnClickListener(new View.OnClickListener() {
@@ -148,7 +145,6 @@ public class RightPropertyStorageActivity  extends FragmentActivity {
             public void onClick(View v) {
                 pieChartView.setVisibility(View.VISIBLE);
                 barChart.setVisibility(View.GONE);
-                line.setVisibility(View.GONE);
                 textpie.setTextColor(Color.parseColor("#ffffff"));
                 textLbar.setTextColor(Color.parseColor("#218BFF"));
                 linerPie.setBackgroundResource(R.drawable.tab_left_selector);
@@ -162,7 +158,6 @@ public class RightPropertyStorageActivity  extends FragmentActivity {
             public void onClick(View v) {
                 pieChartView.setVisibility(View.GONE);
                 barChart.setVisibility(View.VISIBLE);
-                line.setVisibility(View.VISIBLE);
                 textpie.setTextColor(Color.parseColor("#218BFF"));
                 textLbar.setTextColor(Color.parseColor("#ffffff"));
                 linerPie.setBackgroundResource(R.drawable.tab_left_unselector);
@@ -279,11 +274,11 @@ public class RightPropertyStorageActivity  extends FragmentActivity {
                 super.onPostExecute(preoducts);
                 data = (ArrayList<Integer>) preoducts.getSeries().get(0).getData();
                 text = (ArrayList<String>) preoducts.getXaxis().get(0).getData();
-                if (data == null){
-                    linerLbar.setEnabled(false);
-                    linerPie.setEnabled(false);
-                    pieChartView.setVisibility(View.GONE);
-                }
+//                if (data == null){
+//                    linerLbar.setEnabled(false);
+//                    linerPie.setEnabled(false);
+//                    pieChartView.setVisibility(View.GONE);
+//                }
                     initPieDatas();
                     initColumnDatas();
 
@@ -324,7 +319,7 @@ public class RightPropertyStorageActivity  extends FragmentActivity {
 
         if (ConstantsChart.hasAxes) {
             Axis axisX = new Axis();
-            axisX.setTextColor(ChartUtils.COLOR_BLUE);
+            axisX.setTextColor(ChartUtils.DARKEN_COLOR);
             axisX.setValues(axisValuesX);
             axisX.setHasTiltedLabels(false);
             axisX.setTextSize(12);// 设置X轴文字大小
@@ -355,9 +350,9 @@ public class RightPropertyStorageActivity  extends FragmentActivity {
         unstorageprecent.setText("(0%)");
         storagecount.setText("0");
         storageprecent.setText("(0%)");
-        mArcColors.add(greenColor);
-        mArcColors.add(blueColor);
         if (data != null ) {
+            mArcColors.add(greenColor);
+            mArcColors.add(blueColor);
             int sum = 0;
             for (int i = 0; i < data.size(); i++) {
                 sum = sum + data.get(i);
@@ -366,7 +361,11 @@ public class RightPropertyStorageActivity  extends FragmentActivity {
                 itemX.add(text.get(i).replaceAll("\r\n",""));
                 itemY.add(data.get(i));
                 mDescription.add(text.get(i).replaceAll("\r\n",""));
-                unstorage = Float.valueOf(String.format("%.2f",(float)data.get(i)/sum));
+                if (Float.valueOf(data.get(i)) == 0 || Float.valueOf(data.get(i)) == 0.0){
+                    unstorage = Float.valueOf(0);
+                }else {
+                    unstorage = Float.valueOf(String.format("%.4f",(float)Float.valueOf(data.get(i))/sum));
+                }
                 mRatios.add(unstorage);
             }
             if (mRatios.size()>1){

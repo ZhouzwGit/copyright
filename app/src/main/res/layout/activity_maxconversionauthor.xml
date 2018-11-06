@@ -73,16 +73,6 @@
         android:background="@drawable/statisticsbj"
         android:layout_margin="10dp"
         android:orientation="vertical">
-        <View
-            android:id="@+id/dotted_line"
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:layout_marginLeft="13dp"
-            android:layout_marginRight="13dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/bg_dotted_line"
-            android:layerType="software"
-            />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -99,7 +89,8 @@
             android:layout_marginLeft="5dp"
             android:layout_marginTop="20dp"
             android:layout_width="250dp"
-            android:layout_height="300dp">
+            android:layout_height="350dp"
+            android:paddingBottom="40dp">
         </lecho.lib.hellocharts.view.ColumnChartView>
         <ImageView
             android:layout_width="23dp"

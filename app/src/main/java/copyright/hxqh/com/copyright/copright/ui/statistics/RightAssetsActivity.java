@@ -141,9 +141,9 @@ public class RightAssetsActivity   extends FragmentActivity {
         unstorageprecent.setText("(0%)");
         storagecount.setText("0");
         storageprecent.setText("(0%)");
-        mArcColors.add(greenColor);
-        mArcColors.add(blueColor);
         if (serieslist != null && serieslist.size()!=0){
+            mArcColors.add(greenColor);
+            mArcColors.add(blueColor);
             int sum = 0;
             for (int i = 0;i<serieslist.size();i++){
                 sum = sum + serieslist.get(i).getValue();

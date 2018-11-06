@@ -9,19 +9,19 @@ import java.util.List;
  */
 
 public class MaxConversion implements Serializable {
-//    private Legend legend;
+    private Legend legend;
     private List<Serie> series;
     private Tooltips tooltip;
-    private List<XAxis> xAxis;
-    private List<YAxis> yAxis;
+    private List<XAxis> xaxis;
+    private List<YAxis> yaxis;
 
-//    public Legend getLegend() {
-//        return legend;
-//    }
-//
-//    public void setLegend(Legend legend) {
-//        this.legend = legend;
-//    }
+    public Legend getLegend() {
+        return legend;
+    }
+
+    public void setLegend(Legend legend) {
+        this.legend = legend;
+    }
 
     public List<Serie> getSeries() {
         return series;
@@ -39,19 +39,19 @@ public class MaxConversion implements Serializable {
         this.tooltip = tooltip;
     }
 
-    public List<XAxis> getxAxis() {
-        return xAxis;
+    public List<XAxis> getXaxis() {
+        return xaxis;
     }
 
-    public void setxAxis(List<XAxis> xAxis) {
-        this.xAxis = xAxis;
+    public void setXaxis(List<XAxis> xaxis) {
+        this.xaxis = xaxis;
     }
 
-    public List<YAxis> getyAxis() {
-        return yAxis;
+    public List<YAxis> getYaxis() {
+        return yaxis;
     }
 
-    public void setyAxis(List<YAxis> yAxis) {
-        this.yAxis = yAxis;
+    public void setYaxis(List<YAxis> yaxis) {
+        this.yaxis = yaxis;
     }
 }

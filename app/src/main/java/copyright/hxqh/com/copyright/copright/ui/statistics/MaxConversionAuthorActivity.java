@@ -35,6 +35,7 @@ import copyright.hxqh.com.copyright.copright.ui.statistics.entity.ResourceKind;
 import copyright.hxqh.com.copyright.copright.ui.statistics.entity.StorageCounts;
 import copyright.hxqh.com.copyright.copright.ui.statistics.fragment.StorageFragment;
 import copyright.hxqh.com.copyright.copright.util.AcountUtil;
+import copyright.hxqh.com.copyright.copright.util.ChartUtils;
 import copyright.hxqh.com.copyright.copright.view.LazyViewPager;
 import lecho.lib.hellocharts.gesture.ContainerScrollType;
 import lecho.lib.hellocharts.gesture.ZoomType;
@@ -45,7 +46,6 @@ import lecho.lib.hellocharts.model.Column;
 import lecho.lib.hellocharts.model.ColumnChartData;
 import lecho.lib.hellocharts.model.SubcolumnValue;
 import lecho.lib.hellocharts.model.Viewport;
-import lecho.lib.hellocharts.util.ChartUtils;
 import lecho.lib.hellocharts.view.ColumnChartView;
 
 /**
@@ -73,6 +73,7 @@ public class MaxConversionAuthorActivity extends FragmentActivity {
     ArrayList<String> list = new ArrayList<>();
     String resourcekind;
     ArrayList<Integer> data = new ArrayList<>();
+    ArrayList<String> text = new ArrayList<>();
 
     Dialog mCameraDialog;
     @Override
@@ -180,7 +181,7 @@ public class MaxConversionAuthorActivity extends FragmentActivity {
             int i = v.getId();
             if (i == R.id.text_sure) {
                 textresourcekind.setText(resourcekind);
-                json2 = HttpConnect.getDeadLineProductionCounts(MaxConversionAuthorActivity.this, resourcekind);
+                json2 = HttpConnect.getDeadLineProductionCounts(MaxConversionAuthorActivity.this, textresourcekind.getText().toString());
                 getData(json2);
                 mCameraDialog.dismiss();
             } else if (i == R.id.text_cancel) {
@@ -204,6 +205,7 @@ public class MaxConversionAuthorActivity extends FragmentActivity {
             protected void onPostExecute(MaxConversion preoducts) {
                 super.onPostExecute(preoducts);
                 data = (ArrayList<Integer>) preoducts.getSeries().get(0).getData();
+                text = (ArrayList<String>) preoducts.getXaxis().get(0).getData();
                 AcountUtil.closeProgressDialog();
                 initColumnDatas();
             }
@@ -218,10 +220,10 @@ public class MaxConversionAuthorActivity extends FragmentActivity {
     private void initColumnDatas() {
         //x轴的数据
         List<String> itemX = new ArrayList<>();
-        if (data != null){
-            for(int i = 0 ; i < data.size(); i++){
-                String num = String.valueOf(i+1);
-                itemX.add("Top"+ num);
+        if (text != null){
+            for(int i = 0 ; i < text.size(); i++){
+//                String num = String.valueOf(i+1);
+                itemX.add(text.get(i).replaceAll("\n",""));
             }
         }
 
@@ -233,10 +235,11 @@ public class MaxConversionAuthorActivity extends FragmentActivity {
         //y轴的数据
         ArrayList<Integer> itemY = new ArrayList<>();
         if (data!=null) {
-            Collections.sort(data);
-            for (int i = 1; i <= data.size(); i++) {
-                itemY.add(data.get(data.size() - i));
-            }
+//            Collections.sort(data);
+//            for (int i = 1; i <= data.size(); i++) {
+//                itemY.add(data.get(i));
+//            }
+            itemY = data;
         }
         int numSubcolumns = 1;
         int numColumns = itemX.size();
@@ -258,9 +261,9 @@ public class MaxConversionAuthorActivity extends FragmentActivity {
 
         if (ConstantsChart.hasAxes) {
             Axis axisX = new Axis();
-            axisX.setTextColor(ChartUtils.COLOR_BLUE);
+            axisX.setTextColor(ChartUtils.DARKEN_COLOR);
             axisX.setValues(axisValuesX);
-            axisX.setHasTiltedLabels(false);
+            axisX.setHasTiltedLabels(true);
             axisX.setTextSize(12);// 设置X轴文字大小
             axisX.setHasLines(false); //x 轴分割线
             axisX.setMaxLabelChars(4);

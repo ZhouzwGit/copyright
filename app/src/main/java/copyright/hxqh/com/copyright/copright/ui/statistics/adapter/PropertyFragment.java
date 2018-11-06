@@ -285,7 +285,7 @@ public class PropertyFragment  extends BaseFragment {
 
         if (ConstantsChart.hasAxes) {
             Axis axisX = new Axis();
-            axisX.setTextColor(ChartUtils.COLOR_BLUE);
+            axisX.setTextColor(copyright.hxqh.com.copyright.copright.util.ChartUtils.DARKEN_COLOR);
             axisX.setValues(axisValuesX);
             axisX.setHasTiltedLabels(false);
             axisX.setTextSize(12);// 设置X轴文字大小
