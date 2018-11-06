@@ -255,7 +255,7 @@ public class WorksCountActivity extends FragmentActivity {
             int i = v.getId();
             if (i == R.id.text_sure) {
                 textresourcekind.setText(resourcekind);
-                json2 = HttpConnect.getPutInStorageJson(WorksCountActivity.this,resourcekind,"pie","putInStorage");
+                json2 = HttpConnect.getPutInStorageJson(WorksCountActivity.this,textresourcekind.getText().toString(),"pie","putInStorage");
                 getData2(json2);
                 mCameraDialog.dismiss();
             } else if (i == R.id.text_cancel) {

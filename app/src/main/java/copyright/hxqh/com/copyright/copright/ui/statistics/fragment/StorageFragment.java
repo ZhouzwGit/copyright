@@ -83,8 +83,6 @@ public class StorageFragment extends BaseFragment {
     PieChartView pieChartView;
     @Bind(R.id.frameNewBase)
     ColumnChartView barChart;
-    @Bind(R.id.dotted_line)
-    View line;
 
     @Bind(R.id.text1)
     TextView text1;
@@ -165,7 +163,6 @@ public class StorageFragment extends BaseFragment {
         imageLbar = view.findViewById(R.id.image_Lbar);
         text1 = view.findViewById(R.id.text1);
         text2 = view.findViewById(R.id.text2);
-        line = view.findViewById(R.id.dotted_line);
     }
     protected void initView() {
         mRatios.clear();
@@ -179,7 +176,6 @@ public class StorageFragment extends BaseFragment {
             initColumnDatas();
         }
         barChart.setVisibility(View.GONE);
-        line.setVisibility(View.GONE);
         barChart.setOnValueTouchListener(new ValueTouchListener());
         barChart.setValueSelectionEnabled(true);
         linerPie.setOnClickListener(new View.OnClickListener() {
@@ -188,7 +184,6 @@ public class StorageFragment extends BaseFragment {
             public void onClick(View v) {
                 pieChartView.setVisibility(View.VISIBLE);
                 barChart.setVisibility(View.GONE);
-                line.setVisibility(View.GONE);
                 textpie.setTextColor(Color.parseColor("#ffffff"));
                 textLbar.setTextColor(Color.parseColor("#218BFF"));
                 linerPie.setBackgroundResource(R.drawable.tab_left_selector);
@@ -202,7 +197,6 @@ public class StorageFragment extends BaseFragment {
             public void onClick(View v) {
                 pieChartView.setVisibility(View.GONE);
                 barChart.setVisibility(View.VISIBLE);
-                line.setVisibility(View.VISIBLE);
                 textpie.setTextColor(Color.parseColor("#218BFF"));
                 textLbar.setTextColor(Color.parseColor("#ffffff"));
                 linerPie.setBackgroundResource(R.drawable.tab_left_unselector);
@@ -226,10 +220,8 @@ public class StorageFragment extends BaseFragment {
                     mDescription.clear();
                     itemX.clear();
                     itemY.clear();
-                    if (serieslist!=null){
-                        initPieDatas();
-                        initColumnDatas();
-                    }
+                    initPieDatas();
+                    initColumnDatas();
 
                 }
             }
@@ -246,14 +238,14 @@ public class StorageFragment extends BaseFragment {
     }
 
     private void initPieDatas() {
-        mArcColors.add(greenColor);
-        mArcColors.add(blueColor);
         unstoragecount.setText("0");
         unstorageprecent.setText("(0%)");
         storagecount.setText("0");
         storageprecent.setText("(0%)");
 
         if (serieslist != null && serieslist.size()!=0){
+            mArcColors.add(greenColor);
+            mArcColors.add(blueColor);
             int sum = 0;
             for (int i = 0;i<serieslist.size();i++){
                 sum = sum + serieslist.get(i).getValue();
@@ -314,7 +306,7 @@ public class StorageFragment extends BaseFragment {
 
         if (ConstantsChart.hasAxes) {
             Axis axisX = new Axis();
-            axisX.setTextColor(ChartUtils.COLOR_BLUE);
+            axisX.setTextColor(copyright.hxqh.com.copyright.copright.util.ChartUtils.DARKEN_COLOR);
             axisX.setValues(axisValuesX);
             axisX.setHasTiltedLabels(false);
             axisX.setTextSize(12);// 设置X轴文字大小

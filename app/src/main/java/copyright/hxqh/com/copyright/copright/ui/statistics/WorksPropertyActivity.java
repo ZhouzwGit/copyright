@@ -255,7 +255,7 @@ public class WorksPropertyActivity extends FragmentActivity {
             int i = v.getId();
             if (i == R.id.text_sure) {
                 textresourcekind.setText(resourcekind);
-                json2 = HttpConnect.getWorksPropertyJson(WorksPropertyActivity.this,resourcekind,"pie");
+                json2 = HttpConnect.getWorksPropertyJson(WorksPropertyActivity.this,textresourcekind.getText().toString(),"pie");
                 getData2(json2);
                 mCameraDialog.dismiss();
             } else if (i == R.id.text_cancel) {
