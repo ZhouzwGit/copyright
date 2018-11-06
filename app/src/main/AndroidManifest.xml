@@ -94,6 +94,14 @@
         <activity android:name=".copright.ui.statistics.ResCostingByAuthorActivity"></activity>
         <activity android:name=".copright.ui.statistics.EarningsActivity"></activity>
         <activity android:name=".copright.ui.statistics.SingleResActivity"></activity>
+        <activity android:name=".copright.ui.statistics.SingleResUtilizeActivity"></activity>
+        <activity android:name=".copright.ui.statistics.SingleResTransformActivity"></activity>
+        <activity android:name=".copright.ui.statistics.ThreeMonthAccreditActivity"></activity>
+        <activity android:name=".copright.ui.statistics.ThreeMonthSalesActivity"></activity>
+        <activity android:name=".copright.ui.statistics.ResEarningsByKindActivity"></activity>
+        <activity android:name=".copright.ui.statistics.RightEarningsByResActivity"></activity>
+        <activity android:name=".copright.ui.statistics.ProductCostingActivity"></activity>
+        <activity android:name=".copright.ui.statistics.AcrelSellCountsActivity"></activity>
         <provider android:name="android.support.v4.content.FileProvider"
             android:authorities="com.pgyersdk.copyright.provider.fileProvider"
             android:exported="false"

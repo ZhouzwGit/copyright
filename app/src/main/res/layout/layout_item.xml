@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="22dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/type"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:text="类别"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="11sp"
+                android:layout_margin="1dp"
+                android:textColor="#84879A"
+                android:gravity="center"
+                android:background="#F2F3F4"/>
+            <TextView
+                android:id="@+id/cost"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:text="成本"
+                android:textSize="11sp"
+                android:layout_margin="1dp"
+                android:textColor="#84879A"
+                android:gravity="center"
+                android:background="#F2F3F4"/>
+            <TextView
+                android:id="@+id/earns"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:text="收益"
+                android:textSize="11sp"
+                android:layout_margin="1dp"
+                android:textColor="#84879A"
+                android:gravity="center"
+                android:background="#F2F3F4"/>
+            <TextView
+                android:id="@+id/precent"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:text="占比"
+                android:textSize="11sp"
+                android:layout_margin="1dp"
+                android:textColor="#84879A"
+                android:gravity="center"
+                android:background="#F2F3F4"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

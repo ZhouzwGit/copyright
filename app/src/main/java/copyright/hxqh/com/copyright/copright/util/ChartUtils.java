@@ -28,9 +28,16 @@ public abstract class ChartUtils {
     public static final int COLOR_13 = Color.parseColor("#a0F5FF");
     public static final int COLOR_14 = Color.parseColor("#b0FF7F");
     public static final int COLOR_15 = Color.parseColor("#c0FF9F");
+    public static final int COLOR_16 = Color.parseColor("#ff7f50");
+    public static final int COLOR_17 = Color.parseColor("#ff1493");
+    public static final int COLOR_18 = Color.parseColor("#faf0e6");
+    public static final int COLOR_19 = Color.parseColor("#ee82ee");
+    public static final int COLOR_20 = Color.parseColor("#b8860b");
+    public static final int COLOR_21 = Color.parseColor("#b0e0e6");
     public static final int COLOR_RED = Color.parseColor("#dF4944");
     public static final int[] COLORS = new int[]{COLOR_BLUE, COLOR_VIOLET, COLOR_GREEN, COLOR_ORANGE, COLOR_RED, COLOR_1, COLOR_2, COLOR_3, COLOR_4, COLOR_5, COLOR_6
-            , COLOR_7, COLOR_8, COLOR_9, COLOR_10, COLOR_11, COLOR_12, COLOR_13, COLOR_14, COLOR_15};
+            , COLOR_7, COLOR_8, COLOR_9, COLOR_10, COLOR_11, COLOR_12, COLOR_13, COLOR_14, COLOR_15,COLOR_16,COLOR_17,
+            COLOR_18,COLOR_19,COLOR_20,COLOR_21};
     private static final float DARKEN_SATURATION = 1.1f;
     private static final float DARKEN_INTENSITY = 0.9f;
     private static int COLOR_INDEX = 0;
