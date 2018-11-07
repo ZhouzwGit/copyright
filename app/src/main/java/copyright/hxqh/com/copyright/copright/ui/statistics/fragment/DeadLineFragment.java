@@ -120,6 +120,8 @@ public class DeadLineFragment extends BaseFragment {
 
     }
     private void initPieDatas() {
+        java.text.NumberFormat formate = java.text.NumberFormat.getNumberInstance();
+        formate.setMaximumFractionDigits(2);
         mDescription.clear();
         mArcColors.clear();
         mRatios.clear();
@@ -128,9 +130,10 @@ public class DeadLineFragment extends BaseFragment {
         unstorageprecent.setText("(0%)");
         storagecount.setText("0");
         storageprecent.setText("(0%)");
-        mArcColors.add(greenColor);
-        mArcColors.add(blueColor);
+
         if (serieslist != null && serieslist.size()!=0){
+            mArcColors.add(greenColor);
+            mArcColors.add(blueColor);
             int sum = 0;
             for (int i = 0;i<serieslist.size();i++){
                 sum = sum + serieslist.get(i).getValue();
@@ -139,7 +142,7 @@ public class DeadLineFragment extends BaseFragment {
             for (int i = 0;i<serieslist.size();i++){
                 itemY.add(serieslist.get(i).getValue());
                 mDescription.add(serieslist.get(i).getName().replaceAll("\r\n",""));
-                unstorage = Float.valueOf(String.format("%.2f",(float)serieslist.get(i).getValue()/sum));
+                unstorage = Float.valueOf(String.format("%.4f",(float)serieslist.get(i).getValue()/sum));
                 mRatios.add(unstorage);
             }
             if (mRatios.size()>1){
@@ -147,13 +150,13 @@ public class DeadLineFragment extends BaseFragment {
                 text2.setText(mDescription.get(1));
                 storagecount.setText(String.valueOf(itemY.get(0)));
                 unstoragecount.setText(String.valueOf(itemY.get(1)));
-                storageprecent.setText("("+String.valueOf(mRatios.get(0)*100)+"%)");
-                unstorageprecent.setText("("+String.valueOf(mRatios.get(1)*100)+"%)");
+                storageprecent.setText("("+String.valueOf(formate.format(mRatios.get(0)*100))+"%)");
+                unstorageprecent.setText("("+String.valueOf(formate.format(mRatios.get(1)*100))+"%)");
             }else {
                 text1.setText(mDescription.get(0));
                 text2.setText("");
                 storagecount.setText(String.valueOf(itemY.get(0)));
-                storageprecent.setText("("+String.valueOf(mRatios.get(0)*100)+"%)");
+                storageprecent.setText("("+String.valueOf(formate.format(mRatios.get(0)*100))+"%)");
 
             }
         }

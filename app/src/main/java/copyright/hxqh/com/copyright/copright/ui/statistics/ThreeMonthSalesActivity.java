@@ -163,7 +163,7 @@ public class ThreeMonthSalesActivity  extends FragmentActivity {
                 if (Float.valueOf(data.get(i)) == 0 || Float.valueOf(data.get(i)) == 0.0){
                     unstorage = Float.valueOf(0);
                 }else {
-                    unstorage = Float.valueOf(String.format("%.2f",(float)Float.valueOf(data.get(i))/sum));
+                    unstorage = Float.valueOf(String.format("%.4f",(float)Float.valueOf(data.get(i))/sum));
                 }
                 mRatios.add(unstorage);
                 mArcColors.add(ChartUtils.COLORS[i]);

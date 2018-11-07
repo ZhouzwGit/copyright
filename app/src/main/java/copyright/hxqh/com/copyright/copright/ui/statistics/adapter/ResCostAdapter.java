@@ -53,9 +53,11 @@ public class ResCostAdapter extends RecyclerView.Adapter<ResCostAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ResCostAdapter.ViewHolder holder, int position) {
+        java.text.NumberFormat formate = java.text.NumberFormat.getNumberInstance();
+        formate.setMaximumFractionDigits(2);
         holder.type.setText(text.get(position).replaceAll("\n",""));
         holder.count.setText(data.get(position));
-        holder.precent.setText(String.valueOf(mRatios.get(position)*100 +"%"));
+        holder.precent.setText(String.valueOf(formate.format(mRatios.get(position)*100) +"%"));
     }
 
     @Override

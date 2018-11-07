@@ -45,10 +45,12 @@ public class ProductCostAdapter extends RecyclerView.Adapter<ProductCostAdapter.
 
     @Override
     public void onBindViewHolder(ProductCostAdapter.ViewHolder holder, int position) {
+        java.text.NumberFormat formate = java.text.NumberFormat.getNumberInstance();
+        formate.setMaximumFractionDigits(2);
         holder.type.setText(text.get(position).replaceAll("\r\n",""));
         holder.cost.setText(String.valueOf(cost_data.get(position)));
         holder.earns.setText(String.valueOf(earns_data.get(position)));
-        holder.precent.setText(String.valueOf(mRatios.get(position)*100 +"%"));
+        holder.precent.setText(String.valueOf(formate.format(mRatios.get(position)*100) +"%"));
     }
 
     @Override

@@ -1,29 +1,25 @@
 package copyright.hxqh.com.copyright.copright.ui.statistics;
 
 import android.app.Dialog;
-import android.app.FragmentManager;
-import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.flyco.animation.BaseAnimatorSet;
 import com.flyco.animation.BounceEnter.BounceTopEnter;
 import com.flyco.animation.SlideExit.SlideBottomExit;
+import com.lixs.charts.PieChartView;
 import com.weigan.loopview.LoopView;
 import com.weigan.loopview.OnItemSelectedListener;
 
@@ -36,16 +32,17 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import copyright.hxqh.com.copyright.R;
 import copyright.hxqh.com.copyright.copright.HttpManager.HttpConnect;
-import copyright.hxqh.com.copyright.copright.custom.MyOnPageChangeListener1;
-import copyright.hxqh.com.copyright.copright.custom.ProductSelectCallBack;
-import copyright.hxqh.com.copyright.copright.custom.RxBus;
-import copyright.hxqh.com.copyright.copright.ui.statistics.adapter.DeadLineProductionAdapter;
-import copyright.hxqh.com.copyright.copright.ui.statistics.adapter.WorksCountAdapter;
+import copyright.hxqh.com.copyright.copright.custom.ConstantsChart;
 import copyright.hxqh.com.copyright.copright.ui.statistics.entity.ResourceKind;
-import copyright.hxqh.com.copyright.copright.ui.statistics.entity.RxBusMessage;
 import copyright.hxqh.com.copyright.copright.ui.statistics.entity.StorageCounts;
 import copyright.hxqh.com.copyright.copright.util.AcountUtil;
-import copyright.hxqh.com.copyright.copright.view.LazyViewPager;
+import lecho.lib.hellocharts.listener.ColumnChartOnValueSelectListener;
+import lecho.lib.hellocharts.model.Axis;
+import lecho.lib.hellocharts.model.AxisValue;
+import lecho.lib.hellocharts.model.Column;
+import lecho.lib.hellocharts.model.ColumnChartData;
+import lecho.lib.hellocharts.model.SubcolumnValue;
+import lecho.lib.hellocharts.view.ColumnChartView;
 
 /**
  * Created by lianjh on 2018\10\29 0029.
@@ -61,84 +58,68 @@ public class DeadLineProductionCountsActivity  extends FragmentActivity {
     ImageView searchButton; //搜索
     @Bind(R.id.text_resourcekind)
     TextView textresourcekind;
-    @Bind(R.id.viewpager)
-    LazyViewPager mViewPager;
-    @Bind(R.id.select)
-    RelativeLayout select;
-
     @Bind(R.id.recoursetype)
     ImageView recoursetype;
-
-    @Bind(R.id.hsv_content)
-    LinearLayout hsv_content;
-
-    @Bind(R.id.hsv_view)
-    HorizontalScrollView mHorizontalScrollView;
-
+    @Bind(R.id.storage_count)
+    TextView storagecount;
+    @Bind(R.id.storage_precent)
+    TextView storageprecent;
+    @Bind(R.id.unstorage_count)
+    TextView unstoragecount;
+    @Bind(R.id.unstorage_precent)
+    TextView unstorageprecent;
+    @Bind(R.id.liner_pie)
+    LinearLayout linerPie;
+    @Bind(R.id.text_pie)
+    TextView textpie;
+    @Bind(R.id.image_pie)
+    ImageView imagepie;
+    @Bind(R.id.liner_LBar)
+    LinearLayout linerLbar;
+    @Bind(R.id.text_Lbar)
+    TextView textLbar;
+    @Bind(R.id.image_Lbar)
+    ImageView imageLbar;
+    @Bind(R.id.pieView)
+    PieChartView pieChartView;
+    @Bind(R.id.frameNewBase)
+    ColumnChartView barChart;
+    @Bind(R.id.text1)
+    TextView text1;
+    @Bind(R.id.text2)
+    TextView text2;
     Dialog mCameraDialog;
-
-    private DeadLineProductionAdapter deadLineProductionAdapter;
 
     private BaseAnimatorSet mBasIn;
     private BaseAnimatorSet mBasOut;
     private int mScreenWidth;
-    private int item_width;
-    /**
-     * 标签文字
-     */
-    ArrayList<RelativeLayout> relativeLayouts = new ArrayList<RelativeLayout>();
 
     String resourcekind;
     private JSONObject json;
     private JSONObject json2;
     private int page = 1;
-    int index = 0;
 
     ArrayList<String> list = new ArrayList<>();
-    List<StorageCounts> storageCountsList = new ArrayList<>();
+    ArrayList<Integer> data = new ArrayList<>();
+    ArrayList<String> text = new ArrayList<>();
+    List<String> mDescription = new ArrayList<>();
+    List<Integer> mArcColors = new ArrayList<>();
+    List<Float> mRatios = new ArrayList<>();
+    Float instorage;
+    Float unstorage;
+    private int blueColor = Color.rgb(39,71,132);
+    private int greenColor = Color.rgb(1,191,157);
+    //x轴的数据
+    List<String> itemX = new ArrayList<>();
+    //y轴的数据
+    ArrayList<Integer> itemY = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_productioncount);
+        setContentView(R.layout.activity_deadlineproduction);
         ButterKnife.bind(this);
         initView();
-        //这里因为是3.0一下版本，所以需继承FragmentActivity，通过getSupportFragmentManager()获取FragmentManager
-        //3.0及其以上版本，只需继承Activity，通过getFragmentManager获取事物
-        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
-        //初始化自定义适配器
-        deadLineProductionAdapter = new DeadLineProductionAdapter(fm);
-        //绑定自定义适配器
-        mViewPager.setAdapter(deadLineProductionAdapter);
-        MyOnPageChangeListener1 myOnPageChangeListener = new MyOnPageChangeListener1(relativeLayouts, this);
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-        mScreenWidth = dm.widthPixels;
-
-        item_width = (int) ((mScreenWidth / 3.0 + 0.5f));
-        myOnPageChangeListener.init(0, null, mHorizontalScrollView, mViewPager, new ProductSelectCallBack() {
-            @Override
-            public void deal(int index) {
-                deadLineProductionAdapter.setStorageCounts(storageCountsList.get(index));
-            }
-        });
-        mViewPager.setOnPageChangeListener(new LazyViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-
-            @Override
-            public void onPageSelected(final int position) {
-                deadLineProductionAdapter.setStorageCounts(storageCountsList.get(position));
-                switchTab(position);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-
     }
 
     protected void initView() {
@@ -157,6 +138,36 @@ public class DeadLineProductionCountsActivity  extends FragmentActivity {
             }
         });
         recoursetype.setOnClickListener(recoursetypeOnClickListener);
+        barChart.setVisibility(View.GONE);
+        barChart.setOnValueTouchListener(new ValueTouchListener());
+        barChart.setValueSelectionEnabled(true);
+        linerPie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pieChartView.setVisibility(View.VISIBLE);
+                barChart.setVisibility(View.GONE);
+                textpie.setTextColor(Color.parseColor("#ffffff"));
+                textLbar.setTextColor(Color.parseColor("#218BFF"));
+                linerPie.setBackgroundResource(R.drawable.tab_left_selector);
+                linerLbar.setBackgroundResource(R.drawable.tab_right_unselector);
+                imagepie.setImageResource(R.drawable.ic_pie);
+                imageLbar.setImageResource(R.drawable.ic_line);
+            }
+        });
+        linerLbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pieChartView.setVisibility(View.GONE);
+                barChart.setVisibility(View.VISIBLE);
+                textpie.setTextColor(Color.parseColor("#218BFF"));
+                textLbar.setTextColor(Color.parseColor("#ffffff"));
+                linerPie.setBackgroundResource(R.drawable.tab_left_unselector);
+                linerLbar.setBackgroundResource(R.drawable.tab_right_selector);
+                imagepie.setImageResource(R.drawable.ic_unselector_pie);
+                imageLbar.setImageResource(R.drawable.ic_unselector_line);
+
+            }
+        });
         AcountUtil.showProgressDialog(this, "");
         getType();
         getData(json2);
@@ -190,16 +201,6 @@ public class DeadLineProductionCountsActivity  extends FragmentActivity {
             }
         }.execute();
     }
-
-    View.OnClickListener layoutOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            index = (Integer) v.getTag();
-            switchTab(index);
-            deadLineProductionAdapter.setStorageCounts(storageCountsList.get(index));
-            mViewPager.setCurrentItem(index, true);
-        }
-    };
 
     private View.OnClickListener recoursetypeOnClickListener = new View.OnClickListener() {
         @Override
@@ -253,8 +254,8 @@ public class DeadLineProductionCountsActivity  extends FragmentActivity {
             int i = v.getId();
             if (i == R.id.text_sure) {
                 textresourcekind.setText(resourcekind);
-                json2 = HttpConnect.getDeadLineProductionCounts(DeadLineProductionCountsActivity.this, resourcekind);
-                getData2(json2);
+                json2 = HttpConnect.getDeadLineProductionCounts(DeadLineProductionCountsActivity.this, textresourcekind.getText().toString());
+                getData(json2);
                 mCameraDialog.dismiss();
             } else if (i == R.id.text_cancel) {
                 if (mCameraDialog != null) {
@@ -277,8 +278,25 @@ public class DeadLineProductionCountsActivity  extends FragmentActivity {
             @Override
             protected void onPostExecute(List<StorageCounts> preoducts) {
                 super.onPostExecute(preoducts);
-                storageCountsList = preoducts;
-                initViewPageBar();
+                data.clear();
+                text.clear();
+                if (preoducts.get(0).getSeries().get(0).getData()!=null){
+                    for (int i =0 ; i < preoducts.get(0).getSeries().get(0).getData().size();i++){
+                        data.add(preoducts.get(0).getSeries().get(0).getData().get(i).getValue());
+                        text.add(preoducts.get(0).getSeries().get(0).getData().get(i).getName());
+                    }
+                }
+                if (data == null || data.size()==0){
+                    linerLbar.setEnabled(false);
+                    linerPie.setEnabled(false);
+                    pieChartView.setVisibility(View.GONE);
+                }else {
+                    linerLbar.setEnabled(true);
+                    linerPie.setEnabled(true);
+                    pieChartView.setVisibility(View.VISIBLE);
+                }
+                initPieDatas();
+                initColumnDatas();
                 AcountUtil.closeProgressDialog();
             }
 
@@ -289,107 +307,117 @@ public class DeadLineProductionCountsActivity  extends FragmentActivity {
         }.execute();
 
     }
+    private void initPieDatas() {
+        java.text.NumberFormat formate = java.text.NumberFormat.getNumberInstance();
+        formate.setMaximumFractionDigits(2);
+        mRatios.clear();
+        mArcColors.clear();
+        mDescription.clear();
+        itemX.clear();
+        itemY.clear();
+        unstoragecount.setText("0");
+        unstorageprecent.setText("(0%)");
+        storagecount.setText("0");
+        storageprecent.setText("(0%)");
+        if (data != null && data.size()!=0){
+            mArcColors.add(greenColor);
+            mArcColors.add(blueColor);
+            int sum = 0;
+            for (int i = 0;i<data.size();i++){
+                sum = sum + data.get(i);
+            }
+            for (int i = 0;i<data.size();i++){
+                itemX.add(text.get(i).replaceAll("\r\n",""));
+                itemY.add(data.get(i));
+                mDescription.add(text.get(i).replaceAll("\r\n",""));
+                if (Float.valueOf(data.get(i)) == 0 || Float.valueOf(data.get(i)) == 0.0){
+                    unstorage = Float.valueOf(0);
+                }else {
+                    unstorage = Float.valueOf(String.format("%.4f",(float)Float.valueOf(data.get(i))/sum));
+                }
+                mRatios.add(unstorage);
+            }
+            if (mRatios.size()>1){
+                text1.setText(mDescription.get(0));
+                text2.setText(mDescription.get(1));
+                storagecount.setText(String.valueOf(itemY.get(0)));
+                unstoragecount.setText(String.valueOf(itemY.get(1)));
+                storageprecent.setText("("+String.valueOf(formate.format(mRatios.get(0)*100))+"%)");
+                unstorageprecent.setText("("+String.valueOf(formate.format(mRatios.get(1)*100))+"%)");
+            }else {
+                text1.setText(mDescription.get(0));
+                text2.setText("");
+                storagecount.setText(String.valueOf(itemY.get(0)));
+                storageprecent.setText("("+String.valueOf(formate.format(mRatios.get(0)*100))+"%)");
 
-    private void getData2(final JSONObject json) {
-        new AsyncTask<String, String, List<StorageCounts>>() {
-
-            @Override
-            protected List<StorageCounts> doInBackground(String... strings) {
-                List<StorageCounts> products = (List<StorageCounts>) HttpConnect.getDeadLineProductionCounts(json);
-                return products;
             }
 
-            @Override
-            protected void onPostExecute(List<StorageCounts> preoducts) {
-                super.onPostExecute(preoducts);
-                storageCountsList = preoducts;
-                RxBusMessage rxBusMessage = new RxBusMessage();
-                rxBusMessage.setMessage("update");
-                rxBusMessage.setStorageCounts(storageCountsList);
-                RxBus.getIntanceBus().post(rxBusMessage);
-                initViewPageBar();
-                AcountUtil.closeProgressDialog();
-            }
-
-            @Override
-            protected void finalize() throws Throwable {
-                super.finalize();
-            }
-        }.execute();
-
-    }
-
-    private void initViewPageBar() {
-        /**
-         * 屏幕高宽度
-         */
-        WindowManager wm = (WindowManager) this
-                .getSystemService(Context.WINDOW_SERVICE);
-        int width = wm.getDefaultDisplay().getWidth();
-        String[] labels = {"资产", "资源"};
-        for (int i = 0; i < labels.length; i++) {
-            RelativeLayout layout = new RelativeLayout(this);
-            TextView view = new TextView(this);
-            view.setText(labels[i]);
-            view.setTextColor(getResources().getColor(R.color.barcolor));
-            float textSize = getResources().getDimension(R.dimen.dimens_16_sp);
-            view.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
-            view.setGravity(Gravity.CENTER);
-            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-            params.addRule(RelativeLayout.CENTER_IN_PARENT);
-            params.setMargins(0, 0, 0, 1);
-            layout.addView(view, params);
-
-            ImageView imageView = new ImageView(this);
-            imageView.setBackgroundColor(getResources().getColor(R.color.white));
-            RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, 4);
-            params1.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-            layout.addView(imageView, params1);
-
-            LinearLayout.LayoutParams paramss = new LinearLayout.LayoutParams(width / 2, LinearLayout.LayoutParams.MATCH_PARENT, 1);
-            layout.setLayoutParams(paramss);
-
-            layout.setOnClickListener(layoutOnClickListener);
-            layout.setTag(i);
-            hsv_content.addView(layout);
-
-            relativeLayouts.add(layout);
+        }else {
+            Toast.makeText(DeadLineProductionCountsActivity.this, "暂无数据", Toast.LENGTH_SHORT).show();
         }
-        RelativeLayout relativeLayout1 = relativeLayouts.get(0);
-        ImageView imageView1 = (ImageView) relativeLayout1.getChildAt(1);
-        imageView1.setBackgroundColor(getResources().getColor(R.color.press_button_color));
-        TextView textView1 = (TextView) relativeLayout1.getChildAt(0);
-        textView1.setTextColor(getResources().getColor(R.color.press_button_color));
-        deadLineProductionAdapter.setCount(labels.length);
-        deadLineProductionAdapter.setStorageCounts(storageCountsList.get(0));
-        mViewPager.setCurrentItem(0, true);
-        switchTab(0);
+        //点击动画开启
+        pieChartView.setCanClickAnimation(true);
+        pieChartView.setDatas(mRatios, mArcColors, mDescription);
     }
-
-    //切换标签
-    private void switchTab(int position) {
-        //获取在当前窗口内的绝对坐标
-        View view = hsv_content.getChildAt(position);
-        int[] location = new int[2];
-        view.getLocationInWindow(location);
-        Log.e("", "view--->x坐标:" + location[0] + "view--->y坐标:" + location[1]);
-
-        //获取屏幕x方向中间点的绝对坐标
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        int screenWidth = metrics.widthPixels;
-        Log.e("", "screenWidth:" + screenWidth);
-
-        for (RelativeLayout relativeLayout : relativeLayouts) {
-            ImageView imageView1 = (ImageView) relativeLayout.getChildAt(1);
-            imageView1.setBackgroundColor(getResources().getColor(R.color.white));
-            TextView textView1 = (TextView) relativeLayout.getChildAt(0);
-            textView1.setTextColor(getResources().getColor(R.color.barcolor));
+    private void initColumnDatas() {
+        //定义X轴刻度值的数据集合
+        ArrayList<AxisValue> axisValuesX = new ArrayList<AxisValue>();
+        for (int j = 0; j < itemX.size(); ++j) {
+            axisValuesX.add(new AxisValue(j).setValue(j).setLabel(itemX.get(j)));
         }
-        RelativeLayout relativeLayout1 = relativeLayouts.get(position);
-        ImageView imageView1 = (ImageView) relativeLayout1.getChildAt(1);
-        imageView1.setBackgroundColor(getResources().getColor(R.color.press_button_color));
-        TextView textView1 = (TextView) relativeLayout1.getChildAt(0);
-        textView1.setTextColor(getResources().getColor(R.color.press_button_color));
+        int numSubcolumns = 1;
+        int numColumns = itemX.size();
+        List<Column> columns = new ArrayList<Column>();
+        List<SubcolumnValue> values;
+        for (int i = 0; i < numColumns; ++i) {
+            values = new ArrayList<SubcolumnValue>();
+            for (int j = 0; j < numSubcolumns; ++j) {
+                values.add(new SubcolumnValue(itemY.get(i), mArcColors.get(i)));
+            }
+            Column column = new Column(values);
+            column.setHasLabels(ConstantsChart.hasLabels);
+            column.setHasLabelsOnlyForSelected(false);
+            columns.add(column);
+        }
+
+        itemX.clear();
+        ColumnChartData data = new ColumnChartData(columns);
+
+        if (ConstantsChart.hasAxes) {
+            Axis axisX = new Axis();
+            axisX.setTextColor(copyright.hxqh.com.copyright.copright.util.ChartUtils.DARKEN_COLOR);
+            axisX.setValues(axisValuesX);
+            axisX.setHasTiltedLabels(false);
+            axisX.setTextSize(12);// 设置X轴文字大小
+            axisX.setHasLines(false); //x 轴分割线
+            axisX.setMaxLabelChars(4);
+            Axis axisY = new Axis().setHasLines(false);
+            if (ConstantsChart.hasAxesNames) {
+//                axisX.setName("作品入库情况占比");
+//                axisY.setName("数量");
+            }
+            data.setAxisXBottom(axisX);
+//            data.setAxisYLeft(axisY);
+        } else {
+            data.setAxisXBottom(null);
+            data.setAxisYLeft(null);
+        }
+        data.setValueLabelTextSize(12);
+        data.setFillRatio(0.4F);
+        barChart.setColumnChartData(data);
+    }
+     private class ValueTouchListener implements ColumnChartOnValueSelectListener {
+
+        @Override
+        public void onValueSelected(int columnIndex, int subcolumnIndex, SubcolumnValue value) {
+
+        }
+
+        @Override
+        public void onValueDeselected() {
+            // TODO Auto-generated method stub
+
+        }
+
     }
 }
