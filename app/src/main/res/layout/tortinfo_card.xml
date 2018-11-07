@@ -9,25 +9,49 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_marginRight="40dp"
-    android:background="@drawable/ic_item_bg">
-
+        android:layout_marginTop="5dp"
+        android:background="@drawable/item_bg">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/sp_16"
+            android:orientation="horizontal">
+            <View
+                android:layout_width="4dp"
+                android:layout_height="18dp"
+                android:layout_gravity="center"
+                android:background="@color/blue">
+            </View>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="侵权方信息"
+                android:textSize="17sp"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:textColor="#333333"/>
+        </LinearLayout>
     <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:layout_margin="5dp">
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="@dimen/sp_16">
 
     <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="侵权方："
-    android:textColor="#000079"/>
+        android:textColor="#333333"
+        android:textSize="12dp"/>
     <TextView
     android:id="@+id/lawvindicate_tortpeople"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text=""
+        android:textColor="#9A9A9A"
+        android:textSize="12dp"
+        android:layout_marginLeft="5dp"
     android:hint="暂无数据"/>
 
     </LinearLayout>
@@ -35,18 +59,23 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:layout_margin="5dp">
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="@dimen/sp_16">
 
     <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="侵权方式："
-    android:textColor="#000079"/>
+        android:textColor="#333333"
+        android:textSize="12dp"/>
     <TextView
     android:id="@+id/lawvindicate_torttype"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text=""
+        android:textColor="#9A9A9A"
+        android:textSize="12dp"
+        android:layout_marginLeft="5dp"
     android:hint="暂无数据"/>
 
     </LinearLayout>
@@ -54,37 +83,56 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:layout_margin="5dp">
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="@dimen/sp_16">
 
     <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="侵权作品链接URL："
-    android:textColor="#000079"/>
+        android:textColor="#333333"
+        android:textSize="12dp"/>
     <TextView
     android:id="@+id/lawvindicate_tortURL"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text=""
+        android:textColor="#9A9A9A"
+        android:textSize="12dp"
+        android:layout_marginLeft="5dp"
     android:hint="暂无数据"/>
 
     </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="17dp"
+            android:layout_marginLeft="17dp"
+            android:background="#F2F3F4"></View>
     <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_margin="5dp">
+    android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:layout_marginLeft="@dimen/sp_16">
 
     <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="侵权情况基本说明："
-    android:textColor="#000079"/>
+    android:text="侵权情况基本说明"
+        android:textColor="#333333"
+        android:textSize="12dp"/>
     <TextView
     android:id="@+id/lawvindicate_remarks"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginRight="17dp"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text=""
+        android:textColor="#9A9A9A"
+        android:textSize="12dp"
     android:hint="暂无数据"/>
 
     </LinearLayout>

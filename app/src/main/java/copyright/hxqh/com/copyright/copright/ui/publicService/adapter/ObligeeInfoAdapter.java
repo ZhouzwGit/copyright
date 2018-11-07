@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -42,12 +43,12 @@ public class ObligeeInfoAdapter extends ArrayAdapter {
         View view = inflater.inflate(resource, null);
         viewHolder.lawauthor = (TextView)view.findViewById(R.id.lawvindicate_lawauthor);
         viewHolder.lawpeople = (TextView)view.findViewById(R.id.lawvindicate_lawpeople);
-        viewHolder.id_file = (TextView)view.findViewById(R.id.lawvindicate_id_file);
+        viewHolder.id_file = (RelativeLayout)view.findViewById(R.id.lawvindicate_id_file);
         viewHolder.lawauthor.setText(item.getName());
         viewHolder.lawpeople.setText(item.getTortcategory());
-        String str1 = item.getIdentification();
-        String[] splitstr=str1.split("/");
-        viewHolder.id_file.setText(splitstr[splitstr.length - 1]);
+//        String str1 = item.getIdentification();
+//        String[] splitstr=str1.split("/");
+//        viewHolder.id_file.setText(splitstr[splitstr.length - 1]);
         viewHolder.id_file.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +61,6 @@ public class ObligeeInfoAdapter extends ArrayAdapter {
     public static class ViewHolder {
         public TextView lawauthor;
         public TextView lawpeople;
-        public TextView id_file;
+        public RelativeLayout id_file;
     }
 }

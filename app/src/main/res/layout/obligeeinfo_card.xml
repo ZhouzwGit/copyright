@@ -9,26 +9,29 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="5dp"
-        android:layout_marginRight="40dp"
-        android:background="@drawable/ic_item_bg">
+        android:background="@drawable/item_bg">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="5dp">
+            android:layout_marginLeft="@dimen/sp_16"
+            android:layout_marginTop="@dimen/dp_10">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/vin_law_lawauthor"
-                android:textColor="#000079"/>
+                android:textColor="#333333"
+                android:textSize="12dp"/>
             <TextView
                 android:id="@+id/lawvindicate_lawauthor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="张三"
                 android:hint="暂无数据"
+                android:textColor="#9A9A9A"
+                android:textSize="12dp"
                 android:layout_marginLeft="5dp"/>
 
         </LinearLayout>
@@ -36,50 +39,60 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="5dp">
+            android:layout_marginLeft="@dimen/sp_16"
+            android:layout_marginTop="@dimen/dp_10">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="权利人是被侵权作品的："
-                android:textColor="#000079"/>
+                android:textColor="#333333"
+                android:textSize="12dp"/>
             <TextView
                 android:id="@+id/lawvindicate_lawpeople"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="张三"
                 android:hint="暂无数据"
+                android:textColor="#9A9A9A"
+                android:textSize="12dp"
                 android:layout_marginLeft="5dp"/>
 
         </LinearLayout>
-        <LinearLayout
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="17dp"
+            android:layout_marginLeft="17dp"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:background="#F2F3F4"></View>
+        <RelativeLayout
+            android:id="@+id/lawvindicate_id_file"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="17dp"
+            android:layout_marginLeft="17dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="5dp">
-
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="17dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_file" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="权利人身份证明文件"
-                android:textColor="#000079"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp">
-            <TextView
-                android:id="@+id/lawvindicate_id_file"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="张三"
-                android:hint="暂无数据"
-                android:drawableLeft="@drawable/ic_bg"
-                android:layout_marginLeft="5dp"/>
-        </LinearLayout>
-
+                android:layout_marginLeft="25dp"
+                android:text="权利人身份证明文件" />
+            <ImageView
+                android:layout_width="7dp"
+                android:layout_height="15dp"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/ic_right3" />
+        </RelativeLayout>
     </LinearLayout>
 
 </LinearLayout>

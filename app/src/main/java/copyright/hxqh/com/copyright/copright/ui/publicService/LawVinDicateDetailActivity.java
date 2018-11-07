@@ -3,6 +3,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -39,15 +40,15 @@ public class LawVinDicateDetailActivity extends AppCompatActivity implements Vie
     @Bind(R.id.lawvindicate_status) //状态
     TextView lawvindicateStatus;
     @Bind(R.id.lawvindicate_book) //登记书
-    TextView lawvindicateBook;
+            RelativeLayout lawvindicateBook;
     @Bind(R.id.lawvindicate_confidencefile) //证明文件
-    TextView lawvindicateConfidenceFile;
+            RelativeLayout lawvindicateConfidenceFile;
     @Bind(R.id.lawvindicate_demo) //作品样本
-    TextView lawvindicateDemo;
-    @Bind(R.id.lawvindicate_signaturefiles) //签章扫描件
-     TextView lawvindicatesignaturefiles;
-    @Bind(R.id.lawvindicate_printscreen)
-    TextView lawvindicateprintscreen;
+            RelativeLayout lawvindicateDemo;
+//    @Bind(R.id.lawvindicate_signaturefiles) //签章扫描件
+//     TextView lawvindicatesignaturefiles;
+//    @Bind(R.id.lawvindicate_printscreen)
+//    TextView lawvindicateprintscreen;
 
     @Bind(R.id.lawvindicate_telepeople) //联系人
     TextView lawvindicateTelepeople;
@@ -97,34 +98,34 @@ public class LawVinDicateDetailActivity extends AppCompatActivity implements Vie
         searchButton.setVisibility(View.GONE);
         lawvindicateBook.setOnClickListener(this);
         lawvindicateConfidenceFile.setOnClickListener(this);
-        lawvindicateprintscreen.setOnClickListener(this);
-        lawvindicatesignaturefiles.setOnClickListener(this);
+//        lawvindicateprintscreen.setOnClickListener(this);
+//        lawvindicatesignaturefiles.setOnClickListener(this);
         lawvindicateDemo.setOnClickListener(this);
         if (royaltyEnity != null){
             lawvindicateNum.setText(royaltyEnity.getLawvindicateno());
             lawvindicateStatus.setText(royaltyEnity.getStatus());
-            if (royaltyEnity.getIscredential().equals("true")){
-                String str = royaltyEnity.getCredential();
-                String[] splitstr=str.split("/");
-                lawvindicateBook.setText(splitstr[splitstr.length - 1]);
-            }
-            if (royaltyEnity.getIscertifyfile().equals("true")){
-                String str = royaltyEnity.getCertifyfile();
-                String[] splitstr=str.split("/");
-                lawvindicateConfidenceFile.setText(splitstr[splitstr.length - 1]);
-            }
-            if (royaltyEnity.getIsprintscreen().equals("true")){
-                String str = royaltyEnity.getIsprintscreen();
-                String[] splitstr=str.split("/");
-                lawvindicateprintscreen.setText(splitstr[splitstr.length - 1]);
-            }
-            String str0 = royaltyEnity.getSignaturefiles();
-            String[] splitstr0=str0.split("/");
-            lawvindicatesignaturefiles.setText(splitstr0[splitstr0.length - 1]);
+//            if (royaltyEnity.getIscredential().equals("true")){
+//                String str = royaltyEnity.getCredential();
+//                String[] splitstr=str.split("/");
+//                lawvindicateBook.setText(splitstr[splitstr.length - 1]);
+//            }
+//            if (royaltyEnity.getIscertifyfile().equals("true")){
+//                String str = royaltyEnity.getCertifyfile();
+//                String[] splitstr=str.split("/");
+//                lawvindicateConfidenceFile.setText(splitstr[splitstr.length - 1]);
+//            }
+//            if (royaltyEnity.getIsprintscreen().equals("true")){
+//                String str = royaltyEnity.getIsprintscreen();
+//                String[] splitstr=str.split("/");
+//                lawvindicateprintscreen.setText(splitstr[splitstr.length - 1]);
+//            }
+//            String str0 = royaltyEnity.getSignaturefiles();
+//            String[] splitstr0=str0.split("/");
+//            lawvindicatesignaturefiles.setText(splitstr0[splitstr0.length - 1]);
 
-            String str1 = royaltyEnity.getSample();
-            String[] splitstr1=str1.split("/");
-            lawvindicateDemo.setText(splitstr1[splitstr1.length - 1]);
+//            String str1 = royaltyEnity.getSample();
+//            String[] splitstr1=str1.split("/");
+//            lawvindicateDemo.setText(splitstr1[splitstr1.length - 1]);
 
             lawvindicateTelepeople.setText(royaltyEnity.getLinkman());
             lawvindicatePhone.setText(royaltyEnity.getPhone());
@@ -152,12 +153,12 @@ public class LawVinDicateDetailActivity extends AppCompatActivity implements Vie
             case R.id.lawvindicate_confidencefile:
                 new StockUtil().downLoadFile(this, royaltyEnity.getCertifyfile());
                 break;
-            case R.id.lawvindicate_printscreen:
-                new StockUtil().downLoadFile(this, royaltyEnity.getIsprintscreen());
-                break;
-            case R.id.lawvindicate_signaturefiles:
-                new StockUtil().downLoadFile(this, royaltyEnity.getSignaturefiles());
-                break;
+//            case R.id.lawvindicate_printscreen:
+//                new StockUtil().downLoadFile(this, royaltyEnity.getIsprintscreen());
+//                break;
+//            case R.id.lawvindicate_signaturefiles:
+//                new StockUtil().downLoadFile(this, royaltyEnity.getSignaturefiles());
+//                break;
             case R.id.lawvindicate_demo:
                 new StockUtil().downLoadFile(this, royaltyEnity.getSample());
                 break;
