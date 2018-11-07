@@ -222,8 +222,13 @@ public class MaxConversionAuthorActivity extends FragmentActivity {
         List<String> itemX = new ArrayList<>();
         if (text != null){
             for(int i = 0 ; i < text.size(); i++){
-//                String num = String.valueOf(i+1);
-                itemX.add(text.get(i).replaceAll("\n",""));
+                String num = text.get(i).replaceAll("\n","");
+                if (num.length()>4){
+                    itemX.add(num.substring(0, 4)+"...");
+                }else {
+                    itemX.add(num);
+                }
+
             }
         }
 

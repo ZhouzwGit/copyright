@@ -485,7 +485,13 @@ public class ProductCostingActivity extends FragmentActivity {
                 sum = sum + Float.valueOf(cost_data.get(j));
             }
             for (int i = 0;i<cost_data.size();i++){
-                itemX.add(text.get(i).replaceAll("\r\n",""));
+                String num = text.get(i).replaceAll("\n","");
+                if (num.length()>4){
+                    itemX.add(num.substring(0, 4)+"...");
+                }else {
+                    itemX.add(num);
+                }
+//                itemX.add(text.get(i).replaceAll("\r\n",""));
                 cost_itemY.add(Float.valueOf(cost_data.get(i)));
                 mDescription.add(text.get(i).replaceAll("\r\n",""));
                 if (Float.valueOf(cost_data.get(i)) == 0 || Float.valueOf(cost_data.get(i)) == 0.0){

@@ -474,7 +474,13 @@ public class AcrelSellCountsActivity extends FragmentActivity {
                 sum = sum + Float.valueOf(data.get(i));
             }
             for (int i = 0;i<data.size();i++){
-                itemX.add(text.get(i).replaceAll("\n",""));
+                String num = text.get(i).replaceAll("\n","");
+                if (num.length()>4){
+                    itemX.add(num.substring(0, 4)+"...");
+                }else {
+                    itemX.add(num);
+                }
+//                itemX.add(text.get(i).replaceAll("\n",""));
                 itemY.add(Float.valueOf(data.get(i)));
                 mDescription.add(text.get(i).replaceAll("\n",""));
                 if (Float.valueOf(data.get(i)) == 0 || Float.valueOf(data.get(i)) == 0.0){

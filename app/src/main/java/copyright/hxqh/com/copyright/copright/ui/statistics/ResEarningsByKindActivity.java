@@ -93,8 +93,6 @@ public class ResEarningsByKindActivity  extends FragmentActivity {
     PieChartView pieChartView;
     @Bind(R.id.frameNewBase)
     ColumnChartView barChart;
-    @Bind(R.id.dotted_line)
-    View line;
     @Bind(R.id.liner_money)
     LinearLayout liner_money;
     @Bind(R.id.money)
@@ -160,7 +158,6 @@ public class ResEarningsByKindActivity  extends FragmentActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         barChart.setVisibility(View.GONE);
-        line.setVisibility(View.GONE);
         liner_money.setVisibility(View.GONE);
         barChart.setOnValueTouchListener(new ValueTouchListener());
         barChart.setValueSelectionEnabled(true);
@@ -177,7 +174,6 @@ public class ResEarningsByKindActivity  extends FragmentActivity {
                 recyclerView.setVisibility(View.VISIBLE);
                 liner_form.setVisibility(View.VISIBLE);
                 barChart.setVisibility(View.GONE);
-                line.setVisibility(View.GONE);
                 liner_money.setVisibility(View.GONE);
                 textpie.setTextColor(Color.parseColor("#ffffff"));
                 textLbar.setTextColor(Color.parseColor("#218BFF"));
@@ -195,7 +191,6 @@ public class ResEarningsByKindActivity  extends FragmentActivity {
                 recyclerView.setVisibility(View.GONE);
                 liner_form.setVisibility(View.GONE);
                 barChart.setVisibility(View.VISIBLE);
-                line.setVisibility(View.VISIBLE);
                 liner_money.setVisibility(View.VISIBLE);
                 textpie.setTextColor(Color.parseColor("#218BFF"));
                 textLbar.setTextColor(Color.parseColor("#ffffff"));
@@ -370,7 +365,13 @@ public class ResEarningsByKindActivity  extends FragmentActivity {
                 sum = sum + Float.valueOf(data.get(i));
             }
             for (int i = 0;i<data.size();i++){
-                itemX.add(text.get(i).replaceAll("\n",""));
+                String num = text.get(i).replaceAll("\n","");
+                if (num.length()>4){
+                    itemX.add(num.substring(0, 4)+"...");
+                }else {
+                    itemX.add(num);
+                }
+//                itemX.add(text.get(i).replaceAll("\n",""));
                 itemY.add(Float.valueOf(data.get(i)));
                 mDescription.add(text.get(i).replaceAll("\n",""));
                 if (Float.valueOf(data.get(i)) == 0 || Float.valueOf(data.get(i)) == 0.0){
