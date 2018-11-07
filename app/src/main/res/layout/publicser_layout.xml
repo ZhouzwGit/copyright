@@ -3,144 +3,133 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/gray5"
     >
     <include layout="@layout/title_main"></include>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1sp"
-        android:background="@color/black"></View>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <View
-            android:layout_width="1dp"
-            android:layout_height="150dp"
-            android:background="@color/black"
-            android:layout_marginTop="30dp"></View>
-        <LinearLayout
-            android:id="@+id/id_linner"
+        android:layout_height="152dp"
+        android:layout_marginHorizontal="7dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/statisticsbj"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/resousceman_id"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_marginTop="30dp"
-            android:orientation="vertical"
-            android:background="@color/gray4">
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/image1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="7dp"
+                android:src="@drawable/publicser1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/image1"
+                android:gravity="center"
+                android:text="版权登记申请"
+                android:textColor="#ff333333"
+                android:textSize="13sp" />
+
+            <ImageView
+                android:layout_width="7dp"
+                android:layout_height="13dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:src="@mipmap/ic_right3" />
+
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1sp"
-                android:background="@color/black"></View>
-            <RelativeLayout
-                android:id="@+id/resousceman_id"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-                <ImageView
-                    android:id="@+id/my1_id"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_centerVertical="true"
-                    android:src="@mipmap/none"
-                    />
-                <TextView
-                    android:layout_toRightOf="@+id/my1_id"
-                    android:layout_marginLeft="20dp"
-                    android:textSize="18sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="版权登记申请"
-                    android:layout_centerVertical="true"
-                    />
-                <ImageView
-                    android:id="@+id/changepassword_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="20dp"
-                    android:src="@mipmap/ic_right"/>
-            </RelativeLayout>
+                android:layout_height="1dp"
+                android:background="@color/gray5"></View>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/royaltyman_id"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/image2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="7dp"
+                android:src="@drawable/publicser2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/image2"
+                android:gravity="center"
+                android:text="法律维权申请"
+                android:textColor="#ff333333"
+                android:textSize="13sp" />
+
+            <ImageView
+                android:layout_width="7dp"
+                android:layout_height="13dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:src="@mipmap/ic_right3" />
+
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1sp"
-                android:background="@color/black"></View>
-            <RelativeLayout
-                android:id="@+id/royaltyman_id"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-                <ImageView
-                    android:id="@+id/my2_id"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_centerVertical="true"
-                    android:src="@mipmap/none"
-                    />
-                <TextView
-                    android:layout_toRightOf="@+id/my2_id"
-                    android:layout_marginLeft="20dp"
-                    android:textSize="18sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="法律维权申请"
-                    android:layout_centerVertical="true"
-                    />
-                <ImageView
-                    android:id="@+id/checkupdate_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="20dp"
-                    android:src="@mipmap/ic_right"/>
-            </RelativeLayout>
+                android:layout_height="1dp"
+                android:background="@color/gray5"></View>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/counsel_id"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/image3"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="7dp"
+                android:src="@drawable/publicser3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/image3"
+                android:gravity="center"
+                android:text="咨询服务"
+                android:textColor="#ff333333"
+                android:textSize="13sp" />
+
+            <ImageView
+                android:layout_width="7dp"
+                android:layout_height="13dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:src="@mipmap/ic_right3" />
+
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1sp"
-                android:background="@color/black"></View>
-            <RelativeLayout
-                android:id="@+id/counsel_id"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-                <ImageView
-                    android:id="@+id/my3_id"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_centerVertical="true"
-                    android:src="@mipmap/none"
-                    />
-                <TextView
-                    android:layout_toRightOf="@+id/my3_id"
-                    android:layout_marginLeft="20dp"
-                    android:textSize="18sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="咨询服务"
-                    android:layout_centerVertical="true"
-                    />
-                <ImageView
-                    android:id="@+id/counselimage_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="20dp"
-                    android:src="@mipmap/ic_right"/>
-            </RelativeLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1sp"
-                android:background="@color/black"></View>
-        </LinearLayout>
-        <View
-            android:layout_width="1dp"
-            android:layout_height="100dp"
-            android:background="@color/black"
-            android:layout_marginTop="30dp"></View>
+                android:layout_height="1dp"
+                android:background="@color/gray5"></View>
+
+        </RelativeLayout>
+
     </LinearLayout>
 </LinearLayout>

@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import butterknife.Bind;
@@ -37,7 +39,7 @@ public class ConsultDetailActivity extends AppCompatActivity {
     @Bind(R.id.consult_description) //需求描述
             TextView consultDescription;
     @Bind(R.id.consult_file) //附件
-            TextView consultFile;
+            RelativeLayout consultFile;
     @Bind(R.id.consult_advice) //意见
             TextView consultAdvice;
 
@@ -72,9 +74,9 @@ public class ConsultDetailActivity extends AppCompatActivity {
             consultDescription.setText(consult.getManagementabqu());
             consultAdvice.setText(consult.getDealidea());
 
-            String str = consult.getServicefile();
-            String[] splitstr=str.split("/");
-            consultFile.setText(splitstr[splitstr.length - 1]);
+//            String str = consult.getServicefile();
+//            String[] splitstr=str.split("/");
+//            consultFile.setText(splitstr[splitstr.length - 1]);
         }
         consultFile.setOnClickListener(new View.OnClickListener() {
             @Override
