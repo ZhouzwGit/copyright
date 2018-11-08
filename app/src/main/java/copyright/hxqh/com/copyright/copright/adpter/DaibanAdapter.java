@@ -39,19 +39,25 @@ public class DaibanAdapter extends BaseQuickAdapter<ToDo,BaseViewHolder> {
         helper.setText(R.id.daiban_step,item.getTask().get(0).getName());
         helper.setText(R.id.daiban_date,item.getTask().get(0).getCreateTime());
         if (item.getRemaindflag().equals("1")){
-            helper.setImageResource(R.id.daiban_remark,R.drawable.icon_concern);
+//            helper.setImageResource(R.id.daiban_remark,R.drawable.icon_concern);
+            helper.setBackgroundRes(R.id.daiban_remark,R.drawable.concern_bg);
+            helper.setText(R.id.daiban_remark,"已关注");
         }else {
-            helper.setImageResource(R.id.daiban_remark,R.drawable.icon_not_concern);
+//            helper.setImageResource(R.id.daiban_remark,R.drawable.icon_not_concern);
+            helper.setBackgroundRes(R.id.daiban_remark,R.drawable.not_concern_bg);
+            helper.setText(R.id.daiban_remark,"+关注");
         }
         helper.setOnClickListener(R.id.daiban_remark, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (remain == false){
-                    helper.setImageResource(R.id.daiban_remark,R.drawable.icon_concern);
+                    helper.setBackgroundRes(R.id.daiban_remark,R.drawable.concern_bg);
+                    helper.setText(R.id.daiban_remark,"已关注");
                     json = HttpConnect.SaveJson(mcontext,item.getBusinessTable(),item.getBusinessId(),item.getProcInsId(),"1");
                     remain = true;
                 }else {
-                    helper.setImageResource(R.id.daiban_remark,R.drawable.icon_not_concern);
+                    helper.setBackgroundRes(R.id.daiban_remark,R.drawable.not_concern_bg);
+                    helper.setText(R.id.daiban_remark,"+关注");
                     json = HttpConnect.SaveJson(mcontext,item.getBusinessTable(),item.getBusinessId(),item.getProcInsId(),"0");
                     remain = false;
                 }

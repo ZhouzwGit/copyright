@@ -7,15 +7,15 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="1dp"
     android:layout_marginTop="1dp"
-    android:background="#e4e4e4"
     android:foreground="?android:selectableItemBackground"
     android:orientation="horizontal"
     card_view:cardCornerRadius="2dp">
 
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
         android:layout_alignParentTop="true">
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,81 +23,142 @@
             android:background="@drawable/item_white_bg"
             android:orientation="vertical"
             android:layout_marginLeft="@dimen/dp_10"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="2dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp">
-                <ImageView
-                    android:id="@+id/image_id"
-                    android:layout_width="10dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="5dp"
-                    android:src="@mipmap/contract1"/>
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/sp_16"
+                android:layout_marginTop="8dp">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="match_parent">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="流程类型:"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:layout_marginLeft="@dimen/dp_10"/>
+                    android:gravity="center_vertical"
+                    android:textColor="#333333"
+                    android:textSize="12dp" />
                 <TextView
                     android:id="@+id/daiban_flowtype"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
                     android:maxLines="1"
+                    android:gravity="center_vertical"
                     android:scrollbarSize="0dp"
                     android:scrollbars="vertical"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"
+                    android:textColor="#9A9A9A"
+                    android:textSize="12dp"
+                    android:layout_marginLeft="5dp"
                     android:text=""
                     android:hint="暂无数据"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="3dp"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/daiban_remark"
+                        android:layout_width="35dp"
+                        android:layout_height="17dp"
+                        android:text=""
+                        android:gravity="center"
+                        android:background="@drawable/not_concern_bg"
+                        android:textColor="@color/white"
+                        android:textSize="9sp"
+                        android:layout_marginTop="13dp" />
+                </LinearLayout>
             </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginRight="17dp"
+                android:layout_marginLeft="17dp"
+                android:background="#F2F3F4"></View>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp">
+                android:layout_marginLeft="@dimen/sp_16"
+                android:layout_marginRight="@dimen/sp_16">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="14sp"
-                    android:text="申请单/作品名称:"/>
+                    android:textColor="#333333"
+                    android:textSize="12dp"
+                    android:text="申请单位/作品名称:"/>
                 <TextView
                     android:id="@+id/diaban_workname"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
+                    android:textColor="#333333"
                     android:text=""
                     android:hint="暂无数据"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp">
+                android:layout_marginLeft="@dimen/sp_16"
+                android:layout_marginRight="@dimen/sp_16"
+                android:layout_marginTop="8dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="14sp"
+                    android:textColor="#333333"
+                    android:textSize="12dp"
                     android:text="当前环节:"/>
                 <TextView
                     android:id="@+id/daiban_step"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
+                    android:textColor="#333333"
                     android:hint="暂无数据"/>
             </LinearLayout>
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_marginLeft="@dimen/sp_16"-->
+                <!--android:layout_marginRight="@dimen/sp_16"-->
+                <!--android:layout_marginTop="8dp">-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:textColor="#333333"-->
+                    <!--android:textSize="12dp"-->
+                    <!--android:text="被授权方:"/>-->
+                <!--<TextView-->
+                    <!--android:id="@+id/daiban_people"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="5dp"-->
+                    <!--android:textSize="12sp"-->
+                    <!--android:textColor="#333333"-->
+                    <!--android:hint="暂无数据"/>-->
+            <!--</LinearLayout>-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="17dp"
+                android:layout_marginLeft="17dp"
+                android:background="#F2F3F4"></View>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
+                android:layout_marginLeft="@dimen/sp_16"
+                android:layout_marginRight="@dimen/sp_16"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="10dp">
                 <LinearLayout
                     android:layout_weight="1"
                     android:layout_width="0dp"
@@ -105,31 +166,33 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textSize="14sp"
+                        android:textColor="#333333"
+                        android:textSize="12dp"
                         android:text="创建日期:"/>
                     <TextView
                         android:id="@+id/daiban_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:textSize="14sp"
+                        android:textSize="12sp"
+                        android:textColor="#333333"
                         android:text=""
                         android:hint="暂无数据"/>
                 </LinearLayout>
-                <LinearLayout
+                <!--<LinearLayout-->
 
-                    android:layout_weight="0.3"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent">
+                    <!--android:layout_weight="0.3"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="match_parent">-->
 
-                    <ImageView
-                        android:id="@+id/daiban_remark"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/icon_not_concern"/>
-                </LinearLayout>
+                    <!--<ImageView-->
+                        <!--android:id="@+id/daiban_remark"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:src="@drawable/icon_not_concern"/>-->
+                <!--</LinearLayout>-->
 
             </LinearLayout>
         </LinearLayout>
-    </RelativeLayout>
+    </LinearLayout>
 </LinearLayout>

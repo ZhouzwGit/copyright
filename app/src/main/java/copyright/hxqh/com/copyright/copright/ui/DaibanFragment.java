@@ -2,6 +2,7 @@ package copyright.hxqh.com.copyright.copright.ui;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -13,9 +14,11 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,6 +31,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.weigan.loopview.LoopView;
+import com.weigan.loopview.OnItemSelectedListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,6 +54,7 @@ import copyright.hxqh.com.copyright.copright.ui.publicService.LawVinDicateDetail
 import copyright.hxqh.com.copyright.copright.ui.publicService.RoyaltyActivity;
 import copyright.hxqh.com.copyright.copright.ui.publicService.adapter.LawvindicateAdapter;
 import copyright.hxqh.com.copyright.copright.ui.publicService.entity.Consult;
+import copyright.hxqh.com.copyright.copright.ui.statistics.ProductCostingActivity;
 import copyright.hxqh.com.copyright.copright.util.AcountUtil;
 import copyright.hxqh.com.copyright.copright.util.CumTimePickerDialog;
 
@@ -66,7 +72,14 @@ public class DaibanFragment extends Fragment implements SwipeRefreshLayout.OnRef
     ImageView searchButton; //搜索
     @Bind(R.id.title_relativelayout_id)
     RelativeLayout relativeLayout;
-
+    @Bind(R.id.flow_type)
+    TextView flow_type;
+    @Bind(R.id.imag_flowtype)
+    ImageView imag_flowtype;
+    @Bind(R.id.flow_createtime)
+    TextView flow_createtime;
+    @Bind(R.id.imag_createtime)
+    ImageView imag_createtime;
     LinearLayoutManager layoutManager;
 
     @Bind(R.id.recyclerView_id)//RecyclerView
@@ -89,15 +102,19 @@ public class DaibanFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
     DaibanAdapter daibanAdapter;
 
-    /**
-     * 时间控件
-     */
-    private DatePickerDialog datePickerDialog;
-
-    private int layoutnum;
-    StringBuffer sb;
-
-    private ArrayAdapter<String> mAdapter ;
+    Dialog mCameraDialog;
+    private ArrayList<String> list_year = new ArrayList<String>();
+    private ArrayList<String> list_mooth = new ArrayList<String>();
+    private ArrayList<String> list_day = new ArrayList<String>();
+    LoopView loopView_year;
+    LoopView loopView_month;
+    LoopView loopView_day;
+    //被选中或默认显示的时间
+    Calendar date = Calendar.getInstance();
+    private int year = date.get(Calendar.YEAR);
+    private int mooth = date.get(Calendar.MONTH)+1;
+    private int day = date.get(Calendar.DATE);
+    private int oldDayCounts = 31;
     private ArrayList<String> mStringArray = new ArrayList<>();
     private ArrayList<String> ValueArray= new ArrayList<>();
 
@@ -106,7 +123,7 @@ public class DaibanFragment extends Fragment implements SwipeRefreshLayout.OnRef
     Boolean flag = false;
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_list, container,
+        View view = inflater.inflate(R.layout.daiban_list, container,
                 false);
         ButterKnife.bind(getActivity());
         findByIdView(view);
@@ -122,128 +139,210 @@ public class DaibanFragment extends Fragment implements SwipeRefreshLayout.OnRef
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView_id);
         nodatalayout = (LinearLayout) view.findViewById(R.id.have_not_data_id);
         refresh_layout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
+        flow_type = (TextView) view.findViewById(R.id.flow_type);
+        imag_flowtype = (ImageView) view.findViewById(R.id.imag_flowtype);
+        flow_createtime = (TextView) view.findViewById(R.id.flow_createtime);
+        imag_createtime = (ImageView) view.findViewById(R.id.imag_createtime);
     }
 
     protected void initView() {
         relativeLayout.setBackgroundResource(R.drawable.background_gradient);
         titleTextView.setText("待办列表");
-
+        imag_createtime.setOnClickListener(createtimeOnClickListener);
         layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         layoutManager.scrollToPosition(0);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         refresh_layout.setOnRefreshListener(this);
-
         backButton.setVisibility(View.GONE);
-        searchButton.setImageResource(R.drawable.ic_handlight);
+        searchButton.setVisibility(View.GONE);
         json = HttpConnect.getBasicJson(getActivity());
         initAdpter();
         AcountUtil.showProgressDialog(getActivity(), "");
+        initDataList();
         getData();
         getFlowType();
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                View view = LayoutInflater.from(getActivity()).inflate(R.layout.high_opinion_dialog_layout,null,false);
-                final AlertDialog dialog = new AlertDialog.Builder(getActivity()).setView(view).create();
-
-                Button btn_cancel_high_opion = view.findViewById(R.id.btn_cancel_high_opion);
-                Button btn_agree_high_opion = view.findViewById(R.id.btn_agree_high_opion);
-                startdate = view.findViewById(R.id.startdate_id);
-                enddate = view.findViewById(R.id.enddate_id);
-                spinner = view.findViewById(R.id.spinner2);
-                //使用自定义的ArrayAdapter
-                mAdapter = new SpinnerArrayAdapter(getActivity(),mStringArray);
-                spinner.setAdapter(mAdapter);
-                //监听Item选中事件
-                spinner.setOnItemSelectedListener(new ItemSelectedListenerImpl());
-
-                btn_cancel_high_opion.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        startdate.setText("");
-                        enddate.setText("");
-                        startdate.setHint("请选择时间");
-                        enddate.setHint("请选择时间");
-                        spinner.setSelection(0);
-                    }
-                });
-
-                btn_agree_high_opion.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        flag = true;
-                        json2 = HttpConnect.getFlowTypeJson(getActivity(),actvalue ,startdate.getText().toString(),enddate.getText().toString());
-                        getData();
-                        dialog.dismiss();
-                    }
-                });
-                setDataListener();
-                startdate.setOnClickListener(new MydateListener());
-                enddate.setOnClickListener(new MydateListener());
-
-                dialog.show();
-
+    }
+    private View.OnClickListener createtimeOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            showDialog();
+        }
+    };
+    private void showDialog() {
+        mCameraDialog = new Dialog(getActivity(), R.style.my_dialog);
+        LinearLayout root = (LinearLayout) LayoutInflater.from(getActivity()).inflate(
+                R.layout.time_dialog, null);
+        loopView_year = (LoopView) root.findViewById(R.id.loopView_year);
+        loopView_month = (LoopView) root.findViewById(R.id.loopView_month);
+        loopView_day = (LoopView) root.findViewById(R.id.loopView_day);
+        root.findViewById(R.id.text_cancel).setOnClickListener(btnlistener);
+        root.findViewById(R.id.text_sure).setOnClickListener(btnlistener);
+        root.findViewById(R.id.text_reset).setOnClickListener(btnlistener);
+        mCameraDialog.setContentView(root);
+        //滚动监听,年份
+        loopView_year.setListener(new OnItemSelectedListener() {
+            public void onItemSelected(int index) {
+                year = Integer.parseInt(list_year.get(index));
+                setRightDayCount();
             }
         });
-    }
-    /**
-     * 下拉选中的条目*
-     */
-    private class ItemSelectedListenerImpl implements AdapterView.OnItemSelectedListener {
-        @Override
-        public void onItemSelected(AdapterView<?> parent, View view, int position,long arg3) {
-            String flowType = mStringArray.get(position);
-            actvalue = ValueArray.get(position);
-        }
 
-        @Override
-        public void onNothingSelected(AdapterView<?> parent) {}
-
-    }
-
-    /**
-     * 设置时间选择器*
-     */
-    private void setDataListener() {
-        final Calendar objTime = Calendar.getInstance();
-        int iYear = objTime.get(Calendar.YEAR);
-        int iMonth = objTime.get(Calendar.MONTH);
-        int iDay = objTime.get(Calendar.DAY_OF_MONTH);
-
-        datePickerDialog = new DatePickerDialog(getActivity(), new datelistener(), iYear, iMonth, iDay);
-    }
-    private class MydateListener implements View.OnClickListener {
-
-        @Override
-        public void onClick(View view) {
-            layoutnum = 0;
-            sb = new StringBuffer();
-            layoutnum = view.getId();
-            datePickerDialog.show();
-        }
-    }
-
-    private class datelistener implements DatePickerDialog.OnDateSetListener {
-
-        @Override
-        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            sb = new StringBuffer();
-            monthOfYear = monthOfYear + 1;
-            if (dayOfMonth < 10) {
-                sb.append(year + "-" + monthOfYear + "-" + "0" + dayOfMonth);
-            } else {
-                sb.append(year + "-" + monthOfYear + "-" + dayOfMonth);
+        //滚动监听,月份
+        loopView_month.setListener(new OnItemSelectedListener() {
+            public void onItemSelected(int index) {
+                mooth = Integer.parseInt(list_mooth.get(index));
+                setRightDayCount();
             }
+        });
 
-            if (layoutnum == startdate.getId()) {
-                startdate.setText(sb);
-            }else if (layoutnum == enddate.getId()){
-                enddate.setText(sb);
+        //滚动监听,天数
+        loopView_day.setListener(new OnItemSelectedListener() {
+            public void onItemSelected(int index) {
+                day = Integer.parseInt(list_day.get(index));
+            }
+        });
+        loopView_year.setItems(list_year);
+        loopView_month.setItems(list_mooth);
+        loopView_day.setItems(list_day);
+        //默认时间,当前年月日
+        for (int i = 0; i < list_year.size(); i++) {
+            if (Integer.parseInt(list_year.get(i)) == year) {
+                loopView_year.setCurrentPosition(i);
             }
         }
+        loopView_month.setCurrentPosition(mooth-1);
+        loopView_day.setCurrentPosition(day - 1);
+
+        Window dialogWindow = mCameraDialog.getWindow();
+        dialogWindow.setGravity(Gravity.BOTTOM);
+        mCameraDialog.setCanceledOnTouchOutside(true);
+        dialogWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        dialogWindow.setWindowAnimations(R.style.dialogstyle); // 添加动画
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes(); // 获取对话框当前的参数值
+        lp.x = 0; // 新位置X坐标
+        lp.y = -20; // 新位置Y坐标
+        lp.width = (int) getResources().getDisplayMetrics().widthPixels; // 宽度
+
+        root.measure(0, 0);
+        lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        lp.alpha = 9f; // 透明度
+        dialogWindow.setAttributes(lp);
+        mCameraDialog.show();
     }
+    /**
+     * 初始化日期的几个集合数据
+     */
+    private void initDataList() {
+        list_year.clear();
+        list_mooth.clear();
+        list_day.clear();
+        //年的时间
+        for (int i = 2000; i < 2500; i++) {
+            list_year.add("" + i);
+        }
+
+        //月的时间
+        for (int i = 1; i < 13; i++) {
+            list_mooth.add("" + i);
+        }
+
+        //日的时间
+        for (int i = 1; i < 32; i++) {
+            list_day.add("" + i);
+        }
+    }
+    /**
+     * 根据年数的月份显示对应的天数
+     */
+    private void setRightDayCount() {
+
+        int dayCounts = 31;
+        //28天的情况，润年2月
+        if (leapYear(year) && mooth == 2) {
+            dayCounts = 28;
+        }
+        //29天的情况，平年2月
+        else if (!leapYear(year) && mooth == 2) {
+            dayCounts = 29;
+        }
+
+        //30天的情况，2，4，6，9，11
+        else if (mooth == 2 || mooth == 4 || mooth == 6 || mooth == 9 || mooth == 11) {
+            dayCounts = 30;
+        }
+
+        //31天的情况 ，1，3，5，7，8，10，12
+        else {
+            dayCounts = 31;
+        }
+
+        list_day.clear();
+        //日的时间
+        for (int i = 1; i <= dayCounts; i++) {
+            list_day.add("" + i);
+        }
+
+        if (oldDayCounts != dayCounts) {    //如果新老的天数不一样才变换天数
+            //重新改变天的数量
+            loopView_day.setItems(list_day);
+
+            //判断是否要变更选中的天数，比如选中3-31滑动到2月变成2-28或2-29
+            if (dayCounts < day) {
+                loopView_day.setCurrentPosition(dayCounts - 1);
+            }
+            oldDayCounts = dayCounts;
+        }
+
+
+    }
+
+    /**
+     * 判断是闰年leapYear还是平年
+     */
+    private boolean leapYear(int year) {
+        if (year % 400 == 0) {
+            return true;
+        }
+
+        if (year % 100 != 0 && year % 4 == 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private View.OnClickListener btnlistener = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+            int i = v.getId();
+            if (i == R.id.text_sure) {
+
+                flow_createtime.setText(year + "-" + mooth + "-" + day);
+//                json2 = HttpConnect.getProductCostJson(getActivity(),flow_createtime.getText().toString(),textEndtime.getText().toString(),"bar");
+                getData();
+                mCameraDialog.dismiss();
+            } else if (i == R.id.text_cancel) {
+                if (mCameraDialog != null) {
+                    mCameraDialog.dismiss();
+                }
+
+            }else if (i == R.id.text_reset) {
+                for (int j = 0; j < list_year.size(); j++) {
+                    if (Integer.parseInt(list_year.get(j)) == date.get(Calendar.YEAR)) {
+                        loopView_year.setCurrentPosition(j);
+                    }
+                }
+                loopView_month.setCurrentPosition(date.get(Calendar.MONTH));
+                loopView_day.setCurrentPosition(date.get(Calendar.DATE) - 1);
+                year = date.get(Calendar.YEAR);
+                mooth = date.get(Calendar.MONTH);
+                day = date.get(Calendar.DATE);
+            }
+        }
+    };
     @Override
     public void onRefresh() {
         refresh_layout.setRefreshing(true);
